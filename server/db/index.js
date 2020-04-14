@@ -24,13 +24,22 @@ connection.connect((err) => {
 
 const query = util.promisify(connection.query).bind(connection);
 
+// get all rooms from database
 const getRooms = (req, res) => {
   const mysqlQuery = `SELECT * FROM rooms`;
   return query(mysqlQuery);
 };
 
+// create a party
+const addParty = (req, res) => {
+  const { name, password, user_id, host_id, host_location, radius, details, start, end } = req.params; // or req.body
+  const mysqlQuery = `INSERT INTO rooms (name, password, user_id, host_id, host_location, radius, details, start, end) VALUES ('${name}', '${password}', ${user_id}, ${host_id}, '${host_location}', ${radius}, ${details}', ${start}, ${end})`
+  return query(mysqlQuery);
+}
+
 module.exports.getItems = getItems;
 module.exports = {
   getItems,
   getRooms,
+  addParty,
 };
