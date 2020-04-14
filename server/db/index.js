@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+const util = require('util');
 
 const DB_HOST = 'localhost';
 const DB_USER = 'root';
@@ -21,9 +22,15 @@ connection.connect((err) => {
   }
 });
 
-const getItems = (callback) => {
-  // TODO: Your code here!
+const query = util.promisify(connection.query).bind(connection);
+
+const getRooms = (req, res) => {
+  const mysqlQuery = `SELECT * FROM rooms`;
+  return query(mysqlQuery);
 };
 
 module.exports.getItems = getItems;
-module.exports.connection = connection;
+module.exports = {
+  getItems,
+  getRooms,
+};
