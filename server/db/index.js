@@ -12,6 +12,15 @@ const connection = mysql.createConnection({
   database: DB_NAME,
 });
 
+connection.connect(function (err) {
+  if (err) {
+      console.log('Error');
+      throw err
+  } else {
+      console.log('Connected to database howdy!');
+  }
+});
+
 const getItems = (callback) => {
   // TODO: Your code here!
 };
