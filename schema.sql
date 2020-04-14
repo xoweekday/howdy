@@ -34,9 +34,9 @@ CREATE TABLE rooms (
   name varchar(60),
   password varchar(60),
   user_id int,
+  host_id int,
   host_location varchar(255),
   radius int,
-  host_id int,
   details varchar(255),
   start timestamp,
   end int
