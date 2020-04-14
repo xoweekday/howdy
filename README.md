@@ -1,15 +1,12 @@
-# team-tauros
-Howdy App Creators
-
 # Project Name
 
-> Pithy project description
+> Howdy
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Heather Haylett
+  - __Scrum Master__: James Easter
+  - __Development Team Members__: Matt Hritz, Sean Hart, Chris Nguyen
 
 ## Table of Contents
 
