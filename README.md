@@ -37,9 +37,12 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
-npm install
-bower install
+1. npm install
+2. // Have mysql running
+3. mysql -u root < schema.sql
+4. npm run start:client
+5. npm run start:server
+6. Open localhost
 ```
 
 ### Roadmap
