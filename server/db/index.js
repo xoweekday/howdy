@@ -12,10 +12,10 @@ const connection = mysql.createConnection({
   database: DB_NAME,
 });
 
-connection.connect(function (err) {
+connection.connect((err) => {
   if (err) {
       console.log('Error');
-      throw err
+      return;
   } else {
       console.log('Connected to database howdy!');
   }
@@ -26,3 +26,4 @@ const getItems = (callback) => {
 };
 
 module.exports.getItems = getItems;
+module.exports.connection = connection;
