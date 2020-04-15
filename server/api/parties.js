@@ -3,7 +3,11 @@ const db = require('../db');
 
 const partyRouter = Router();
 
+// POST /api/parties
+// when a user creates a party, add the details to the database
+
 // GET /api/parties
+// when the homepage renders, all available parties should show
 partyRouter.get('/', (req, res) => {
   db.getRooms()
     .then((parties) => {
