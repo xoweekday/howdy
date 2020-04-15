@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const { partyRouter } = require('./parties');
+const { homeRouter } = require('./homepage');
 
 const apiRouter = Router();
 
-apiRouter.use('/parties', partyRouter);
+apiRouter.use('/homepage', homeRouter);
 
 module.exports = {
   apiRouter,

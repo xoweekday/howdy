@@ -1,14 +1,14 @@
 const { Router } = require('express');
 const db = require('../db');
 
-const partyRouter = Router();
+const homeRouter = Router();
 
-// POST /api/parties
+// POST /api/homepage
 // when a user creates a party, add the details to the database
 
-// GET /api/parties
+// GET /api/homepage
 // when the homepage renders, all available parties should show
-partyRouter.get('/', (req, res) => {
+homeRouter.get('/', (req, res) => {
   db.getRooms()
     .then((parties) => {
       res.send(parties);
@@ -20,5 +20,5 @@ partyRouter.get('/', (req, res) => {
 });
 
 module.exports = {
-  partyRouter,
+  homeRouter,
 };
