@@ -37,9 +37,8 @@ const addParty = (req, res) => {
   return query(mysqlQuery);
 }
 
-module.exports.getItems = getItems;
+//module.exports.getItems = getItems;
 module.exports = {
-  getItems,
   getRooms,
   addParty,
 };
