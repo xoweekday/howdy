@@ -1,19 +1,28 @@
 import React from 'react';
 
-class PartyListItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
+const PartyListItem = ({ party }) => (
 
-  render() {
-    return (
-      <div>
-        <h4>Party List Item</h4>
+  //Render individual party details. 
+
+  <div>
+
+    <div className='partyContainer' className='container'>
+      <div className="row">
+
+      {console.dir(party)}
+
+        <div className='partyName' className='col'>{party.name}</div>
+        <div className='partyDistance' className='col'>{party.host_location}</div>
+        <div className='partySize' className='col'>{party.start}</div>
+        <div className='partyHost' className='col'>{party.end}</div>
+        <div className='partyStartTime' className='col'>{party.radius}</div>
+        <div className='partyEndTime' className='col'>{party.details}</div>
+        <div className='partyLink' className='col'><button type="button" className="btn btn-primary">Join Party</button></div>
       </div>
-    );
-  }
-}
+    </div>
+
+
+  </div>
+);
 
 export default PartyListItem;
