@@ -56,3 +56,4 @@ CREATE TABLE characters (
 
 INSERT INTO messages (message) VALUES ('hi');
 INSERT INTO rooms (name, password, user_id, host_id, host_location, radius, details, start, end) VALUES ('Pokemon Party', 'superSecretPassword', 1, 1, 'New Orleans', 500, 'This is a detail of Pokemon Party', '1000-01-01 00:00:00', '1000-03-03 23:59:59');
+INSERT INTO rooms (name, password, user_id, host_id, host_location, radius, details, start, end) VALUES ('League Party', 'superSecretPassword2', 2, 2, 'Summoners Rift', 400, 'This is a detail of League Party', '1000-02-02 00:00:00', '1000-02-03 23:59:59');
