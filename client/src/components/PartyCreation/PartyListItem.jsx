@@ -1,34 +1,28 @@
 import React from 'react';
 
-class PartyListItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      parties: [],
-    };
-  }
+const PartyListItem = ({ party }) => (
 
   //Render individual party details. 
-  render() {
-    return (
-      <div>
 
-        <div className='partyContainer' class='container'>
-          <div class="row">
-            <div className='partyName' class='col'>Cool Party Name</div>
-            <div className='partyDistance' class='col'>6miles</div>
-            <div className='partySize' class='col'>3party-goers</div>
-            <div className='partyHost' class='col'>John</div>
-            <div className='partyStartTime' class='col'>8pm</div>
-            <div className='partyEndTime' class='col'>10pm</div>
-            <div className='partyLink' class='col'>link to party</div>
-          </div>
-        </div>
+  <div>
 
+    <div className='partyContainer' className='container'>
+      <div className="row">
 
+      {console.dir(party)}
+
+        <div className='partyName' className='col'>{party.name}</div>
+        <div className='partyDistance' className='col'>{party.host_location}</div>
+        <div className='partySize' className='col'>{party.start}</div>
+        <div className='partyHost' className='col'>{party.end}</div>
+        <div className='partyStartTime' className='col'>{party.radius}</div>
+        <div className='partyEndTime' className='col'>{party.details}</div>
+        <div className='partyLink' className='col'><button type="button" className="btn btn-primary">Join Party</button></div>
       </div>
-    );
-  }
-}
+    </div>
+
+
+  </div>
+);
 
 export default PartyListItem;
