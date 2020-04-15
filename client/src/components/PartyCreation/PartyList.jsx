@@ -1,11 +1,13 @@
 import React from 'react';
 import PartyListItem from './PartyListItem.jsx';
+import Parties from './Parties.jsx';
 
 class PartyList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [],
+      parties: [{},{},{}],
     };
   }
 
@@ -13,7 +15,9 @@ class PartyList extends React.Component {
     return (
       <div>
         <h3>Party List</h3>
-        <PartyListItem ></PartyListItem>
+        {Parties.map(( party ) =>
+          <PartyListItem ></PartyListItem>
+        )}
       </div>
     );
   }
