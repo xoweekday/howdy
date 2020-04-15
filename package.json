@@ -1,9 +1,9 @@
 {
   "name": "mvp-stater-kit",
   "scripts": {
-    "start:server": "node server/index.js",
+    "start": "node server/index.js",
     "start:client": "webpack --config webpack.config.js --mode development --watch",
-    "build:client": "webpack --config webpack.config.js --mode production",
+    "build": "webpack --config webpack.config.js --mode production",
     "lint": "eslint . --ext .js,.jsx"
   },
   "author": "Beth Johnson",
