@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 function onSignIn(googleUser) {
@@ -19,6 +20,11 @@ function onSignIn(googleUser) {
 const LogIn = () => (
 <div>
   <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+  <Link to={{ pathname: '/parties' }}>
+    <button>
+      Google sucks. Just click here for now to get to parties.
+    </button>
+  </Link>
 </div>
 )
 
