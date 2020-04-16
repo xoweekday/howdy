@@ -12,6 +12,7 @@ class Parties extends React.Component {
   render() {
     return (
       <div>
+      <h1>Parties Page</h1>
         <div>
           <h2>Create Party</h2>
           <CreateParty />
