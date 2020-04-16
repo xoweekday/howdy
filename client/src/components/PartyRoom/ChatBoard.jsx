@@ -1,23 +1,9 @@
 import React from 'react';
-
-class ChatBoard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      messages: this.props.messages,
-    };
-  }
-
-  render() {
-    const { messages } = this.state;
-    return (
-      <div>
-      {messages.map((message) =>
-        console.log(message)
-      )}
-      </div>
-    );
-  }
-}
-
+const ChatBoard = ({ messages }) => (
+  <div>
+    {messages.map((message) =>
+      <div key={message.id}>{message.message}</div>
+    )}
+  </div>
+);
 export default ChatBoard;
