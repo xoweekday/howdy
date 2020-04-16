@@ -11,16 +11,20 @@ class Parties extends React.Component {
 
   render() {
     return (
-      <div>
-      <h1>Parties Page</h1>
-        <div>
+      <div className="container">
+      <div className="row">
+        <h1>Parties Page</h1>
+        </div>
+      <div className="row">
+        <div className="col">
           <h2>Create Party</h2>
           <CreateParty />
         </div>
-        <div>
+        <div className="col">
           <h2>Parties Near You</h2>
           <PartyList />
         </div>
+      </div>
       </div>
     );
   }
