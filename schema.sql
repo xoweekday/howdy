@@ -54,5 +54,6 @@ CREATE TABLE characters (
 -- ALTER TABLE users FOREIGN KEY (character_id) REFERENCES characters (id);
 
 INSERT INTO messages (message) VALUES ('hi');
+INSERT INTO messages (message) VALUES ('this is an example message');
 INSERT INTO rooms (name, host_id, location, radius, details, date, start, end) VALUES ('Pokemon Party', 1, 'New Orleans', 500, 'This is a detail of Pokemon Party', '2020-07-20', '00:00:00', '23:59:59');
 INSERT INTO rooms (name, host_id, location, radius, details, date, start, end) VALUES ('League Party', 2, 'Summoners Rift', 400, 'This is a detail of League Party', '2020-06-20', '00:00:00', '23:59:59');

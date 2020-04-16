@@ -26,6 +26,12 @@ const getRooms = (req, res) => {
   return query(mysqlQuery);
 };
 
+// get all messages from database
+const getMessages = (req, res) => {
+  const mysqlQuery = `SELECT * FROM messages`;
+  return query(mysqlQuery);
+};
+
 // create a party
 const addParty = (req, res) => {
   const { name, host_id, location, radius, details, date, start, end } = req.body; // or req.body
@@ -35,5 +41,6 @@ const addParty = (req, res) => {
 
 module.exports = {
   getRooms,
+  getMessages,
   addParty,
 };
