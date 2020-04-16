@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const PartyListItem = ({ party }) => (
 
@@ -14,9 +15,11 @@ const PartyListItem = ({ party }) => (
         <div className="partyStartTime" className="col">{party.radius}</div>
         <div className="partyEndTime" className="col">{party.details}</div>
         <div className="partyLink" className="col">
+        <Link to={{ pathname: '/chatroom' }}>
           <button type="button" className="btn btn-primary">
             Join Party
           </button>
+          </Link>
         </div>
       </div>
     </div>
