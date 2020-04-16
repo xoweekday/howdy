@@ -29,7 +29,7 @@ const getRooms = (req, res) => {
 // create a party
 const addParty = (req, res) => {
   const { name, host_id, location, radius, details, date, start, end } = req.body; // or req.body
-  const mysqlQuery = `INSERT INTO rooms (name, host_id, location, radius, details, start, end) VALUES ('${name}', ${host_id}, '${location}', ${radius}, ${details}', ${date}, ${start}, ${end})`
+  const mysqlQuery = `INSERT INTO rooms (name, host_id, location, radius, details, date, start, end) VALUES ('${name}', ${host_id}, '${location}', ${radius}, '${details}', '${date}', '${start}', '${end}')`
   return query(mysqlQuery);
 }
 
