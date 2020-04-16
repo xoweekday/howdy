@@ -1,5 +1,6 @@
 import React from 'react';
 import Parties from './PartyCreation/Parties.jsx';
+import ChatRoom from './PartyRoom/ChatRoom.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,7 +13,9 @@ class App extends React.Component {
     return (
       <div>
         <h1>Parties Page</h1>
-        <Parties ></Parties>
+        <Parties />
+        <h1>ChatRoom Page</h1>
+        <ChatRoom />
       </div>
     );
   }
