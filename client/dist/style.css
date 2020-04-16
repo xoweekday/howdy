@@ -1,0 +1,14 @@
+body {
+  background-color: #FFF;
+  color: #000;
+}
+.chatRoomContainer {
+  display: flex;
+  border: 1px solid #000;
+  width: 75%;
+}
+.chatPeopleListContainer {
+  display: flex;
+  border: 1px solid #000;
+  width: 25%;
+}
