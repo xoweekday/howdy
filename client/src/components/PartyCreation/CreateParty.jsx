@@ -4,31 +4,76 @@ class CreateParty extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: '',
+      start: '',
+      end: '',
+      date: '',
+      range: '',
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event){
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  handleSubmit(event){
+    event.preventDefault();
+    console.log('clicked the submit button: ', this.state)
   }
 
   render() {
     return (
       <div>
-        <h3>Party Creation Tools</h3>
-          <div> Party
-            <input type="text" partyName="name" placeholder="Name Your Party" />
-          </div>
-          <div> Start Time
-            <input type="time" name="startTime" id="startTime"/>
-          </div>
-          <div> End Time
-            <input type="time" name="endTime" id="endTime"/>
-          </div>
-          <div> Date
-            <input type="date" name="date" id="date"/>
-          </div>
-          <div> Range
-            <input type="number" name="range" id="range" placeholder='Miles'/>
-          </div>
-          <div> Make A Party
-            <input type="submit" value="submit"/>
-          </div>
+        <form onSubmit={this.handleSubmit}>
+          <h3>Party Creation Tools</h3>
+            <label> Party
+              <input
+                name="name"
+                type="text"
+                value={this.state.name}
+                placeholder="Name Your Party"
+                onChange={this.handleChange}
+              />
+            </label>
+            <label> Start Time
+              <input
+                name="start"
+                type="time"
+                value={this.state.start}
+                onChange={this.handleChange}
+              />
+            </label>
+            <label> End Time
+              <input
+                type="time"
+                name="end"
+                onChange={this.handleChange}
+              />
+            </label>
+            <label> Date
+              <input
+                type="date"
+                name="date"
+                onChange={this.handleChange}
+              />
+            </label>
+            <label> Range
+              <input
+                type="number"
+                name="range"
+                placeholder='Miles'
+                onChange={this.handleChange}
+              />
+            </label>
+            <label> Make A Party
+              <input
+                type="submit"
+                value="submit"
+              />
+            </label>
+          </form>
       </div>
     );
   }
