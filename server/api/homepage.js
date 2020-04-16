@@ -5,6 +5,14 @@ const homeRouter = Router();
 
 // POST /api/homepage
 // when a user creates a party, add the details to the database
+homeRouter.post('/', (req, res) => {
+  db.addParty(req)
+  .then(() => res.send(201))
+  .catch((error) => {
+    console.log(error);
+    res.sendStatus(500);
+  });
+});
 
 // GET /api/homepage
 // when the homepage renders, all available parties should show
