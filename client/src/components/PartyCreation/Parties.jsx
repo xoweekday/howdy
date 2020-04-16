@@ -6,7 +6,6 @@ class Parties extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      
     };
   }
 
@@ -16,11 +15,11 @@ class Parties extends React.Component {
       <h1>Parties Page</h1>
         <div>
           <h2>Create Party</h2>
-          <CreateParty ></CreateParty>
+          <CreateParty />
         </div>
         <div>
           <h2>Parties Near You</h2>
-          <PartyList ></PartyList>
+          <PartyList />
         </div>
       </div>
     );
