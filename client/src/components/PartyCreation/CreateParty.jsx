@@ -9,7 +9,10 @@ class CreateParty extends React.Component {
       start: '',
       end: '',
       date: '',
-      range: '',
+      radius: '',
+      details: 'no details yet',
+      location: 'New Orleans',
+      host_id: 1,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -68,10 +71,10 @@ class CreateParty extends React.Component {
             />
           </label>
           <label>
-            Range
+            Radius
             <input
               type="number"
-              name="range"
+              name="radius"
               placeholder="Miles"
               onChange={this.handleChange}
             />
