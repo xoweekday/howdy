@@ -26,37 +26,92 @@ import GoogleLogin from 'react-google-login';
 
 
 
-const LogIn = ({ props }) => {
-  const [name, setName] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const responseGoogle = (response) => {
-    console.log(response);
-    setName(response.profileObj.name);
-    setImageUrl(response.profileObj.imageUrl);
+// const LogIn = ({ props }) => {
+//   const [name, setName] = useState('');
+//   const [imageUrl, setImageUrl] = useState('');
+//   const responseGoogle = (response) => {
+//     console.log(response);
+//     setName(response.profileObj.name);
+//     setImageUrl(response.profileObj.imageUrl);
+//   }
+
+//   return (
+//     <div>
+//       {/* <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> */}
+//       <GoogleLogin
+//         clientId="803513597131-sm1rmc2bobnambuak7u7b75a7kh61g6i.apps.googleusercontent.com"
+//         buttonText="Login"
+//         onSuccess={responseGoogle}
+//         onFailure={responseGoogle}
+//         // isSignedIn={true}
+//         cookiePolicy={'single_host_origin'}
+//         // uxMode="redirect"
+//         redirectUri="https://localhost:8080/#/parties"
+//       />
+//       <Link to={{ pathname: '/parties' }}>
+//         <button>
+//           Google sucks. Just click here for now to get to parties.
+//         </button>
+//       </Link>
+//       <div>{name}</div>
+//       <div><img src={imageUrl}/></div>
+//     </div>
+//   )
+// }
+
+
+
+class LogIn extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      image_url: '',
+      google_id: '',
+      longitude: '',
+      latitude: '',
+    };
+    this.responseGoogle = this.responseGoogle.bind(this);
   }
 
-  return (
-    <div>
-      {/* <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> */}
-      <GoogleLogin
-        clientId="803513597131-sm1rmc2bobnambuak7u7b75a7kh61g6i.apps.googleusercontent.com"
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        // isSignedIn={true}
-        cookiePolicy={'single_host_origin'}
-        // uxMode="redirect"
-        redirectUri="https://localhost:8080/#/parties"
-      />
-      <Link to={{ pathname: '/parties' }}>
-        <button>
-          Google sucks. Just click here for now to get to parties.
-        </button>
-      </Link>
-      <div>{name}</div>
-      <div><img src={imageUrl}/></div>
-    </div>
-  )
+  responseGoogle(response) {
+    console.log(response);
+    this.setState({
+      name: response.profileObj.name,
+      image_url: response.profileObj.imageUrl,
+      google_id: response.googleId,
+    })
+    // .then(() => {
+    //   // post request sending user info
+    // })
+  }
+
+  render() {
+    const { name, image_url } = this.state;
+    return (
+      <div>
+        {/* <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> */}
+        <GoogleLogin
+          clientId="803513597131-sm1rmc2bobnambuak7u7b75a7kh61g6i.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={this.responseGoogle}
+          onFailure={this.responseGoogle}
+          // isSignedIn={true}
+          cookiePolicy={'single_host_origin'}
+          // uxMode="redirect"
+          redirectUri="https://localhost:8080/#/parties"
+        />
+        <Link to={{ pathname: '/parties' }}>
+          <button>
+            Google sucks. Just click here for now to get to parties.
+          </button>
+        </Link>
+        <div>{name}</div>
+        <div><img src={image_url}/></div>
+      </div>
+    )
+  }
+
 }
 
 export default LogIn;
