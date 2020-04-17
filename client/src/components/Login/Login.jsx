@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import GoogleLogin from 'react-google-login';
+import Axios from 'axios';
 
 
 
@@ -80,10 +81,10 @@ class LogIn extends React.Component {
       name: response.profileObj.name,
       image_url: response.profileObj.imageUrl,
       google_id: response.googleId,
-    })
-    // .then(() => {
-    //   // post request sending user info
-    // })
+    });
+    Axios.post('api/login', this.state)
+      .then((res)=> { console.log(res); })
+      .catch((err)=> { console.log(err); })
   }
 
   render() {
