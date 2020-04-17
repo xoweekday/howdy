@@ -2,13 +2,13 @@ body {
   background-color: #FFF;
   color: #000;
 }
-.chatRoomContainer {
-  display: flex;
-  border: 1px solid #000;
-  width: 75%;
+.messages-box {
+  border: 1px solid red;
 }
-.chatPeopleListContainer {
-  display: flex;
-  border: 1px solid #000;
-  width: 25%;
+.message {
+  border: 1px solid yellow;
+  color: blue;
+}
+.send-a-message-box {
+  border: 1px solid orange;
 }

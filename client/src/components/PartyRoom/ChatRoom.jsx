@@ -27,12 +27,10 @@ class ChatRoom extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="chatRoomContainer">
-            <h2>ChatRoom:</h2>
+          <div className="chatRoomContainer col-md-8">
             <ChatBoard messages={messages} />
           </div>
-          <div className="chatPeopleListContainer">
-            <h2>People in ChatRoom</h2>
+          <div className="chatPeopleListContainer col-md-4">
             <ChatPeopleList people={people} />
           </div>
         </div>

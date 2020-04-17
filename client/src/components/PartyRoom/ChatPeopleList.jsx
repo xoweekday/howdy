@@ -10,10 +10,17 @@ class ChatPeopleList extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <h4>peeps</h4>
-          <h4>peeps</h4>
+      <div className="container">
+        <div className="row col-md-12">
+          <h3>Party Go-ers</h3>
+        </div>
+        <div className="row col-md-12">
+          <ul>
+            <li>Luann</li>
+            <li>Brock</li>
+            <li>Sally</li>
+            <li>Ivan</li>
+          </ul>
         </div>
       </div>
     );
