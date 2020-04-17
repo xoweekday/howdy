@@ -24,9 +24,13 @@ class CreateParty extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const { getNewPartyEntry } = this.props
     console.log('clicked the submit button: ', this.state);
     axios.post('/api/homepage', this.state)
-      .then((response) => { console.log(response); })
+    .then((response) => {
+      console.log(response);
+      getNewPartyEntry();
+      })
       .catch((error) => { console.log(error); });
   }
 
