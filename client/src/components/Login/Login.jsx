@@ -34,7 +34,7 @@ const LogIn = ({ props }) => {
     setName(response.profileObj.name);
     setImageUrl(response.profileObj.imageUrl);
   }
-  
+
   return (
     <div>
       {/* <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> */}
@@ -43,7 +43,10 @@ const LogIn = ({ props }) => {
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
+        // isSignedIn={true}
         cookiePolicy={'single_host_origin'}
+        // uxMode="redirect"
+        redirectUri="https://localhost:8080/#/parties"
       />
       <Link to={{ pathname: '/parties' }}>
         <button>
