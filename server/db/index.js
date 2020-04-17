@@ -32,6 +32,13 @@ const getMessages = (req, res) => {
   return query(mysqlQuery);
 };
 
+// get all messages from database
+const getUser = (req, res) => {
+  const {google_id} = req.body;
+  const mysqlQuery = `SELECT * FROM users WHERE google_id=${google_id}`;
+  return query(mysqlQuery);
+};
+
 // create a party
 const addParty = (req, res) => {
   const { name, host_id, longitude, latitude, radius, details, date, start, end } = req.body; // or req.body
@@ -41,13 +48,16 @@ const addParty = (req, res) => {
 
 // create a user
 const addUser = (req, res) => {
-  const { google_id, host_id, longitude, latitude, radius, details, date, start, end } = req.body; // or req.body
-  const mysqlQuery = `INSERT INTO rooms (name, host_id, longitude, latitude, radius, details, date, start, end) VALUES ('${name}', ${host_id}, '${longitude}', '${latitude}', ${radius}, '${details}', '${date}', '${start}', '${end}')`
+  console.log(req);
+  const { google_id, image_url, name, longitude, latitude } = req.body;
+  const mysqlQuery = `INSERT INTO users (google_id, image_url, name, longitude, latitude) VALUES (${google_id}, '${image_url}', '${name}', ${longitude}, ${latitude})`;
   return query(mysqlQuery);
 }
 
 module.exports = {
   getRooms,
   getMessages,
+  getUser,
   addParty,
+  addUser
 };
