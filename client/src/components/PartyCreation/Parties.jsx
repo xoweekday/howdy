@@ -11,6 +11,7 @@ class Parties extends React.Component {
       parties: [],
     };
     this.getNewPartyEntry = this.getNewPartyEntry.bind(this);
+    this.getPartyInfo = this.getPartyInfo.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +30,13 @@ class Parties extends React.Component {
     this.getParties();
   }
 
+  getPartyInfo() {
+    console.log("list party button was clicked!");
+    axios.get('/api/party')
+      .then((res)=> { console.log('success: ',res); })
+      .catch((err)=> { console.log('error: ', err); })
+  }
+
   render() {
     const { parties } = this.state;
 
@@ -44,7 +52,7 @@ class Parties extends React.Component {
         </div>
         <div className="col">
           <h2>Parties Near You</h2>
-          <PartyList parties={parties} />
+          <PartyList parties={parties} getPartyInfo={this.getPartyInfo} />
         </div>
       </div>
       </div>
