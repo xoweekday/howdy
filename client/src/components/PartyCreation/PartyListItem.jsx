@@ -19,7 +19,7 @@ const PartyListItem = ({ party, getPartyInfo }) => (
           <button
             type="button"
             className="btn btn-primary"
-            onClick={getPartyInfo}
+            onClick={()=>{getPartyInfo(party)}}
           >Join Party</button>
           </Link>
         </div>
