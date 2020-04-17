@@ -17,9 +17,9 @@ loginRouter.post('/', (req, res) => {
 // GET /api/login
 // 
 loginRouter.get('/', (req, res) => {
-  db.getRooms()
-    .then((parties) => {
-      res.send(parties);
+  db.getUser(req)
+    .then((user) => {
+      res.send(user);
     })
     .catch((error) => {
       console.log(error);
