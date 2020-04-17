@@ -34,28 +34,28 @@ const LogIn = ({ props }) => {
     setName(response.profileObj.name);
     setImageUrl(response.profileObj.imageUrl);
   }
+
   return (
-<div>
-  {/* <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> */}
-  <GoogleLogin
-    clientId="803513597131-sm1rmc2bobnambuak7u7b75a7kh61g6i.apps.googleusercontent.com"
-    buttonText="Login"
-    onSuccess={responseGoogle}
-    onFailure={responseGoogle}
-    cookiePolicy={'single_host_origin'}
-  />
-  <Link to={{ pathname: '/parties' }}>
-    <button>
-      Google sucks. Just click here for now to get to parties.
-    </button>
-  </Link>
-  <div>
-    {name}
-  </div>
-  <div>
-    <img src={imageUrl}/>
-  </div>
-</div>
+    <div>
+      {/* <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> */}
+      <GoogleLogin
+        clientId="803513597131-sm1rmc2bobnambuak7u7b75a7kh61g6i.apps.googleusercontent.com"
+        buttonText="Login"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        // isSignedIn={true}
+        cookiePolicy={'single_host_origin'}
+        // uxMode="redirect"
+        redirectUri="https://localhost:8080/#/parties"
+      />
+      <Link to={{ pathname: '/parties' }}>
+        <button>
+          Google sucks. Just click here for now to get to parties.
+        </button>
+      </Link>
+      <div>{name}</div>
+      <div><img src={imageUrl}/></div>
+    </div>
   )
 }
 

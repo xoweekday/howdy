@@ -16,9 +16,11 @@ USE howdy;
 -- );
 CREATE TABLE users (
   id int PRIMARY KEY AUTO_INCREMENT,
+  google_id int UNIQUE,
+  image_url varchar(255),
   name varchar(255),
-  location varchar(255),
-  character_id int
+  long int,
+  lat int
 );
 
 CREATE TABLE messages (
@@ -33,7 +35,8 @@ CREATE TABLE rooms (
   id int PRIMARY KEY AUTO_INCREMENT,
   name varchar(60),
   host_id int,
-  location varchar(255),
+  host_long int,
+  host_lat int,
   radius int,
   details varchar(255),
   date date,
@@ -55,5 +58,5 @@ CREATE TABLE characters (
 
 INSERT INTO messages (message) VALUES ('hi');
 INSERT INTO messages (message) VALUES ('this is an example message');
-INSERT INTO rooms (name, host_id, location, radius, details, date, start, end) VALUES ('Pokemon Party', 1, 'New Orleans', 500, 'This is a detail of Pokemon Party', '2020-07-20', '00:00:00', '23:59:59');
-INSERT INTO rooms (name, host_id, location, radius, details, date, start, end) VALUES ('League Party', 2, 'Summoners Rift', 400, 'This is a detail of League Party', '2020-06-20', '00:00:00', '23:59:59');
+INSERT INTO rooms (name, host_id, host_long, host_lat, radius, details, date, start, end) VALUES ('Pokemon Party', 1, 1234, 4234234, 500, 'This is a detail of Pokemon Party', '2020-07-20', '00:00:00', '23:59:59');
+INSERT INTO rooms (name, host_id, host_long, host_lat, radius, details, date, start, end) VALUES ('League Party', 2, 1234, 1242123, 400, 'This is a detail of League Party', '2020-06-20', '00:00:00', '23:59:59');
