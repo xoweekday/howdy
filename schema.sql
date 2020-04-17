@@ -19,8 +19,8 @@ CREATE TABLE users (
   google_id int UNIQUE,
   image_url varchar(255),
   name varchar(255),
-  long int,
-  lat int
+  longitude int,
+  latitude int
 );
 
 CREATE TABLE messages (
