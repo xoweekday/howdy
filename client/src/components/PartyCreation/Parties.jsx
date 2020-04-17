@@ -30,11 +30,8 @@ class Parties extends React.Component {
     this.getParties();
   }
 
-  getPartyInfo() {
-    console.log("list party button was clicked!");
-    axios.get('/api/party')
-      .then((res)=> { console.log('success: ',res); })
-      .catch((err)=> { console.log('error: ', err); })
+  getPartyInfo(info) {
+    console.log('here is the party info: ', info);
   }
 
   render() {
