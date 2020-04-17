@@ -16,7 +16,7 @@ USE howdy;
 -- );
 CREATE TABLE users (
   id int PRIMARY KEY AUTO_INCREMENT,
-  google_id int UNIQUE,
+  google_id varchar(255) UNIQUE,
   image_url varchar(255),
   name varchar(255),
   longitude int,
