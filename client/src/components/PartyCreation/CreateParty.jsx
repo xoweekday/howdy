@@ -11,7 +11,8 @@ class CreateParty extends React.Component {
       date: '',
       radius: '',
       details: 'no details yet',
-      location: 'New Orleans',
+      longitude: 1,
+      latitude: 1,
       host_id: 1,
     };
     this.handleChange = this.handleChange.bind(this);
