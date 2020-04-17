@@ -16,9 +16,10 @@ USE howdy;
 -- );
 CREATE TABLE users (
   id int PRIMARY KEY AUTO_INCREMENT,
+  google_id int UNIQUE,
+  image_url varchar(255),
   name varchar(255),
-  location varchar(255),
-  character_id int
+  location varchar(255)
 );
 
 CREATE TABLE messages (
