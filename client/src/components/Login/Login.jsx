@@ -37,18 +37,19 @@ class LogIn extends React.Component {
     return (
       <div>
         {/* <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> */}
-        <GoogleLogin
-          clientId="803513597131-sm1rmc2bobnambuak7u7b75a7kh61g6i.apps.googleusercontent.com"
-          buttonText="Login"
-          onSuccess={this.responseGoogle}
-          onFailure={this.responseGoogle}
-          // isSignedIn={true}
-          cookiePolicy={'single_host_origin'}
-          // uxMode="redirect"
-          redirectUri="https://localhost:8080/#/parties"
-        />
-        {view === true
-          ? 
+        {view === false ?
+          <GoogleLogin
+            clientId="803513597131-sm1rmc2bobnambuak7u7b75a7kh61g6i.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={this.responseGoogle}
+            onFailure={this.responseGoogle}
+            // isSignedIn={true}
+            cookiePolicy={'single_host_origin'}
+            // uxMode="redirect"
+            redirectUri="https://localhost:8080/#/parties"
+          /> : null
+        }
+        {view === true ? 
           <div>
             <h3>You have signed in as:</h3>
             <div>{name}</div>
@@ -58,9 +59,10 @@ class LogIn extends React.Component {
             </Link>
             <div> Or add your zip code! </div>
             <input placeholder="zip code" />
-          </div>
-          :
-          null
+            <Link to={{ pathname: '/parties' }}>
+              <button> Submit </button>  
+            </Link>
+          </div> : null
         }
       </div>
     )
