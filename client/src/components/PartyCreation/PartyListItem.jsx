@@ -5,14 +5,14 @@ const PartyListItem = ({ party, getPartyInfo }) => (
 
   // Render individual party details.
   <div>
-    <div className="partyContainer" className="container">
-      <div className="row">
+    <div className="partyContainer container border">
+      <div className="row party-list-item">
         <div className="partyName" className="col">{party.name}</div>
-        <div className="partyDistance" className="col">{party.host_location}</div>
-        <div className="partySize" className="col">{party.start}</div>
-        <div className="partyHost" className="col">{party.end}</div>
-        <div className="partyStartTime" className="col">{party.radius}</div>
-        <div className="partyEndTime" className="col">{party.details}</div>
+        {/* <div className="partyDistance" className="col">{party.host_location}</div> */}
+        <div className="partyStart" className="col">{party.start}</div>
+        <div className="partyEnd" className="col">{party.end}</div>
+        {/* <div className="partyRadius" className="col">{party.radius}</div> */}
+        <div className="partyDetails" className="col-3">{party.details}</div>
         <div className="partyLink" className="col">
         <Link to={{ pathname: '/chatroom' }}>
           <button
