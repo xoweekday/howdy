@@ -14,6 +14,7 @@ class LogIn extends React.Component {
       google_id: '',
       longitude: '0',
       latitude: '1',
+      view: false,
     };
     this.responseGoogle = this.responseGoogle.bind(this);
   }
@@ -24,6 +25,7 @@ class LogIn extends React.Component {
       name: response.profileObj.name,
       image_url: response.profileObj.imageUrl,
       google_id: response.googleId,
+      view: true,
     });
     Axios.post('api/login', this.state)
       .then((res)=> { console.log(res); })
@@ -31,7 +33,7 @@ class LogIn extends React.Component {
   }
 
   render() {
-    const { name, image_url } = this.state;
+    const { name, image_url, view } = this.state;
     return (
       <div>
         {/* <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> */}
@@ -45,11 +47,16 @@ class LogIn extends React.Component {
           // uxMode="redirect"
           redirectUri="https://localhost:8080/#/parties"
         />
-        <Link to={{ pathname: '/parties' }}>
-          <button>
-            Google sucks. Just click here for now to get to parties.
-          </button>
-        </Link>
+        {view === true
+          ? 
+          <div>
+            <Link to={{ pathname: '/parties' }}>
+              <button> Click here to allow your location! </button>  
+            </Link>
+          </div>
+          :
+          null
+        }
         <div>{name}</div>
         <div><img src={image_url}/></div>
       </div>
