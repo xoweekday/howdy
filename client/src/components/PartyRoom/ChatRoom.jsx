@@ -40,7 +40,7 @@ class ChatRoom extends React.Component {
           <button
             type="button"
             className="btn btn-primary"
-          >Join Party</button>
+          >Leave Party</button>
           </Link>
         </div>
       </div>
