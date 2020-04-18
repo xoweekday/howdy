@@ -14,6 +14,7 @@ class LogIn extends React.Component {
       google_id: '',
       longitude: '0',
       latitude: '1',
+      view: false,
     };
     this.responseGoogle = this.responseGoogle.bind(this);
   }
@@ -24,6 +25,7 @@ class LogIn extends React.Component {
       name: response.profileObj.name,
       image_url: response.profileObj.imageUrl,
       google_id: response.googleId,
+      view: true,
     });
     Axios.post('api/login', this.state)
       .then((res)=> { console.log(res); })
@@ -31,27 +33,41 @@ class LogIn extends React.Component {
   }
 
   render() {
-    const { name, image_url } = this.state;
+    const { name, image_url, view } = this.state;
     return (
-      <div>
+      <div className="loginGoogle">
+        <h1>WELCOME TO HOWDY</h1>
         {/* <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> */}
-        <GoogleLogin
-          clientId="803513597131-sm1rmc2bobnambuak7u7b75a7kh61g6i.apps.googleusercontent.com"
-          buttonText="Login"
-          onSuccess={this.responseGoogle}
-          onFailure={this.responseGoogle}
-          // isSignedIn={true}
-          cookiePolicy={'single_host_origin'}
-          // uxMode="redirect"
-          redirectUri="https://localhost:8080/#/parties"
-        />
-        <Link to={{ pathname: '/parties' }}>
-          <button>
-            Google sucks. Just click here for now to get to parties.
-          </button>
-        </Link>
-        <div>{name}</div>
-        <div><img src={image_url}/></div>
+        {view === false ?
+        <div>
+          <h4>Please sign in with Google: </h4>
+          <GoogleLogin
+            clientId="803513597131-sm1rmc2bobnambuak7u7b75a7kh61g6i.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={this.responseGoogle}
+            onFailure={this.responseGoogle}
+            // isSignedIn={true}
+            cookiePolicy={'single_host_origin'}
+            // uxMode="redirect"
+            redirectUri="https://localhost:8080/#/parties"
+          /> 
+        </div> : null
+        }
+        {view === true ? 
+        <div className="loginSigned" align="center">
+          <h3>You have signed in as:</h3>
+          <div>{name}</div>
+          <div><img src={image_url}/></div>
+          <Link to={{ pathname: '/parties' }}>
+            <button> Click here to allow your location! </button>  
+          </Link>
+          <div> Or enter your zip code! </div>
+          <input placeholder="zip code" />
+          <Link to={{ pathname: '/parties' }}>
+            <button> Submit </button>  
+          </Link>
+        </div> : null
+        }
       </div>
     )
   }
