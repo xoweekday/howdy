@@ -7,7 +7,6 @@ const PartyListItem = ({ party, getPartyInfo }) => (
   <div>
     <div className="partyContainer" className="container">
       <div className="row">
-        {console.dir(party)}
         <div className="partyName" className="col">{party.name}</div>
         <div className="partyDistance" className="col">{party.host_location}</div>
         <div className="partySize" className="col">{party.start}</div>
