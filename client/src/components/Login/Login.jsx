@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import ReactDOM from 'react-dom';
 import GoogleLogin from 'react-google-login';
 import Axios from 'axios';
 
@@ -15,8 +13,10 @@ class LogIn extends React.Component {
       longitude: '0',
       latitude: '1',
       view: false,
+      view2: false
     };
     this.responseGoogle = this.responseGoogle.bind(this);
+    this.getUserLocation = this.getUserLocation.bind(this);
   }
 
   responseGoogle(response) {
@@ -32,12 +32,28 @@ class LogIn extends React.Component {
       .catch((err)=> { console.log(err); })
   }
 
+  componentDidMount() {
+    
+  }
+  getUserLocation() {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.setState({ 
+          longitude: position.coords.longitude,
+          latitude: position.coords.latitude,
+          view2: true
+         });
+      },
+      error => Alert.alert(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  }
+  
   render() {
-    const { name, image_url, view } = this.state;
+    const { name, image_url, view, view2 } = this.state;
     return (
       <div className="loginGoogle">
         <h1>WELCOME TO HOWDY</h1>
-        {/* <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> */}
         {view === false ?
         <div>
           <h4>Please sign in with Google: </h4>
@@ -46,10 +62,7 @@ class LogIn extends React.Component {
             buttonText="Login"
             onSuccess={this.responseGoogle}
             onFailure={this.responseGoogle}
-            // isSignedIn={true}
             cookiePolicy={'single_host_origin'}
-            // uxMode="redirect"
-            redirectUri="https://localhost:8080/#/parties"
           /> 
         </div> : null
         }
@@ -58,13 +71,17 @@ class LogIn extends React.Component {
           <h3>You have signed in as:</h3>
           <div>{name}</div>
           <div><img src={image_url}/></div>
+          {view2 === false ? 
+          <button className="btn btn-primary" onClick={this.getUserLocation}> Click here to allow your location! </button>  
+          :
           <Link to={{ pathname: '/parties' }}>
-            <button> Click here to allow your location! </button>  
+            <button className="btn btn-primary" > Continue to Parties Page! </button>
           </Link>
+          }
           <div> Or enter your zip code! </div>
           <input placeholder="zip code" />
           <Link to={{ pathname: '/parties' }}>
-            <button> Submit </button>  
+            <button className="btn btn-primary"> Submit </button>  
           </Link>
         </div> : null
         }
