@@ -26,11 +26,20 @@ class CreateParty extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const { getNewPartyEntry } = this.props
-    console.log('clicked the submit button: ', this.state);
     axios.post('/api/homepage', this.state)
-    .then((response) => {
-      console.log(response);
-      getNewPartyEntry();
+      .then(() => {
+        getNewPartyEntry();
+        this.setState({
+          name: '',
+          start: '',
+          end: '',
+          date: '',
+          radius: '',
+          details: 'no details yet',
+          longitude: 1,
+          latitude: 1,
+          host_id: 1,
+        })
       })
       .catch((error) => { console.log(error); });
   }
@@ -74,6 +83,7 @@ class CreateParty extends React.Component {
               className="form-control"
               type="time"
               name="end"
+              value={this.state.end}
               onChange={this.handleChange}
               />
           </label>
@@ -85,6 +95,7 @@ class CreateParty extends React.Component {
               className="form-control"
               type="date"
               name="date"
+              value={this.state.date}
               onChange={this.handleChange}
               />
           </label>
@@ -97,6 +108,7 @@ class CreateParty extends React.Component {
               type="number"
               name="radius"
               placeholder="Miles"
+              value={this.state.radius}
               onChange={this.handleChange}
               />
           </label>
