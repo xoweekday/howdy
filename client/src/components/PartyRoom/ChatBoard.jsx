@@ -22,7 +22,8 @@ const ChatBoard = ({ messages, partyInfo }) => (
     <div className="row">
       <div className="send-a-message-box col-md-12">
         <div className="form-group">
-          <label for="send-a-message"></label>
+          {/* changed for to className inside of label tag */}
+          <label className="send-a-message"></label>
           <input type="email" className="form-control" id="exampleInputEmail1" placeholder="howdy!"></input>
           <button type="button" className="btn btn-primary btn-lg btn-block">Send Message</button>
 
