@@ -44,11 +44,9 @@ class Parties extends React.Component {
         </div>
       <div className="row">
         <div className="col create">
-          <h2>Create Party</h2>
           <CreateParty getNewPartyEntry={this.getNewPartyEntry} />
         </div>
         <div className="col list">
-          <h2>Parties Near You</h2>
           <PartyList parties={parties} getPartyInfo={getPartyInfo} />
         </div>
       </div>
