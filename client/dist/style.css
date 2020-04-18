@@ -12,3 +12,41 @@ body {
 .send-a-message-box {
   border: 1px solid orange;
 }
+.party-creation {
+  float: left;
+  height: 90vh;
+  /* width: 25vw; */
+  border-style: outset;
+}
+.parties-page {
+  float: left;
+  /* width: 100%; */
+}
+.form-control {
+  box-sizing: border-box;
+}
+.party-list {
+  border-style: outset;
+  height: 90vh;
+  /* width: -70vw; */
+
+}
+.party-container {
+  margin-block-end: 2px;
+  padding-block-start: 8px;
+}
+.create{
+  flex-grow: 2;
+}
+.list{
+  flex-grow: 10;
+}
+.party-list-item{
+  border-radius: 3px;
+  padding: 3px;
+  border-color: lightslategray;
+}
+.btn{
+  color: #EAEAEA;
+  background-color: #262322;
+}
