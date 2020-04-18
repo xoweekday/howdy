@@ -27,10 +27,7 @@ class CreateParty extends React.Component {
     event.preventDefault();
     const { getNewPartyEntry } = this.props
     axios.post('/api/homepage', this.state)
-    .then((response) => {
-      console.log(response);
-      getNewPartyEntry();
-      })
+      .then(() => { getNewPartyEntry(); })
       .catch((error) => { console.log(error); });
   }
 
