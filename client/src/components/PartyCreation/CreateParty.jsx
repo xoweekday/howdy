@@ -10,7 +10,7 @@ class CreateParty extends React.Component {
       end: '',
       date: '',
       radius: '',
-      details: 'no details yet',
+      details: '',
       longitude: 1,
       latitude: 1,
       host_id: 1,
@@ -35,7 +35,7 @@ class CreateParty extends React.Component {
           end: '',
           date: '',
           radius: '',
-          details: 'no details yet',
+          details: '',
           longitude: 1,
           latitude: 1,
           host_id: 1,
@@ -46,6 +46,7 @@ class CreateParty extends React.Component {
 
   render() {
     return (
+      <div className="party-creation" >
       <div className="container">
         <div className="row">
           <div className="col center">
@@ -63,6 +64,16 @@ class CreateParty extends React.Component {
                     onChange={this.handleChange}
                     />
                 </label>
+              </div>
+              <div className="form-group">
+            <label>Party details</label>
+            <textarea
+              className="form-control"
+              name="details"
+              placeholder="Details"
+              value={this.state.details}
+              onChange={this.handleChange}
+              />
               </div>
               <div className="form-group">
                 <label>
@@ -125,6 +136,7 @@ class CreateParty extends React.Component {
             </form>
           </div>
         </div>
+      </div>
       </div>
     );
   }
