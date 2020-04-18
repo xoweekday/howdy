@@ -50,15 +50,18 @@ class LogIn extends React.Component {
         {view === true
           ? 
           <div>
+            <h3>You have signed in as:</h3>
+            <div>{name}</div>
+            <div><img src={image_url}/></div>
             <Link to={{ pathname: '/parties' }}>
               <button> Click here to allow your location! </button>  
             </Link>
+            <div> Or add your zip code! </div>
+            <input placeholder="zip code" />
           </div>
           :
           null
         }
-        <div>{name}</div>
-        <div><img src={image_url}/></div>
       </div>
     )
   }
