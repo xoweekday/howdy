@@ -20,15 +20,16 @@ class ChatRoom extends React.Component {
     axios.get('/api/chatRoom')
       .then((response) => this.setState({ messages: response.data }))
       .catch((error) => { throw error; });
-  } 
+  }
 
   render() {
     const { people, messages } = this.state;
+    const { partyInfo } = this.props;
     return (
       <div className="container">
         <div className="row">
           <div className="chatRoomContainer col-md-8">
-            <ChatBoard messages={messages} />
+            <ChatBoard messages={messages} partyInfo={partyInfo}/>
           </div>
           <div className="chatPeopleListContainer col-md-4">
             <ChatPeopleList people={people} />
