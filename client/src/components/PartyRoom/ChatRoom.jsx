@@ -2,6 +2,8 @@ import React from 'react';
 import ChatBoard from './ChatBoard.jsx';
 import ChatPeopleList from './ChatPeopleList.jsx';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 class ChatRoom extends React.Component {
   constructor(props) {
     super(props);
@@ -34,6 +36,12 @@ class ChatRoom extends React.Component {
           <div className="chatPeopleListContainer col-md-4">
             <ChatPeopleList people={people} />
           </div>
+          <Link to={{ pathname: '/parties' }}>
+          <button
+            type="button"
+            className="btn btn-primary"
+          >Join Party</button>
+          </Link>
         </div>
       </div>
     );
