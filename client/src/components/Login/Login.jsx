@@ -13,6 +13,7 @@ class LogIn extends React.Component {
       longitude: '0',
       latitude: '1',
       view: false,
+      view2: false
     };
     this.responseGoogle = this.responseGoogle.bind(this);
     this.getUserLocation = this.getUserLocation.bind(this);
@@ -39,7 +40,8 @@ class LogIn extends React.Component {
       position => {
         this.setState({ 
           longitude: position.coords.longitude,
-          latitude: position.coords.latitude
+          latitude: position.coords.latitude,
+          view2: true
          });
       },
       error => Alert.alert(error.message),
@@ -48,7 +50,7 @@ class LogIn extends React.Component {
   }
   
   render() {
-    const { name, image_url, view } = this.state;
+    const { name, image_url, view, view2 } = this.state;
     return (
       <div className="loginGoogle">
         <h1>WELCOME TO HOWDY</h1>
@@ -69,9 +71,13 @@ class LogIn extends React.Component {
           <h3>You have signed in as:</h3>
           <div>{name}</div>
           <div><img src={image_url}/></div>
-          {/* <Link to={{ pathname: '/parties' }}> */}
-            <button className="btn btn-primary" onClick={this.getUserLocation}> Click here to allow your location! </button>  
-          {/* </Link> */}
+          {view2 === false ? 
+          <button className="btn btn-primary" onClick={this.getUserLocation}> Click here to allow your location! </button>  
+          :
+          <Link to={{ pathname: '/parties' }}>
+            <button className="btn btn-primary" > Continue to Parties Page! </button>
+          </Link>
+          }
           <div> Or enter your zip code! </div>
           <input placeholder="zip code" />
           <Link to={{ pathname: '/parties' }}>
