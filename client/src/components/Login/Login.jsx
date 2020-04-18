@@ -59,12 +59,12 @@ class LogIn extends React.Component {
           <div>{name}</div>
           <div><img src={image_url}/></div>
           <Link to={{ pathname: '/parties' }}>
-            <button> Click here to allow your location! </button>  
+            <button className="btn btn-primary"> Click here to allow your location! </button>  
           </Link>
           <div> Or enter your zip code! </div>
           <input placeholder="zip code" />
           <Link to={{ pathname: '/parties' }}>
-            <button> Submit </button>  
+            <button className="btn btn-primary"> Submit </button>  
           </Link>
         </div> : null
         }
