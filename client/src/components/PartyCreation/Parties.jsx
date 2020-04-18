@@ -11,7 +11,7 @@ class Parties extends React.Component {
       parties: [],
     };
     this.getNewPartyEntry = this.getNewPartyEntry.bind(this);
-    this.getPartyInfo = this.getPartyInfo.bind(this);
+    // this.getPartyInfo = this.getPartyInfo.bind(this);
   }
 
   componentDidMount() {
@@ -30,13 +30,13 @@ class Parties extends React.Component {
     this.getParties();
   }
 
-  getPartyInfo(info) {
-    console.log('here is the party info: ', info);
-  }
+  // getPartyInfo(info) {
+  //   console.log('here is the party info: ', info);
+  // }
 
   render() {
     const { parties } = this.state;
-
+    const { getPartyInfo } = this.props;
     return (
       <div className="container">
       <div className="row">
@@ -49,7 +49,7 @@ class Parties extends React.Component {
         </div>
         <div className="col">
           <h2>Parties Near You</h2>
-          <PartyList parties={parties} getPartyInfo={this.getPartyInfo} />
+          <PartyList parties={parties} getPartyInfo={getPartyInfo} />
         </div>
       </div>
       </div>
