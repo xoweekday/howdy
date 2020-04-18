@@ -27,9 +27,6 @@ class LogIn extends React.Component {
       google_id: response.googleId,
       view: true,
     });
-    Axios.post('api/login', this.state)
-      .then((res)=> { console.log(res); })
-      .catch((err)=> { console.log(err); })
   }
 
   componentDidMount() {
@@ -43,6 +40,9 @@ class LogIn extends React.Component {
           latitude: position.coords.latitude,
           view2: true
          });
+         Axios.post('api/login', this.state)
+        .then((res)=> { console.log(res); })
+        .catch((err)=> { console.log(err); })
       },
       error => Alert.alert(error.message),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
