@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import ReactDOM from 'react-dom';
 import GoogleLogin from 'react-google-login';
 import Axios from 'axios';
 
@@ -37,7 +35,6 @@ class LogIn extends React.Component {
     return (
       <div className="loginGoogle">
         <h1>WELCOME TO HOWDY</h1>
-        {/* <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> */}
         {view === false ?
         <div>
           <h4>Please sign in with Google: </h4>
@@ -46,10 +43,7 @@ class LogIn extends React.Component {
             buttonText="Login"
             onSuccess={this.responseGoogle}
             onFailure={this.responseGoogle}
-            // isSignedIn={true}
             cookiePolicy={'single_host_origin'}
-            // uxMode="redirect"
-            redirectUri="https://localhost:8080/#/parties"
           /> 
         </div> : null
         }
