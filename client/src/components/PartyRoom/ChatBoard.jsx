@@ -1,9 +1,9 @@
 import React from 'react';
-const ChatBoard = ({ messages }) => (
+const ChatBoard = ({ messages, partyInfo }) => (
   <div className="container">
 
     <div className="row">
-      <h3>Welcome to the Party</h3>
+      <h3>Welcome to the {partyInfo.name}</h3>
     </div>
 
     <div className="row">
