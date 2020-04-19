@@ -40,7 +40,6 @@ class Parties extends React.Component {
     return (
       <div className="container parties-page">
       <div className="row">
-        <h1>Parties Page</h1>
         </div>
       <div className="row">
         <div className="col create">
