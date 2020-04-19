@@ -4,6 +4,14 @@ body {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+.logo {
+  flex-direction: left;
+  max-height: 55px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  padding-left: 15px;
+}
+
 .loginGoogle {
   text-align: center;
   margin-top: 200px;
