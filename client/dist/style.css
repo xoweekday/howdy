@@ -54,25 +54,33 @@ body {
 }
 .party-creation {
   font-family: "howdy";
-  height: 90vh;
+  text-align: center;
+  height: auto;
+  min-height: 90vh;
   /* width: 25vw; */
-  border-style: outset;
-    overflow: auto;
+  border-style: ridge;
+  border-color: #EAEAEA;
+  border-width: 2px;
+  overflow: auto;
 }
 .parties-page {
-  float: left;
-  display: inline-flexbox;
+  display: flex;
+  padding-top: 1px;
   /* width: 100%; */
 }
 .form-control {
   box-sizing: border-box;
 }
 .party-list {
+  text-align: center;
   font-family: "howdy";
   flex-direction: left;
-  flex-grow: 8;
-  border-style: outset;
-  height: 90vh;
+  flex-grow: 10;
+  border-style: ridge;
+  border-color: #EAEAEA;
+  border-width: 2px;
+  height: auto;
+  min-height: 90vh;
   overflow: auto;
   /* width: -70vw; */
 
@@ -82,13 +90,14 @@ body {
   padding-block-start: 8px;
 }
 .create{
-  flex-grow: 2;
+  flex-grow: 1;
 }
 .list{
-  flex-grow: 8;
+  flex-grow: 6;
 }
 .party-list-item{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  border-style: inset;
   border-radius: 3px;
   padding: 3px;
   border-color: lightslategray;
