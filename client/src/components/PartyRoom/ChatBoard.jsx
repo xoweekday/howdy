@@ -15,21 +15,12 @@ const ChatBoard = ({ partyInfo, username }) => {
   // PRODUCTION variable
   // const endPoint = 'http://ec2-18-221-135-146.us-east-2.compute.amazonaws.com:8081/#/';
 
-  const sendMessage = (event) => {
-    event.preventDefault()
-    if(message){
-      socket.emit('sendMessage', message, () => setMessage('')); }
-  };
-
   useEffect(() => {
     socket = io(endPoint);
-
-    // emit an event to receive a join message
     socket.emit('join', { room, username }, () => {});
 
     return () => {
       socket.emit('disconnect');
-
       socket.off();
     }
   }, [endPoint, location.search])
@@ -39,6 +30,12 @@ const ChatBoard = ({ partyInfo, username }) => {
       setMessages(messages => [ ...messages, message ]);
     });
   }, []);
+
+  const sendMessage = (event) => {
+    event.preventDefault()
+    if(message){
+      socket.emit('sendMessage', { message }, () => setMessage('')); }
+  };
 
   return(
     <div className="container">
