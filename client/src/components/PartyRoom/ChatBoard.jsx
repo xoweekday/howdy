@@ -17,7 +17,6 @@ const ChatBoard = ({ partyInfo }) => {
 
   const sendMessage = (event) => {
     event.preventDefault()
-
     if(message){
       socket.emit('sendMessage', message, () => setMessage('')); }
   };
@@ -46,7 +45,7 @@ const ChatBoard = ({ partyInfo }) => {
       <ChatHeader partyInfo={partyInfo} />
       <div className="row">
         <div className="messages-box col-md-12">
-          {messages.map((message, i) => <div key={i}>{message}</div>)}
+          {messages.map((message, i) => <div key={i}>{message.user}: {message.text}</div>)}
         </div>
       </div>
       <div className="row">

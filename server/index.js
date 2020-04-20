@@ -16,16 +16,18 @@ io.on('connection',socket => {
   socket.on('join', ({ room }, callback) => {
     let user = socket.id.slice(0, 7);
     // Welcome message to the new user
-    socket.emit('receiveMessage', `Welcome to the ${room}, ${user}`);
+    socket.emit('receiveMessage', {user: 'Admin', text: `Welcome to the ${room}, ${user}!`});
     // New user joined party
-    socket.broadcast.emit('receiveMessage', `${user} has joined your party`);
-
-    // socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name}, has joined!`});
+    socket.broadcast.emit('receiveMessage', {user: 'admin', text: `${user} has joined ${room}!`});
     callback();
   })
 
   socket.on('sendMessage', (data, callback) => {
-    io.emit('receiveMessage', data);
+
+    const tempUserName = socket.id.slice(0, 7);
+    const tempData = { user: tempUserName, text: data };
+
+    io.emit('receiveMessage', tempData);
 
     // clears text input field
     callback();
