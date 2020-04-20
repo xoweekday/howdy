@@ -29,9 +29,6 @@ class LogIn extends React.Component {
     });
   }
 
-  componentDidMount() {
-    
-  }
   getUserLocation() {
     navigator.geolocation.getCurrentPosition(
       position => {
