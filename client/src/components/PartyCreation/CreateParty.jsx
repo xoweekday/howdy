@@ -124,7 +124,7 @@ class CreateParty extends React.Component {
                     />
                 </label>
               </div>
-              <div className="form-group">
+              <div>
                 <label>
                   <input
                     className="form-control btn btn-primary"
