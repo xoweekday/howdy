@@ -29,9 +29,6 @@ class LogIn extends React.Component {
     });
   }
 
-  componentDidMount() {
-    
-  }
   getUserLocation() {
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -58,7 +55,7 @@ class LogIn extends React.Component {
         <div>
           <h4>Please sign in with Google: </h4>
           <GoogleLogin
-            clientId="803513597131-sm1rmc2bobnambuak7u7b75a7kh61g6i.apps.googleusercontent.com"
+            clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
             buttonText="Login"
             onSuccess={this.responseGoogle}
             onFailure={this.responseGoogle}
