@@ -15,7 +15,7 @@ const PartyList = ({ parties, getPartyInfo }) => (
           <div className="col"><h4>Link to Join</h4></div>
         </div>
       </div>
-      <div class="overflow-auto">
+      <div className="items-list">
       {parties.map((party) => <PartyListItem key={party.id} party={party} getPartyInfo={getPartyInfo} />)}
     </div>
     </div>

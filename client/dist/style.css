@@ -19,6 +19,8 @@ body {
 }
 .headers{
   display: flex;
+  background-color: #262322;
+  margin-bottom: 2px;
 }
 .header{
   text-align: center;
@@ -67,6 +69,7 @@ body {
   flex-grow: 8;
   border-style: outset;
   height: 90vh;
+  overflow: auto;
   /* width: -70vw; */
 
 }
