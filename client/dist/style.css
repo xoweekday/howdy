@@ -12,9 +12,8 @@ body {
 .logo {
   flex-direction: left;
   max-height: 55px;
-  padding-bottom: 5px;
-  padding-right: 5px;
-  padding-left: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
   padding-top: 1px;
 }
 .headers{
@@ -31,6 +30,8 @@ body {
 .tagline{
   font-family: "howdy";
   flex-direction: right;
+  padding-right: 10px;
+  padding-top: 18px;
 }
 .loginGoogle {
   text-align: center;
