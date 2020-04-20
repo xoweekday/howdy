@@ -9,23 +9,28 @@ class App extends React.Component {
     super(props);
     this.state = {
       partyInfo: {},
+      userInfo: {name: 'Not logged in...'},
     };
     this.getPartyInfo = this.getPartyInfo.bind(this);
+    this.getUserInfo = this.getUserInfo.bind(this);
   }
 
   getPartyInfo(partyInfo) {
-    console.log('here is the party info: ', partyInfo);
     this.setState({ partyInfo });
   }
 
+  getUserInfo(userInfo) {
+    this.setState({ userInfo });
+  }
+
   render() {
-    const { partyInfo } = this.state;
+    const { partyInfo, userInfo } = this.state;
     return (
       <HashRouter>
         <Switch>
-          <Route exact path="/" component={Login} />
+          <Route exact path="/" render={(routerProps) => (<Login {...routerProps} getUserInfo={this.getUserInfo} />)} />
           <Route exact path="/parties" render={(routerProps) => (<Parties {...routerProps} getPartyInfo={this.getPartyInfo}/>)} />
-          <Route exact path="/chatroom" render={(routerProps) => (<Chatroom {...routerProps} partyInfo={partyInfo}/>)} />
+          <Route exact path="/chatroom" render={(routerProps) => (<Chatroom {...routerProps} partyInfo={partyInfo} username={userInfo.name} />)} />
         </Switch>
       </HashRouter>
     );
