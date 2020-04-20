@@ -13,12 +13,12 @@ const io = socket(server);
 
 io.on('connection',socket => {
 
-  socket.on('join', ({ room }, callback) => {
+  socket.on('join', ({ room, username }, callback) => {
     let user = socket.id.slice(0, 7);
     // Welcome message to the new user
-    socket.emit('receiveMessage', {user: 'Admin', text: `Welcome to the ${room}, ${user}!`});
+    socket.emit('receiveMessage', {user: 'Admin', text: `Welcome to the ${room}, ${username}!`});
     // New user joined party
-    socket.broadcast.emit('receiveMessage', {user: 'admin', text: `${user} has joined ${room}!`});
+    socket.broadcast.emit('receiveMessage', {user: 'Admin', text: `${username} has joined ${room}!`});
     callback();
   })
 
@@ -34,7 +34,8 @@ io.on('connection',socket => {
   })
 
   socket.on('disconnect', () => {
-    io.emit('receiveMessage', 'Someone has left.');
+    let user = socket.id.slice(0, 7);
+    io.emit('receiveMessage', {user: 'Admin', text: `${user} has left.`});
   })
 });
 
