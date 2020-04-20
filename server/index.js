@@ -12,11 +12,27 @@ const server = http.createServer(app);
 const io = socket(server);
 
 io.on('connection',socket => {
+
+  socket.on('join', ({ room }, callback) => {
+    let user = socket.id.slice(0, 7);
+    // Welcome message to the new user
+    socket.emit('receiveMessage', `Welcome to the ${room}, ${user}`);
+    // New user joined party
+    socket.broadcast.emit('receiveMessage', `${user} has joined your party`);
+
+    // socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name}, has joined!`});
+    callback();
+  })
+
   socket.on('sendMessage', (data, callback) => {
     io.emit('receiveMessage', data);
 
     // clears text input field
     callback();
+  })
+
+  socket.on('disconnect', () => {
+    io.emit('receiveMessage', 'Someone has left.');
   })
 });
 
