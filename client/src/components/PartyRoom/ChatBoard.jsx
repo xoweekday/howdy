@@ -8,6 +8,7 @@ let socket;
 const ChatBoard = ({ partyInfo }) => {
   const [ message, setMessage ] = useState('');
   const [ messages, setMessages ] = useState([]);
+  const [ room, setRoom ] = useState(partyInfo.name);
 
   // DEVELOPMENT variable
   const endPoint = 'localhost:8080';
@@ -25,8 +26,14 @@ const ChatBoard = ({ partyInfo }) => {
     socket = io(endPoint);
 
     // emit an event to receive a join message
-    // socket.emit('join', () => {});
-  })
+    socket.emit('join', { room }, () => {});
+
+    return () => {
+      socket.emit('disconnect');
+
+      socket.off();
+    }
+  }, [endPoint, location.search])
 
   useEffect(() => {
     socket.on('receiveMessage', message => {
