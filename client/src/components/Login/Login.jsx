@@ -27,12 +27,13 @@ class LogIn extends React.Component {
       google_id: response.googleId,
       view: true,
     });
+    this.props.getUserInfo(this.state);
   }
 
   getUserLocation() {
     navigator.geolocation.getCurrentPosition(
       position => {
-        this.setState({ 
+        this.setState({
           longitude: position.coords.longitude,
           latitude: position.coords.latitude,
           view2: true
@@ -45,7 +46,7 @@ class LogIn extends React.Component {
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   }
-  
+
   render() {
     const { name, image_url, view, view2 } = this.state;
     return (
