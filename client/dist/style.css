@@ -4,14 +4,32 @@ body {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+@font-face {
+  font-family: "howdy";
+  src: url(./font/edmunds.ttf);
+}
+
 .logo {
   flex-direction: left;
   max-height: 55px;
   padding-bottom: 5px;
   padding-right: 5px;
-  padding-left: 15px;
+  padding-left: 1px;
+  padding-top: 1px;
 }
-
+.headers{
+  display: flex;
+}
+.header{
+  text-align: center;
+  font-family: "howdy";
+  font-size: 40px;
+  flex-grow: 1;
+}
+.tagline{
+  font-family: "howdy";
+  flex-direction: right;
+}
 .loginGoogle {
   text-align: center;
   margin-top: 200px;
@@ -32,19 +50,21 @@ body {
   border: 1px solid orange;
 }
 .party-creation {
-  float: left;
   height: 90vh;
   /* width: 25vw; */
   border-style: outset;
 }
 .parties-page {
   float: left;
+  display: inline-flexbox;
   /* width: 100%; */
 }
 .form-control {
   box-sizing: border-box;
 }
 .party-list {
+  flex-direction: left;
+  flex-grow: 8;
   border-style: outset;
   height: 90vh;
   /* width: -70vw; */
@@ -58,7 +78,7 @@ body {
   flex-grow: 2;
 }
 .list{
-  flex-grow: 10;
+  flex-grow: 8;
 }
 .party-list-item{
   border-radius: 3px;
