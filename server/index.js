@@ -13,28 +13,26 @@ const io = socket(server);
 
 io.on('connection',socket => {
 
-  socket.on('join', ({ room }, callback) => {
-    let user = socket.id.slice(0, 7);
+  socket.on('join', ({ room, username }, callback) => {
+    socket.username = username;
     // Welcome message to the new user
-    socket.emit('receiveMessage', {user: 'Admin', text: `Welcome to the ${room}, ${user}!`});
+    socket.emit('receiveMessage', {user: 'Admin', text: `Welcome to the ${room}, ${socket.username}!`});
     // New user joined party
-    socket.broadcast.emit('receiveMessage', {user: 'admin', text: `${user} has joined ${room}!`});
+    socket.broadcast.emit('receiveMessage', {user: 'Admin', text: `${username} has joined ${room}!`});
     callback();
   })
 
   socket.on('sendMessage', (data, callback) => {
+    const message = { user: socket.username, text: data.message };
 
-    const tempUserName = socket.id.slice(0, 7);
-    const tempData = { user: tempUserName, text: data };
-
-    io.emit('receiveMessage', tempData);
+    io.emit('receiveMessage', message);
 
     // clears text input field
     callback();
   })
 
   socket.on('disconnect', () => {
-    io.emit('receiveMessage', 'Someone has left.');
+    io.emit('receiveMessage', {user: 'Admin', text: `${socket.username} has left.`});
   })
 });
 
