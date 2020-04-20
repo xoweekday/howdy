@@ -14,7 +14,7 @@ body {
   max-height: 55px;
   padding-bottom: 1px;
   padding-left: 5px;
-  padding-top: 1px;
+  padding-top: 5px;
 }
 .headers{
   display: flex;
