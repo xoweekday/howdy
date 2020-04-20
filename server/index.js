@@ -12,10 +12,11 @@ const server = http.createServer(app);
 const io = socket(server);
 
 io.on('connection',socket => {
-  console.log('this is the socket id: ', socket.id);
+  socket.on('sendMessage', (data, callback) => {
+    io.emit('receiveMessage', data);
 
-  socket.on('SEND_MESSAGE', data => {
-    io.emit('RECEIVE_MESSAGE', data);
+    // clears text input field
+    callback();
   })
 });
 
