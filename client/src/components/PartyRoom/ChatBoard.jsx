@@ -5,7 +5,7 @@ import ChatHeader from './ChatHeader.jsx';
 
 let socket;
 
-const ChatBoard = ({ partyInfo }) => {
+const ChatBoard = ({ partyInfo, username }) => {
   const [ message, setMessage ] = useState('');
   const [ messages, setMessages ] = useState([]);
   const [ room, setRoom ] = useState(partyInfo.name);
@@ -25,7 +25,7 @@ const ChatBoard = ({ partyInfo }) => {
     socket = io(endPoint);
 
     // emit an event to receive a join message
-    socket.emit('join', { room }, () => {});
+    socket.emit('join', { room, username }, () => {});
 
     return () => {
       socket.emit('disconnect');
