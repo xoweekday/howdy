@@ -56,7 +56,7 @@ body {
   height: 90vh;
   /* width: 25vw; */
   border-style: outset;
-  overflow: auto;
+    overflow: auto;
 }
 .parties-page {
   float: left;
@@ -95,7 +95,4 @@ body {
 .btn{
   color: #EAEAEA;
   background-color: #262322;
-}
-.center{
-  height: 80vh;
 }
