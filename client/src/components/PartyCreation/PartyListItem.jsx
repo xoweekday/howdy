@@ -12,7 +12,7 @@ const PartyListItem = ({ party, getPartyInfo }) => (
         <div className="partyStart" className="col">{party.start}</div>
         <div className="partyEnd" className="col">{party.end}</div>
         {/* <div className="partyRadius" className="col">{party.radius}</div> */}
-        <div className="partyDetails" className="col-3">{party.details}</div>
+        <div className="partyDetails" className="col">{party.details}</div>
         <div className="partyLink" className="col">
         <Link to={{ pathname: '/chatroom' }}>
           <button
