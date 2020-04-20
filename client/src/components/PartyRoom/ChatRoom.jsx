@@ -13,7 +13,11 @@ class ChatRoom extends React.Component {
       messages: [],
     };
 
-    this.socket = io('localhost:8080');
+    // For DEVELOPMENT
+    // this.socket = io('localhost:8080');
+
+    // For PRODUCTION
+    this.socket = io('http://ec2-18-221-135-146.us-east-2.compute.amazonaws.com:8081/#/');
 
     this.sendMessage = ev => {
       ev.preventDefault();
