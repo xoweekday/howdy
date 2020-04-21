@@ -36,6 +36,12 @@ io.on('connection',socket => {
     callback();
   })
 
+  socket.on('leaveParty', (room) => {
+    socket.leave(room)
+
+    io.to(room).emit('receiveMessage', {user: 'Admin', text: `${socket.username} has left.`});
+  })
+
   socket.on('disconnect', () => {
     io.to(socket.room).emit('receiveMessage', {user: 'Admin', text: `${socket.username} has left.`});
   })
