@@ -24,7 +24,7 @@ const ChatBoard = ({ partyInfo, username }) => {
       socket.emit('disconnect');
       socket.off();
     }
-  }, [endPoint, location.search])
+  }, [])
 
   useEffect(() => {
     socket.on('receiveMessage', message => {
