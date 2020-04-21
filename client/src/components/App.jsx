@@ -57,7 +57,7 @@ class App extends React.Component {
       </div>
     </div>
     if (view) {
-      renderContainer = 
+      renderContainer =
       <HashRouter>
         <Switch>
           <Route exact path="/" render={(routerProps) => (<Login {...routerProps} getUserInfo={this.getUserInfo} />)} />
