@@ -4,14 +4,15 @@ import { Link } from 'react-router-dom';
 
 import ChatHeader from './ChatHeader.jsx';
 import ChatPeopleList from './ChatPeopleList.jsx';
+import Messages from './Messages.jsx'
 
 let socket;
 
 const ChatBoard = ({ partyInfo, username }) => {
-  const [ message, setMessage ] = useState('');
-  const [ messages, setMessages ] = useState([]);
-  const [ users, setUsers ] = useState([]);
-  const [ room, setRoom ] = useState(partyInfo.name);
+  const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [room, setRoom] = useState(partyInfo.name);
 
   // DEVELOPMENT variable
   const endPoint = 'localhost:8080';
@@ -20,7 +21,7 @@ const ChatBoard = ({ partyInfo, username }) => {
 
   useEffect(() => {
     socket = io(endPoint);
-    socket.emit('join', { room, username }, () => {});
+    socket.emit('join', { room, username }, () => { });
 
     return () => {
       socket.emit('disconnect');
@@ -30,7 +31,7 @@ const ChatBoard = ({ partyInfo, username }) => {
 
   useEffect(() => {
     socket.on('receiveMessage', message => {
-      setMessages(messages => [ ...messages, message ]);
+      setMessages(messages => [...messages, message]);
     });
 
     socket.on('usersInRoom', users => {
@@ -40,46 +41,23 @@ const ChatBoard = ({ partyInfo, username }) => {
 
   const sendMessage = (event) => {
     event.preventDefault()
-    if(message){
-      socket.emit('sendMessage', { message }, () => setMessage('')); }
+    if (message) {
+      socket.emit('sendMessage', { message }, () => setMessage(''));
+    }
   };
 
   const leftParty = () => {
     socket.emit('leaveParty', room);
   }
 
-  return(
+  return (
     <div className="container">
       <ChatHeader partyInfo={partyInfo} />
-      <div className="row">
-        <div className="messages-box col-md-12">
-          {messages.map((message, i) => <div key={i}>{message.user}: {message.text}</div>)}
-        </div>
-      </div>
-      <div className="row">
-        <div className="send-a-message-box col-md-12">
-          <div className="form-group">
-            <label className="send-a-message"></label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="ChatBoard: enter message"
-              value={message}
-              onChange={(event) => setMessage(event.target.value)}
-              onKeyPress={(event) => event.key === 'Enter' ? sendMessage(event) : null}
-            ></input>
-            <button
-              type="button"
-              className="btn btn-primary form-control"
-              onClick={(event) => sendMessage(event)}
-            >Send Message</button>
-          </div>
-        </div>
-          <Link to={{ pathname: '/parties' }}>
-            <button type="button" className="btn btn-primary" onClick={leftParty}>Leave Party</button>
-          </Link>
-      </div>
-      <div className="chatPeopleListContainer col-md-4" ><ChatPeopleList users={users}/></div>
+      <Messages messages={messages} message={message} setMessage={setMessage} sendMessage={sendMessage} />
+      <Link to={{ pathname: '/parties' }}>
+        <button type="button" className="btn btn-primary" onClick={leftParty}>Leave Party</button>
+      </Link>
+      <ChatPeopleList users={users} />
     </div>
   );
 }
