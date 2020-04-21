@@ -112,7 +112,7 @@ body {
   overflow: auto;
   min-height: 45vmax;
   max-height: 45vmax;
-  min-width: 50vmin;
+  /* min-width: 50vmin; */
   display: flex;
   flex-direction: column;
   /* width: -70vw; */
@@ -127,7 +127,7 @@ body {
   flex-grow: auto;
   border-radius: 3px;
   padding: 5px;
-  border-color: lightslategray;
+  border-color: black;
   align-items: center;
 }
 
