@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import { Link } from 'react-router-dom';
 
 import ChatHeader from './ChatHeader.jsx';
 
@@ -37,6 +38,10 @@ const ChatBoard = ({ partyInfo, username }) => {
       socket.emit('sendMessage', { message }, () => setMessage('')); }
   };
 
+  const leftParty = () => {
+    socket.emit('leaveParty', room);
+  }
+
   return(
     <div className="container">
       <ChatHeader partyInfo={partyInfo} />
@@ -63,6 +68,9 @@ const ChatBoard = ({ partyInfo, username }) => {
               onClick={(event) => sendMessage(event)}
             >Send Message</button>
           </div>
+          <Link to={{ pathname: '/parties' }}>
+            <button type="button" className="btn btn-primary" onClick={leftParty}>Leave Party</button>
+          </Link>
         </div>
       </div>
     </div>
