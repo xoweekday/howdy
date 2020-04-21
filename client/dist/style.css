@@ -9,6 +9,13 @@ body {
   src: url(./font/edmunds.ttf);
 }
 
+.btn{
+  color: #EAEAEA;
+  background-color: #262322;
+}
+
+                                  /* Top Banner Logo And Tagline */
+
 .logo {
   flex-direction: left;
   max-height: 55px;
@@ -16,23 +23,29 @@ body {
   padding-left: 5px;
   padding-top: 6px;
 }
+
 .headers{
   display: flex;
   background-color: #262322;
   margin-bottom: 2px;
 }
+
 .header{
   text-align: center;
   font-family: "howdy";
   font-size: 40px;
   flex-grow: 1;
 }
+
 .tagline{
   font-family: "howdy";
   flex-direction: right;
   padding-right: 10px;
   padding-top: 18px;
 }
+
+                                  /* Login Page */
+
 .loginGoogle {
   text-align: center;
   margin-top: 200px;
@@ -42,18 +55,26 @@ body {
   text-align: center;
 }
 
-.messages-box {
-  border: 1px solid red;
+                                  /* Parties Page */
+
+.parties-page {
+  display: flex;
+  padding-top: 1px;
+  /* width: 100%; */
 }
-.message {
-  border: 1px solid yellow;
-  color: blue;
+
+.create{
+  flex-grow: 1;
 }
-.send-a-message-box {
-  border: 1px solid orange;
+
+.list{
+  flex-grow: 6;
 }
+
+                                  /* Create Party */
+
 .party-creation {
-  font-family: "howdy";
+font-family: "howdy";
   text-align: center;
   height: auto;
   min-height: 90vh;
@@ -63,14 +84,12 @@ body {
   border-width: 2px;
   overflow: auto;
 }
-.parties-page {
-  display: flex;
-  padding-top: 1px;
-  /* width: 100%; */
-}
 .form-control {
   box-sizing: border-box;
 }
+
+                                  /* Party List */
+
 .party-list {
   text-align: center;
   font-family: "howdy";
@@ -83,26 +102,32 @@ body {
   min-height: 90vh;
   overflow: auto;
   /* width: -70vw; */
+}
 
-}
-.party-container {
-  margin-block-end: 2px;
-  padding-block-start: 8px;
-}
-.create{
-  flex-grow: 1;
-}
-.list{
-  flex-grow: 6;
-}
-.party-list-item{
+                                  /* Party List Items */
+
+.party-list-item {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   border-style: inset;
   border-radius: 3px;
   padding: 3px;
   border-color: lightslategray;
 }
-.btn{
-  color: #EAEAEA;
-  background-color: #262322;
+
+.party-container {
+  margin-block-end: 1px;
+  padding-block-start: 1px;
+}
+
+                                  /* Chatroom Messager */
+
+.messages-box {
+  border: 1px solid red;
+}
+.message {
+  border: 1px solid yellow;
+  color: blue;
+}
+.send-a-message-box {
+  border: 1px solid orange;
 }
