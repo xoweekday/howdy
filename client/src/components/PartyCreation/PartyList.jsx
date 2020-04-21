@@ -4,7 +4,7 @@ import PartyListItem from './PartyListItem.jsx';
 const PartyList = ({ parties, getPartyInfo }) => (
     <div className="party-list">
       <h3>Parties Near You!</h3>
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <div className="col"><h4>Party Name</h4></div>
           {/* <div className="col"><h4>Location</h4></div> */}
