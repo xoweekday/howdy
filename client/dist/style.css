@@ -66,16 +66,19 @@ body {
 
 .parties-page {
   display: flex;
-  padding-top: 1px;
+  flex-direction: column;
+  padding-top: 20px;
   /* width: 100%; */
 }
 
 .create{
   flex-grow: 1;
+  flex-shrink: 1;
 }
 
 .list{
-  flex-grow: 6;
+  flex: 6;
+  flex-shrink: 6;
 }
 
                                   /* Create Party */
@@ -84,12 +87,13 @@ body {
   font-family: "howdy";
   text-shadow: 1px 1px black;
   text-align: center;
-  height: auto;
-  min-height: 90vh;
+  padding-bottom: 3px;
   /* width: 25vw; */
   border-style: ridge;
   border-color: #EAEAEA;
   border-width: 2px;
+  min-height: 45vmax;
+  max-height: 45vmax;
   overflow: auto;
 }
 .form-control {
@@ -102,14 +106,15 @@ body {
   text-align: center;
   font-family: "howdy";
   text-shadow: 1px 1px black;
-  flex-direction: left;
-  flex-grow: 10;
   border-style: ridge;
   border-color: #EAEAEA;
   border-width: 2px;
-  height: auto;
-  min-height: 90vh;
   overflow: auto;
+  min-height: 45vmax;
+  max-height: 45vmax;
+  /* min-width: 50vmin; */
+  display: flex;
+  flex-direction: column;
   /* width: -70vw; */
 }
 
@@ -119,15 +124,18 @@ body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   border-style: inset;
   text-shadow: none;
+  flex-grow: auto;
   border-radius: 3px;
-  padding: 3px;
-  border-color: lightslategray;
+  padding: 5px;
+  border-color: black;
+  align-items: center;
 }
 
 .items-list {
   color: #262322;
   font-weight: bolder;
   background-color: #FFCF99;
+
 }
 
 .party-container {

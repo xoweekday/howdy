@@ -14,9 +14,9 @@ const ChatBoard = ({ partyInfo, username }) => {
   const [room, setRoom] = useState(partyInfo.name);
 
   // DEVELOPMENT variable
-  // const endPoint = 'localhost:8080';
+  const endPoint = 'localhost:8080';
   // PRODUCTION variable
-  const endPoint = 'http://ec2-18-221-135-146.us-east-2.compute.amazonaws.com:8081/#/';
+  // const endPoint = 'http://ec2-18-221-135-146.us-east-2.compute.amazonaws.com:8081/#/';
 
   useEffect(() => {
     socket = io(endPoint);

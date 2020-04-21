@@ -38,7 +38,7 @@ class Parties extends React.Component {
     const { parties } = this.state;
     const { getPartyInfo } = this.props;
     return (
-      <div className="container parties-page">
+      <div className="container-fluid parties-page">
       <div className="row">
         </div>
       <div className="row">
