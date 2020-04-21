@@ -48,8 +48,8 @@ const addParty = (req, res) => {
 
 // create a user
 const addUser = (req, res) => {
-  const { google_id, image_url, name, longitude, latitude } = req.body;
-  const mysqlQuery = `INSERT INTO users (google_id, image_url, name, longitude, latitude) VALUES ('${google_id}', '${image_url}', '${name}', ${longitude}, ${latitude})`;
+  const { google_id, image_url, name, latitude, longitude } = req.body;
+  const mysqlQuery = `INSERT INTO users (google_id, image_url, name, latitude, longitude) VALUES ('${google_id}', '${image_url}', '${name}', ${latitude}, ${longitude})`;
   return query(mysqlQuery);
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
+import IPinfo from "node-ipinfo";
 import Axios from 'axios';
 
 class LogIn extends React.Component {
@@ -10,8 +11,8 @@ class LogIn extends React.Component {
       name: '',
       image_url: '',
       google_id: '',
-      longitude: '0',
-      latitude: '1',
+      latitude: '',
+      longitude: '',
       view: false,
       view2: false
     };
@@ -31,20 +32,25 @@ class LogIn extends React.Component {
   }
 
   getUserLocation() {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        this.setState({
-          longitude: position.coords.longitude,
-          latitude: position.coords.latitude,
+    var token = "d7336b6238ccfc"
+    var ip = "geo"
+    var asn = "AS7922";
+    var ipinfo = new IPinfo(token);
+    ipinfo.lookupIp(ip)
+    .then((response) => {
+      var loc = response.loc.split(',');
+      this.setState({
+          latitude: loc[0],
+          longitude: loc[1],
           view2: true
-         });
-         Axios.post('api/login', this.state)
+      });
+        Axios.post('api/login', this.state)
         .then((res)=> { console.log(res); })
         .catch((err)=> { console.log(err); })
-      },
-      error => Alert.alert(error.message),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    );
+    })
+    .catch((error) => {
+    console.log(error);
+    });
   }
 
   render() {
@@ -61,16 +67,16 @@ class LogIn extends React.Component {
             onSuccess={this.responseGoogle}
             onFailure={this.responseGoogle}
             cookiePolicy={'single_host_origin'}
-          /> 
+          />
         </div> : null
         }
-        {view === true ? 
+        {view === true ?
         <div className="loginSigned" align="center">
           <h3>You have signed in as:</h3>
           <div>{name}</div>
           <div><img src={image_url}/></div>
-          {view2 === false ? 
-          <button className="btn btn-primary" onClick={this.getUserLocation}> Click here to allow your location! </button>  
+          {view2 === false ?
+          <button className="btn btn-primary" onClick={this.getUserLocation}> Click here to allow your location! </button>
           :
           <Link to={{ pathname: '/parties' }}>
             <button className="btn btn-primary" > Continue to Parties Page! </button>
@@ -79,7 +85,7 @@ class LogIn extends React.Component {
           <div> Or enter your zip code! </div>
           <input placeholder="zip code" />
           <Link to={{ pathname: '/parties' }}>
-            <button className="btn btn-primary"> Submit </button>  
+            <button className="btn btn-primary"> Submit </button>
           </Link>
         </div> : null
         }
