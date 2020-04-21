@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
-import { Link } from 'react-router-dom';
 
 import ChatHeader from './ChatHeader.jsx';
-import ChatPeopleList from './ChatPeopleList.jsx';
+import ChatSidebar from './ChatSidebar.jsx';
 import Messages from './Messages.jsx'
 
 let socket;
@@ -53,11 +52,14 @@ const ChatBoard = ({ partyInfo, username }) => {
   return (
     <div className="container">
       <ChatHeader partyInfo={partyInfo} />
-      <Messages messages={messages} message={message} setMessage={setMessage} sendMessage={sendMessage} />
-      <Link to={{ pathname: '/parties' }}>
-        <button type="button" className="btn btn-primary" onClick={leftParty}>Leave Party</button>
-      </Link>
-      <ChatPeopleList users={users} />
+      <div class="row">
+        <div class="col-md-10">
+          <Messages messages={messages} message={message} setMessage={setMessage} sendMessage={sendMessage} leftParty={leftParty} />
+        </div>
+        <div class="col-md-2">
+          <ChatSidebar users={users} partyInfo={partyInfo} />
+        </div>
+      </div>
     </div>
   );
 }
