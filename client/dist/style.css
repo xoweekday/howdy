@@ -108,6 +108,7 @@ body {
   max-height: 45vmax;
   overflow: auto;
 }
+
 .form-control {
   box-sizing: border-box;
 }
