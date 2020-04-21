@@ -11,8 +11,8 @@ class LogIn extends React.Component {
       name: '',
       image_url: '',
       google_id: '',
-      longitude: '0',
-      latitude: '1',
+      latitude: '',
+      longitude: '',
       view: false,
       view2: false
     };
@@ -36,37 +36,22 @@ class LogIn extends React.Component {
     var ip = "geo"
     var asn = "AS7922";
     var ipinfo = new IPinfo(token);
-    ipinfo.lookupIp(ip).then((response) => {
-      console.log(response);
+    ipinfo.lookupIp(ip)
+    .then((response) => {
+      var loc = response.loc.split(',');
+      this.setState({
+          latitude: loc[0],
+          longitude: loc[1],
+          view2: true
+      });
+        Axios.post('api/login', this.state)
+        .then((res)=> { console.log(res); })
+        .catch((err)=> { console.log(err); })
     })
     .catch((error) => {
     console.log(error);
     });
-    // Axios.get('https://ipinfo.io/geo')
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
   }
-
-  // getUserLocation() {
-  //   navigator.geolocation.getCurrentPosition(
-  //     position => {
-  //       this.setState({
-  //         longitude: position.coords.longitude,
-  //         latitude: position.coords.latitude,
-  //         view2: true
-  //        });
-  //        Axios.post('api/login', this.state)
-  //       .then((res)=> { console.log(res); })
-  //       .catch((err)=> { console.log(err); })
-  //     },
-  //     error => Alert.alert(error.message),
-  //     { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-  //   );
-  // }
 
   render() {
     const { name, image_url, view, view2 } = this.state;
