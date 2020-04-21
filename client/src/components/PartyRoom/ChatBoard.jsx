@@ -68,10 +68,10 @@ const ChatBoard = ({ partyInfo, username }) => {
               onClick={(event) => sendMessage(event)}
             >Send Message</button>
           </div>
+        </div>
           <Link to={{ pathname: '/parties' }}>
             <button type="button" className="btn btn-primary" onClick={leftParty}>Leave Party</button>
           </Link>
-        </div>
       </div>
     </div>
   );
