@@ -15,24 +15,29 @@ io.on('connection',socket => {
 
   socket.on('join', ({ room, username }, callback) => {
     socket.username = username;
+    socket.room = room;
+
     // Welcome message to the new user
     socket.emit('receiveMessage', {user: 'Admin', text: `Welcome to the ${room}, ${socket.username}!`});
-    // New user joined party
-    socket.broadcast.emit('receiveMessage', {user: 'Admin', text: `${username} has joined ${room}!`});
+    // New user joined party alert to specific room
+    socket.broadcast.to(socket.room).emit('receiveMessage', {user: 'Admin', text: `${username} has joined ${room}!`});
+
+    socket.join(socket.room);
+
     callback();
   })
 
   socket.on('sendMessage', (data, callback) => {
     const message = { user: socket.username, text: data.message };
 
-    io.emit('receiveMessage', message);
+    io.to(socket.room).emit('receiveMessage', message);
 
     // clears text input field
     callback();
   })
 
   socket.on('disconnect', () => {
-    io.emit('receiveMessage', {user: 'Admin', text: `${socket.username} has left.`});
+    io.to(socket.room).emit('receiveMessage', {user: 'Admin', text: `${socket.username} has left.`});
   })
 });
 
