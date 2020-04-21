@@ -32,14 +32,12 @@ io.on('connection',socket => {
 
     io.to(socket.room).emit('receiveMessage', message);
 
-    // clears text input field
-    callback();
+    callback(); // clears text input field
   })
 
   socket.on('leaveParty', (room) => {
     socket.leave(room)
-
-    io.to(room).emit('receiveMessage', {user: 'Admin', text: `${socket.username} has left.`});
+    io.sockets.connected[socket.id].disconnect();
   })
 
   socket.on('disconnect', () => {
