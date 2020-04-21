@@ -1,30 +1,18 @@
 import React from 'react';
 
-class ChatPeopleList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      people: [],
-    };
-  }
-
-  render() {
+const ChatPeopleList = ({users}) => {
     return (
       <div className="container">
         <div className="row col-md-12">
-          <h3>Party Go-ers</h3>
+          <h3>Party'rs</h3>
         </div>
         <div className="row col-md-12">
           <ul>
-            <li>Luann</li>
-            <li>Brock</li>
-            <li>Sally</li>
-            <li>Ivan</li>
+            {users.map(user=> <div key={user.id}>{user.name}</div>)}
           </ul>
         </div>
       </div>
     );
   }
-}
 
 export default ChatPeopleList;

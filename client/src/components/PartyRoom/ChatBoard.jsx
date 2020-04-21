@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import { Link } from 'react-router-dom';
 
 import ChatHeader from './ChatHeader.jsx';
+import ChatPeopleList from './ChatPeopleList.jsx';
 
 let socket;
 
 const ChatBoard = ({ partyInfo, username }) => {
   const [ message, setMessage ] = useState('');
   const [ messages, setMessages ] = useState([]);
+  const [ users, setUsers ] = useState([]);
   const [ room, setRoom ] = useState(partyInfo.name);
 
   // DEVELOPMENT variable
@@ -23,12 +26,16 @@ const ChatBoard = ({ partyInfo, username }) => {
       socket.emit('disconnect');
       socket.off();
     }
-  }, [endPoint, location.search])
+  }, [])
 
   useEffect(() => {
     socket.on('receiveMessage', message => {
       setMessages(messages => [ ...messages, message ]);
     });
+
+    socket.on('usersInRoom', users => {
+      setUsers(users);
+    })
   }, []);
 
   const sendMessage = (event) => {
@@ -36,6 +43,10 @@ const ChatBoard = ({ partyInfo, username }) => {
     if(message){
       socket.emit('sendMessage', { message }, () => setMessage('')); }
   };
+
+  const leftParty = () => {
+    socket.emit('leaveParty', room);
+  }
 
   return(
     <div className="container">
@@ -64,7 +75,11 @@ const ChatBoard = ({ partyInfo, username }) => {
             >Send Message</button>
           </div>
         </div>
+          <Link to={{ pathname: '/parties' }}>
+            <button type="button" className="btn btn-primary" onClick={leftParty}>Leave Party</button>
+          </Link>
       </div>
+      <div className="chatPeopleListContainer col-md-4" ><ChatPeopleList users={users}/></div>
     </div>
   );
 }

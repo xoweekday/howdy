@@ -9,7 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       partyInfo: {},
-      userInfo: {name: 'Not logged in...'},
+      userInfo: {name: `${Math.floor(Math.random()*100)}`},
     };
     this.getPartyInfo = this.getPartyInfo.bind(this);
     this.getUserInfo = this.getUserInfo.bind(this);

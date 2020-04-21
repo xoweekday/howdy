@@ -3,6 +3,7 @@ const path = require('path');
 const http = require('http');
 const socket = require('socket.io');
 const cors = require('cors');
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js');
 
 require('dotenv').config();
 const { apiRouter } = require('./api');
@@ -14,25 +15,42 @@ const io = socket(server);
 io.on('connection',socket => {
 
   socket.on('join', ({ room, username }, callback) => {
-    socket.username = username;
+    const user = addUser({ id: socket.id, name: username, room })
+
     // Welcome message to the new user
-    socket.emit('receiveMessage', {user: 'Admin', text: `Welcome to the ${room}, ${socket.username}!`});
-    // New user joined party
-    socket.broadcast.emit('receiveMessage', {user: 'Admin', text: `${username} has joined ${room}!`});
-    callback();
+    socket.emit('receiveMessage', {user: 'Admin', text: `Welcome to the ${user.room}, ${user.name}!`});
+    // New user joined party alert to specific room
+    socket.broadcast.to(user.room).emit('receiveMessage', {user: 'Admin', text: `${user.name} has joined ${user.room}!`});
+
+    socket.join(user.room);
+
+    io.to(room).emit('usersInRoom', getUsersInRoom(room));
+
+    callback(); // doesn't do anything, was going to use to handle errors...
   })
 
-  socket.on('sendMessage', (data, callback) => {
-    const message = { user: socket.username, text: data.message };
+  socket.on('sendMessage', ({ message }, callback) => {
+    const user = getUser(socket.id);
 
-    io.emit('receiveMessage', message);
+    io.to(user.room).emit('receiveMessage', { user: user.name, text: message });
 
-    // clears text input field
-    callback();
+    callback(); // clears text input field
+  })
+
+  socket.on('leaveParty', (room) => {
+    io.sockets.connected[socket.id].disconnect();
   })
 
   socket.on('disconnect', () => {
-    io.emit('receiveMessage', {user: 'Admin', text: `${socket.username} has left.`});
+    if(getUser(socket.id)){
+      const { room, name } = removeUser(socket.id);
+
+      socket.leave(room);
+
+      io.to(room).emit('usersInRoom', getUsersInRoom(room));
+
+      io.to(room).emit('receiveMessage', {user: 'Admin', text: `${name} has left.`});
+    }
   })
 });
 
