@@ -131,7 +131,6 @@ body {
   border-radius: 10px;
   min-height: 45vmax;
   max-height: 45vmax;
-  /* min-width: 50vmin; */
   display: flex;
   flex-direction: column;
   /* width: -70vw; */
@@ -148,6 +147,7 @@ body {
   padding: 3px;
   border-color: black;
   align-items: center;
+  display: -webkit-flex;
 }
 
 .items-list {
