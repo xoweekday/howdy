@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import ChatHeader from './ChatHeader.jsx';
 import ChatSidebar from './ChatSidebar.jsx';
 import Messages from './Messages.jsx'
+import { Redirect } from 'react-router-dom'
 
 let socket;
 
@@ -19,6 +20,7 @@ const ChatRoom = ({ partyInfo, username }) => {
   // const endPoint = 'http://ec2-18-221-135-146.us-east-2.compute.amazonaws.com:8081/#/';
 
   useEffect(() => {
+    renderRedirect();
     socket = io(endPoint);
     socket.emit('join', { room, username }, () => { });
 
@@ -49,8 +51,15 @@ const ChatRoom = ({ partyInfo, username }) => {
     socket.emit('leaveParty', room);
   }
 
+  const renderRedirect = () => {
+    if (!username) {
+      return <Redirect to='/' />
+    }
+  }
+
   return (
     <div className="container-fluid chat-room">
+      {renderRedirect()}
       <div className='row'>
         <div className="col">
       <ChatHeader partyInfo={partyInfo} />
