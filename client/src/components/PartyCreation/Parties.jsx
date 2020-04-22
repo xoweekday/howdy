@@ -36,7 +36,7 @@ class Parties extends React.Component {
 
   render() {
     const { parties } = this.state;
-    const { getPartyInfo } = this.props;
+    const { getPartyInfo, getUserLocation } = this.props;
     return (
       <div className="container-fluid parties-page">
       <div className="row">
@@ -46,7 +46,7 @@ class Parties extends React.Component {
           <CreateParty getNewPartyEntry={this.getNewPartyEntry} />
         </div>
         <div className="col list">
-          <PartyList parties={parties} getPartyInfo={getPartyInfo} />
+          <PartyList parties={parties} getPartyInfo={getPartyInfo} getUserLocation={getUserLocation} />
         </div>
       </div>
       </div>
