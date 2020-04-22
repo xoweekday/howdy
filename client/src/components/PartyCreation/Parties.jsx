@@ -76,7 +76,7 @@ class Parties extends React.Component {
           <CreateParty getNewPartyEntry={this.getNewPartyEntry} longitude={longitude} latitude={latitude} />
         </div>
         <div className="col list">
-          <PartyList parties={parties} getPartyInfo={getPartyInfo} />
+          <PartyList parties={parties} getPartyInfo={getPartyInfo} longitude={longitude} latitude={latitude} />
         </div>
       </div>
       </div>

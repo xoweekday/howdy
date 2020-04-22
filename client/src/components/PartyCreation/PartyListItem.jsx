@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import distance from '../../Utils/LocationEquation.js';
 
-const PartyListItem = ({ party, getPartyInfo }) => (
+const PartyListItem = ({ party, getPartyInfo, longitude, latitude }) => (
 
   // Render individual party details.
   <div>
@@ -18,8 +19,24 @@ const PartyListItem = ({ party, getPartyInfo }) => (
           <button
             type="button"
             className="btn btn-primary"
-            onClick={()=>{getPartyInfo(party)}}
-          >Join Party</button>
+            onClick={()=>{
+              const partyLat = party.host_lat;
+              const partyLong = party.host_long;
+              const userLat = latitude;
+              const userLong = longitude;
+              const distanceFromParty = distance(partyLat, partyLong, userLat, userLong)
+              const partyRadius = party.radius;
+              let canJoin = true;
+
+              if(distanceFromParty >= partyRadius){
+                canJoin = false;
+                alert('Party is too far away');
+              }
+
+              console.log('ABLE TO JOIN? ', canJoin, 'DISTANCE FROM PARTY: ', Math.round(10*distanceFromParty)/10)
+              getPartyInfo(party)
+            }}
+            >Join Party</button>
           </Link>
         </div>
       </div>
