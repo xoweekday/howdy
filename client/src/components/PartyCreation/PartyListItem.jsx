@@ -26,14 +26,14 @@ const PartyListItem = ({ party, getPartyInfo, longitude, latitude }) => (
               const userLong = longitude;
               const distanceFromParty = distance(partyLat, partyLong, userLat, userLong)
               const partyRadius = party.radius;
-              let canJoin = false;
+              let canJoin = true;
 
-              if(distanceFromParty <= partyRadius){
-                canJoin = true;
+              if(distanceFromParty >= partyRadius){
+                canJoin = false;
+                alert('Party is too far away');
               }
 
-              console.log('ABLE TO JOIN? ', canJoin)
-              console.log('DISTANCE FROM PARTY: ', Math.round(10*distanceFromParty)/10)
+              console.log('ABLE TO JOIN? ', canJoin, 'DISTANCE FROM PARTY: ', Math.round(10*distanceFromParty)/10)
               getPartyInfo(party)
             }}
             >Join Party</button>
