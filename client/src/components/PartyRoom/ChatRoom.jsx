@@ -20,7 +20,6 @@ const ChatRoom = ({ partyInfo, username }) => {
   // const endPoint = 'http://ec2-18-221-135-146.us-east-2.compute.amazonaws.com:8081/#/';
 
   useEffect(() => {
-    renderRedirect();
     socket = io(endPoint);
     socket.emit('join', { room, username }, () => { });
 
@@ -52,7 +51,8 @@ const ChatRoom = ({ partyInfo, username }) => {
   }
 
   const renderRedirect = () => {
-    if (!username) {
+    if (!username || !partyInfo.name) {
+      console.log("Cannot enter chatroom without signing in, dummy")
       return <Redirect to='/' />
     }
   }
