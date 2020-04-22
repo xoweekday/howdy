@@ -1,7 +1,7 @@
 import React from 'react';
 import PartyListItem from './PartyListItem.jsx';
 
-const PartyList = ({ parties, getPartyInfo }) => (
+const PartyList = ({ parties, getPartyInfo, getUserLocation }) => (
     <div className="party-list">
       <h3>Parties Near You!</h3>
       <div className="container-fluid">
@@ -16,7 +16,7 @@ const PartyList = ({ parties, getPartyInfo }) => (
         </div>
       </div>
       <div className="items-list">
-      {parties.map((party) => <PartyListItem key={party.id} party={party} getPartyInfo={getPartyInfo} />)}
+      {parties.map((party) => <PartyListItem key={party.id} party={party} getPartyInfo={getPartyInfo} getUserLocation={getUserLocation} />)}
     </div>
     </div>
   );
