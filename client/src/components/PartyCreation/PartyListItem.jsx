@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PartyListItem = ({ party, getPartyInfo }) => (
+const PartyListItem = ({ party, getPartyInfo, longitude, latitude }) => (
 
   // Render individual party details.
   <div>
@@ -18,8 +18,12 @@ const PartyListItem = ({ party, getPartyInfo }) => (
           <button
             type="button"
             className="btn btn-primary"
-            onClick={()=>{getPartyInfo(party)}}
-          >Join Party</button>
+            onClick={()=>{
+              console.log({ party: { latitude: party.host_lat, longitude: party.host_long }})
+              console.log({user: { latitude, longitude }})
+              getPartyInfo(party)
+            }}
+            >Join Party</button>
           </Link>
         </div>
       </div>
