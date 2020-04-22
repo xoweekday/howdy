@@ -22,6 +22,11 @@ class Parties extends React.Component {
 
   componentDidMount() {
     this.getParties();
+    if (!this.props.imageUrl) {
+      this.setState({
+        redirect: true
+      })
+    }
   }
 
   //  Get Parties from DB
@@ -76,7 +81,7 @@ class Parties extends React.Component {
           <CreateParty getNewPartyEntry={this.getNewPartyEntry} longitude={longitude} latitude={latitude} />
         </div>
         <div className="col list">
-          <PartyList parties={parties} getPartyInfo={getPartyInfo} longitude={longitude} latitude={latitude} />
+          <PartyList parties={parties} getPartyInfo={getPartyInfo} />
         </div>
       </div>
       </div>
