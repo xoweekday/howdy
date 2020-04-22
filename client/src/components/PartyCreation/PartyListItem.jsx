@@ -19,8 +19,13 @@ const PartyListItem = ({ party, getPartyInfo, longitude, latitude }) => (
             type="button"
             className="btn btn-primary"
             onClick={()=>{
-              console.log({ party: { latitude: party.host_lat, longitude: party.host_long }})
-              console.log({user: { latitude, longitude }})
+              const partyLat = party.host_lat;
+              const partyLong = party.host_long;
+              const partyRadius = party.radius;
+              const userLat = latitude;
+              const userLong = longitude;
+
+              console.log({ partyLat, partyLong, partyRadius, userLat, userLong })
               getPartyInfo(party)
             }}
             >Join Party</button>
