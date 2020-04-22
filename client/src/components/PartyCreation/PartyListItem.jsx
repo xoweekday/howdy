@@ -21,8 +21,10 @@ const PartyListItem = ({ party, getPartyInfo, longitude, latitude }) => {
     if (distanceFromParty <= party.radius) {
       joinParty();
     } else {
-      alert(`You are ${Math.round(10*distanceFromParty)/10} mile(s) away from this party.
-        The host has invited people within ${party.radius} mile(s).`)
+      alert(`
+      You are ${Math.round(10*distanceFromParty)/10} mile(s) away from this party.
+      The host has invited people within ${party.radius} mile(s).
+      `)
       }
     getPartyInfo(party)
   }
@@ -32,11 +34,11 @@ const PartyListItem = ({ party, getPartyInfo, longitude, latitude }) => {
       {renderParty()}
       <div className="party-container container-fluid border">
         <div className="row party-list-item">
-          <div className="partyName" className="col">{party.name}</div>
-          <div className="partyStart" className="col">{party.start}</div>
-          <div className="partyEnd" className="col">{party.end}</div>
-          <div className="partyDetails" className="col">{party.details}</div>
-          <div className="partyLink" className="col">
+          <div className="partyName col">{party.name}</div>
+          <div className="partyStart col">{party.start}</div>
+          <div className="partyEnd col">{party.end}</div>
+          <div className="partyDetails col" >{party.details}</div>
+          <div className="partyLink col">
             <button
               type="button"
               className="btn btn-primary"
