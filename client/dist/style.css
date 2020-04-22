@@ -58,7 +58,7 @@ body {
   padding-top: 18px;
 }
 
-                                  /* Login Page */
+                                  /* Login Page/Google Features */
 
 .loginGoogle {
   text-align: center;
@@ -71,6 +71,12 @@ body {
 
 .hideMe {
   display: none;
+}
+
+.logoutGoogle {
+  padding-right: 10px;
+  padding-top: 18px;
+  float: right;
 }
 
                                   /* Parties Page */
