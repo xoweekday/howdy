@@ -15,7 +15,7 @@ const ChatInput = ({ message, sendMessage, setMessage }) => (
     <div className="col-md-2">
       <button
         type="button"
-        className="btn btn-primary form-control"
+        className="btn btn-primary form-control send-button"
         onClick={(event) => sendMessage(event)}
       >SEND</button>
     </div>

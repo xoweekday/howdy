@@ -4,7 +4,7 @@ import ChatDetails from './ChatDetails.jsx';
 
 const ChatSidebar = ({ users, partyInfo }) => {
   return (
-    <div className="container">
+    <div className="container-fluid">
       <ChatPeopleList users={users} />
       <ChatDetails partyInfo={partyInfo} />
     </div>

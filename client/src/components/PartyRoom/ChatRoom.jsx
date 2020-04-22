@@ -50,13 +50,17 @@ const ChatRoom = ({ partyInfo, username }) => {
   }
 
   return (
-    <div className="container">
+    <div className="container-fluid chat-room">
+      <div className='row'>
+        <div className="col flex-left">
       <ChatHeader partyInfo={partyInfo} />
-      <div class="row">
-        <div class="col-md-10">
+      </div>
+      </div>
+      <div className="d-flex flex-row">
+        <div className="col message-view">
           <Messages messages={messages} message={message} setMessage={setMessage} sendMessage={sendMessage} leftParty={leftParty} />
         </div>
-        <div class="col-md-2">
+        <div className="col sidebar">
           <ChatSidebar users={users} partyInfo={partyInfo} />
         </div>
       </div>
