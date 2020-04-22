@@ -2,6 +2,8 @@ import React from 'react';
 import PartyList from './PartyList.jsx';
 import CreateParty from './CreateParty.jsx';
 import axios from 'axios';
+import { GoogleLogout } from 'react-google-login';
+import { Redirect } from 'react-router-dom'
 
 
 class Parties extends React.Component {
@@ -9,9 +11,13 @@ class Parties extends React.Component {
     super(props);
     this.state = {
       parties: [],
+      redirect: false,
     };
     this.getNewPartyEntry = this.getNewPartyEntry.bind(this);
     // this.getPartyInfo = this.getPartyInfo.bind(this);
+    this.logout = this.logout.bind(this);
+    this.setRedirect = this.setRedirect.bind(this);
+    this.renderRedirect = this.renderRedirect.bind(this);
   }
 
   componentDidMount() {
@@ -30,10 +36,38 @@ class Parties extends React.Component {
     this.getParties();
   }
 
+  logout() {
+    console.log("You have logged out, dummy")
+    this.setRedirect();
+  }
+
+  setRedirect() {
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirect () {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
+  }
+
   render() {
     const { parties } = this.state;
-    const { getPartyInfo, longitude, latitude } = this.props;
+    const { getPartyInfo, longitude, latitude, imageUrl } = this.props;
     return (
+      <div>
+        {this.renderRedirect()}
+      <div><img src={imageUrl}/>
+      <div className="logoutGoogle">
+      <GoogleLogout
+      clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
+      buttonText="Logout"
+      onLogoutSuccess={this.logout} >
+        </GoogleLogout>
+      </div>
+      </div>
       <div className="container-fluid parties-page">
       <div className="row">
         </div>
@@ -44,6 +78,7 @@ class Parties extends React.Component {
         <div className="col list">
           <PartyList parties={parties} getPartyInfo={getPartyInfo} />
         </div>
+      </div>
       </div>
       </div>
     );

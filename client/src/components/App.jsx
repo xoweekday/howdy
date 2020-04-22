@@ -43,6 +43,7 @@ class App extends React.Component {
     this.setState({
       userInfo: response.profileObj,
     })
+    console.log(this.state.userInfo);
     this.getUserLocationFromDB();
   }
 
@@ -79,7 +80,7 @@ class App extends React.Component {
       <HashRouter>
         <Switch>
           <Route exact path="/" render={(routerProps) => (<Login {...routerProps} getUserInfo={this.getUserInfo} getLocationFromLogin={this.getLocationFromLogin}/>)} />
-          <Route exact path="/parties" render={(routerProps) => (<Parties {...routerProps} longitude={longitude} latitude={latitude} getPartyInfo={this.getPartyInfo} />)} />
+          <Route exact path="/parties" render={(routerProps) => (<Parties {...routerProps} longitude={longitude} latitude={latitude} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url}/>)} />
           <Route exact path="/chatroom" render={(routerProps) => (<Chatroom {...routerProps} partyInfo={partyInfo} username={userInfo.name} />)} />
         </Switch>
       </HashRouter>
