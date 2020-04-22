@@ -40,12 +40,15 @@ class Parties extends React.Component {
     const { parties } = this.state;
     const { getPartyInfo, longitude, latitude } = this.props;
     return (
-      <div className="container-fluid parties-page">
+      <div>
+      <div className="logoutGoogle">
       <GoogleLogout
       clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
       buttonText="Logout"
       onLogoutSuccess={this.logout} >
         </GoogleLogout>
+      </div>
+      <div className="container-fluid parties-page">
       <div className="row">
         </div>
       <div className="row">
@@ -55,6 +58,7 @@ class Parties extends React.Component {
         <div className="col list">
           <PartyList parties={parties} getPartyInfo={getPartyInfo} />
         </div>
+      </div>
       </div>
       </div>
     );
