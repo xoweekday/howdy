@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import distance from '../../Utils/LocationEquation.js';
 
 const PartyListItem = ({ party, getPartyInfo, longitude, latitude }) => {
@@ -14,45 +14,34 @@ const PartyListItem = ({ party, getPartyInfo, longitude, latitude }) => {
       return <Redirect to='/chatroom' />
     }
   }
-  
+
+  const canJoinParty = () => {
+    const distanceFromParty = distance(party.host_lat, party.host_long, latitude, longitude);
+
+    if (distanceFromParty <= party.radius) {
+      joinParty();
+    } else {
+      alert(`You are ${Math.round(10*distanceFromParty)/10} mile(s) away from this party.
+        The host has invited people within ${party.radius} mile(s).`)
+      }
+    getPartyInfo(party)
+  }
+
   return (
     <div>
       {renderParty()}
       <div className="party-container container-fluid border">
         <div className="row party-list-item">
           <div className="partyName" className="col">{party.name}</div>
-          {/* <div className="partyDistance" className="col">{party.host_location}</div> */}
           <div className="partyStart" className="col">{party.start}</div>
           <div className="partyEnd" className="col">{party.end}</div>
-          {/* <div className="partyRadius" className="col">{party.radius}</div> */}
           <div className="partyDetails" className="col">{party.details}</div>
           <div className="partyLink" className="col">
-          {/* <Link to={{ pathname: '/chatroom' }}> */}
             <button
               type="button"
               className="btn btn-primary"
-              onClick={()=>{
-                const partyLat = party.host_lat;
-                const partyLong = party.host_long;
-                const userLat = latitude;
-                const userLong = longitude;
-                const distanceFromParty = distance(partyLat, partyLong, userLat, userLong)
-                const partyRadius = party.radius;
-                let canJoin = false;
-
-                if(distanceFromParty <= partyRadius){
-                  canJoin = true;
-                  console.log('ABLE TO JOIN? ', canJoin, 'DISTANCE FROM PARTY: ', Math.round(10*distanceFromParty)/10)
-                  joinParty();
-                  getPartyInfo(party)
-                } else {
-                  alert('Party is too far away');
-                  console.log('ABLE TO JOIN? ', canJoin, 'DISTANCE FROM PARTY: ', Math.round(10*distanceFromParty)/10)
-                  getPartyInfo(party)
-                }
-              }}
+              onClick={canJoinParty}
               >Join Party</button>
-            {/* </Link> */}
           </div>
         </div>
       </div>
