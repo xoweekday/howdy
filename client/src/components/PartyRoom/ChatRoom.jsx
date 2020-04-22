@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import ChatHeader from './ChatHeader.jsx';
 import ChatSidebar from './ChatSidebar.jsx';
 import Messages from './Messages.jsx'
+import { Redirect } from 'react-router-dom'
 
 let socket;
 
@@ -49,8 +50,16 @@ const ChatRoom = ({ partyInfo, username }) => {
     socket.emit('leaveParty', room);
   }
 
+  const renderRedirect = () => {
+    if (!username || !partyInfo.name) {
+      console.log("Cannot enter chatroom without signing in, dummy")
+      return <Redirect to='/' />
+    }
+  }
+
   return (
     <div className="container-fluid chat-room">
+      {renderRedirect()}
       <div className='row'>
         <div className="col">
       <ChatHeader partyInfo={partyInfo} />

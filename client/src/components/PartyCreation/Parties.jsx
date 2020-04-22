@@ -22,6 +22,11 @@ class Parties extends React.Component {
 
   componentDidMount() {
     this.getParties();
+    if (!this.props.imageUrl) {
+      this.setState({
+        redirect: true
+      })
+    }
   }
 
   //  Get Parties from DB
