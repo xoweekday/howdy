@@ -4,6 +4,7 @@ import Parties from './PartyCreation/Parties.jsx';
 import Login from './Login/Login.jsx';
 import Chatroom from './PartyRoom/ChatRoom.jsx';
 import GoogleLogin from 'react-google-login';
+import Axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class App extends React.Component {
     this.getPartyInfo = this.getPartyInfo.bind(this);
     this.getUserInfo = this.getUserInfo.bind(this);
     this.responseGoogle = this.responseGoogle.bind(this);
+    this.getUserLocation = this.getUserLocation.bind(this)
   }
 
   getPartyInfo(partyInfo) {
@@ -35,10 +37,19 @@ class App extends React.Component {
   }
 
   responseGoogle(response) {
-    console.log(response.profileObj);
     this.setState({
       userInfo: response.profileObj,
     })
+  }
+
+  getUserLocation() {
+    const { userInfo } = this.state;
+    Axios.get('/api/login', { params: { google_id: userInfo.googleId } })
+      .then((res)=> {
+        console.log('User latitude: ', res.data[0].latitude)
+        console.log('User longitude: ', res.data[0].longitude)
+      })
+      .catch((err)=> { console.log(err); })
   }
 
   render() {
@@ -61,7 +72,7 @@ class App extends React.Component {
       <HashRouter>
         <Switch>
           <Route exact path="/" render={(routerProps) => (<Login {...routerProps} getUserInfo={this.getUserInfo} />)} />
-          <Route exact path="/parties" render={(routerProps) => (<Parties {...routerProps} getPartyInfo={this.getPartyInfo}/>)} />
+          <Route exact path="/parties" render={(routerProps) => (<Parties {...routerProps} getPartyInfo={this.getPartyInfo} getUserLocation={this.getUserLocation} />)} />
           <Route exact path="/chatroom" render={(routerProps) => (<Chatroom {...routerProps} partyInfo={partyInfo} username={userInfo.name} />)} />
         </Switch>
       </HashRouter>
