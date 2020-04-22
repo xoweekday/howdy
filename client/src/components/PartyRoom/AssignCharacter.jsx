@@ -58,30 +58,21 @@ const AssignCharacter = ({ users }) => {
   ];
 
   const getRandomCharacter = (characters) => {
-    let item = characters[Math.floor(Math.random() * characters.length)];
-    return item;
+    let index = Math.floor(Math.random() * characters.length);
+    return characters[index];
   }
 
   function handleClick(e) {
     e.preventDefault();
-    console.log('The link was clicked. Characters Assigned');
+    let character = getRandomCharacter(characters);
+    console.log(character);
   }
 
-  const character = getRandomCharacter(characters);
   return (
     <div>
-
-      <button onClick={handleClick}>
-
+      <button type='button' onClick={handleClick}>
         <h3>Assign Character</h3>
-
       </button>
-
-      {users.map(user => {
-        const character = getRandomCharacter(characters);
-        user.name = `${user.name} (${character}):`;
-      })}
-
     </div>
   );
 }
