@@ -3,6 +3,7 @@ import PartyList from './PartyList.jsx';
 import CreateParty from './CreateParty.jsx';
 import axios from 'axios';
 import { GoogleLogout } from 'react-google-login';
+import { Redirect } from 'react-router-dom'
 
 
 class Parties extends React.Component {
@@ -10,10 +11,13 @@ class Parties extends React.Component {
     super(props);
     this.state = {
       parties: [],
+      redirect: false,
     };
     this.getNewPartyEntry = this.getNewPartyEntry.bind(this);
     // this.getPartyInfo = this.getPartyInfo.bind(this);
     this.logout = this.logout.bind(this);
+    this.setRedirect = this.setRedirect.bind(this);
+    this.renderRedirect = this.renderRedirect.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +38,19 @@ class Parties extends React.Component {
 
   logout() {
     console.log("You have logged out, dummy")
+    this.setRedirect();
+  }
+
+  setRedirect() {
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirect () {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
   }
 
   render() {
@@ -41,6 +58,7 @@ class Parties extends React.Component {
     const { getPartyInfo, longitude, latitude, imageUrl } = this.props;
     return (
       <div>
+        {this.renderRedirect()}
       <div><img src={imageUrl}/>
       <div className="logoutGoogle">
       <GoogleLogout
