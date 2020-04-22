@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Parties from './PartyCreation/Parties.jsx';
 import Login from './Login/Login.jsx';
 import Chatroom from './PartyRoom/ChatRoom.jsx';
@@ -15,12 +15,15 @@ class App extends React.Component {
       view: false,
       longitude: '',
       latitude: '',
+      redirect: false
     };
     this.getPartyInfo = this.getPartyInfo.bind(this);
     this.getUserInfo = this.getUserInfo.bind(this);
     this.responseGoogle = this.responseGoogle.bind(this);
     this.getUserLocationFromDB = this.getUserLocationFromDB.bind(this);
     this.getLocationFromLogin = this.getLocationFromLogin.bind(this);
+    this.setRedirect = this.setRedirect.bind(this);
+    this.renderRedirect = this.renderRedirect.bind(this);
   }
 
   getPartyInfo(partyInfo) {
@@ -36,6 +39,9 @@ class App extends React.Component {
       this.setState({
         view: true
       })
+      if (!this.state.userInfo.name) {
+        this.setRedirect();
+      }
     }.bind(this), 1000)
   }
 
@@ -45,6 +51,11 @@ class App extends React.Component {
     })
     console.log(this.state.userInfo);
     this.getUserLocationFromDB();
+    if (!this.state.userInfo.name) {
+      this.setState({
+        redirect: true
+      })
+    }
   }
 
   getLocationFromLogin(latitude, longitude) {
@@ -60,6 +71,18 @@ class App extends React.Component {
       .catch((err)=> { console.log(err); })
   }
 
+  setRedirect() {
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirect () {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
+  }
+
   render() {
     const { partyInfo, userInfo, view, longitude, latitude } = this.state;
     let renderContainer =
@@ -69,7 +92,7 @@ class App extends React.Component {
           clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
           buttonText="Login"
           onSuccess={this.responseGoogle}
-          onFailure={() => console.log('failed to login')}
+          onFailure={this.setRedirect}
           isSignedIn={true}
           cookiePolicy={'single_host_origin'}
           />
@@ -78,6 +101,7 @@ class App extends React.Component {
     if (view) {
       renderContainer =
       <HashRouter>
+        {this.renderRedirect()}
         <Switch>
           <Route exact path="/" render={(routerProps) => (<Login {...routerProps} getUserInfo={this.getUserInfo} getLocationFromLogin={this.getLocationFromLogin}/>)} />
           <Route exact path="/parties" render={(routerProps) => (<Parties {...routerProps} longitude={longitude} latitude={latitude} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url}/>)} />
