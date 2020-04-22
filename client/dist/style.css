@@ -171,7 +171,6 @@ body {
 .chat-room {
   display: flex;
   flex-direction: column;
-  padding-top: 1px;
   border-style: groove;
   border-color: #EAEAEA;
   border-width: 4px;
@@ -183,13 +182,32 @@ body {
 }
 
 .message-view {
-  display: flex;
   flex-direction: left;
-  flex-grow: 8;
+  flex-grow: 11;
   align-self: stretch;
 }
 
 .sidebar {
-  display: flex;
-  flex-grow: 2;
+  flex: 3;
+  border-style: groove;
+  border-color: #EAEAEA;
+  border-width: 4px;
+  border-radius: 10px;
+  max-height: 37vmax;
+}
+
+.message-container {
+  border-style: groove;
+  border-color: #EAEAEA;
+  border-width: 4px;
+  border-radius: 10px;
+  min-height: 37vmax;
+
+}
+
+.people-list {
+  border-style: groove;
+  border-color: #EAEAEA;
+  border-width: 4px;
+  border-radius: 10px;
 }

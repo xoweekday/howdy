@@ -52,7 +52,7 @@ const ChatRoom = ({ partyInfo, username }) => {
   return (
     <div className="container-fluid chat-room">
       <div className='row'>
-        <div className="col flex-left">
+        <div className="col">
       <ChatHeader partyInfo={partyInfo} />
       </div>
       </div>

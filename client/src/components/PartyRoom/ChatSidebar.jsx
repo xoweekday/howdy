@@ -5,8 +5,10 @@ import ChatDetails from './ChatDetails.jsx';
 const ChatSidebar = ({ users, partyInfo }) => {
   return (
     <div className="container-fluid">
-      <ChatPeopleList users={users} />
-      <ChatDetails partyInfo={partyInfo} />
+      <div className="d-flex-col">
+        <ChatPeopleList users={users} />
+        <ChatDetails partyInfo={partyInfo} />
+      </div>
     </div>
   );
 }
