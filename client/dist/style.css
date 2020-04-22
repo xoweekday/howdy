@@ -131,7 +131,6 @@ body {
   border-radius: 10px;
   min-height: 45vmax;
   max-height: 45vmax;
-  /* min-width: 50vmin; */
   display: flex;
   flex-direction: column;
   /* width: -70vw; */
@@ -148,6 +147,7 @@ body {
   padding: 3px;
   border-color: black;
   align-items: center;
+  display: -webkit-flex;
 }
 
 .items-list {
@@ -168,13 +168,46 @@ body {
 
                                   /* Chatroom Messager */
 
-.messages-box {
-  border: 1px solid red;
+.chat-room {
+  display: flex;
+  flex-direction: column;
+  border-style: groove;
+  border-color: #EAEAEA;
+  border-width: 4px;
+  border-radius: 10px;
+  min-height: 92vh;
 }
-.message {
-  border: 1px solid yellow;
-  color: blue;
+.chat-header {
+  flex: left;
 }
-.send-a-message-box {
-  border: 1px solid orange;
+
+.message-view {
+  flex-direction: left;
+  flex-grow: 11;
+  align-self: stretch;
+}
+
+.sidebar {
+  flex: 3;
+  border-style: groove;
+  border-color: #EAEAEA;
+  border-width: 4px;
+  border-radius: 10px;
+  max-height: 37vmax;
+}
+
+.message-container {
+  border-style: groove;
+  border-color: #EAEAEA;
+  border-width: 4px;
+  border-radius: 10px;
+  min-height: 37vmax;
+
+}
+
+.people-list {
+  border-style: groove;
+  border-color: #EAEAEA;
+  border-width: 4px;
+  border-radius: 10px;
 }
