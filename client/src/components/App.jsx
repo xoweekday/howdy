@@ -43,6 +43,7 @@ class App extends React.Component {
     this.setState({
       userInfo: response.profileObj,
     })
+    console.log(this.state.userInfo);
     this.getUserLocationFromDB();
   }
 
