@@ -39,6 +39,7 @@ class LogIn extends React.Component {
     ipinfo.lookupIp(ip)
     .then((response) => {
       var loc = response.loc.split(',');
+      this.props.getLocationFromLogin(loc[0], loc[1]);
       this.setState({
           latitude: loc[0],
           longitude: loc[1],

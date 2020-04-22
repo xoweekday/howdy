@@ -34,7 +34,7 @@ const getMessages = (req, res) => {
 
 // get all messages from database
 const getUser = (req, res) => {
-  const {google_id} = req.body;
+  const {google_id} = req.query;
   const mysqlQuery = `SELECT * FROM users WHERE google_id=${google_id}`;
   return query(mysqlQuery);
 };
