@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import distance from '../../Utils/LocationEquation.js';
 
 const PartyListItem = ({ party, getPartyInfo, longitude, latitude }) => (
 
@@ -24,6 +25,8 @@ const PartyListItem = ({ party, getPartyInfo, longitude, latitude }) => (
               const partyRadius = party.radius;
               const userLat = latitude;
               const userLong = longitude;
+
+              console.log(distance(partyLat, partyLong, userLat, userLong))
 
               console.log({ partyLat, partyLong, partyRadius, userLat, userLong })
               getPartyInfo(party)
