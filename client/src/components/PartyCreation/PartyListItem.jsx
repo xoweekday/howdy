@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PartyListItem = ({ party, getPartyInfo }) => (
+const PartyListItem = ({ party, getPartyInfo, getUserLocation }) => (
 
   // Render individual party details.
   <div>
@@ -18,7 +18,10 @@ const PartyListItem = ({ party, getPartyInfo }) => (
           <button
             type="button"
             className="btn btn-primary"
-            onClick={()=>{getPartyInfo(party)}}
+            onClick={()=>{
+              getUserLocation();
+              getPartyInfo(party);
+            }}
           >Join Party</button>
           </Link>
         </div>
