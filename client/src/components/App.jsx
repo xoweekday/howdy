@@ -12,12 +12,15 @@ class App extends React.Component {
     this.state = {
       partyInfo: {},
       userInfo: {},
-      view: false
+      view: false,
+      longitude: '',
+      latitude: '',
     };
     this.getPartyInfo = this.getPartyInfo.bind(this);
     this.getUserInfo = this.getUserInfo.bind(this);
     this.responseGoogle = this.responseGoogle.bind(this);
-    this.getUserLocation = this.getUserLocation.bind(this)
+    this.getUserLocationFromDB = this.getUserLocationFromDB.bind(this);
+    this.getLocationFromLogin = this.getLocationFromLogin.bind(this);
   }
 
   getPartyInfo(partyInfo) {
@@ -40,20 +43,24 @@ class App extends React.Component {
     this.setState({
       userInfo: response.profileObj,
     })
+    this.getUserLocationFromDB();
   }
 
-  getUserLocation() {
+  getLocationFromLogin(latitude, longitude) {
+    this.setState({ latitude, longitude });
+  }
+
+  getUserLocationFromDB() {
     const { userInfo } = this.state;
     Axios.get('/api/login', { params: { google_id: userInfo.googleId } })
       .then((res)=> {
-        console.log('User latitude: ', res.data[0].latitude)
-        console.log('User longitude: ', res.data[0].longitude)
+        this.setState({ longitude: res.data[0].longitude, latitude: res.data[0].latitude});
       })
       .catch((err)=> { console.log(err); })
   }
 
   render() {
-    const { partyInfo, userInfo, view } = this.state;
+    const { partyInfo, userInfo, view, longitude, latitude } = this.state;
     let renderContainer =
     <div>
       <div className="hideMe">
@@ -71,8 +78,8 @@ class App extends React.Component {
       renderContainer =
       <HashRouter>
         <Switch>
-          <Route exact path="/" render={(routerProps) => (<Login {...routerProps} getUserInfo={this.getUserInfo} />)} />
-          <Route exact path="/parties" render={(routerProps) => (<Parties {...routerProps} getPartyInfo={this.getPartyInfo} getUserLocation={this.getUserLocation} />)} />
+          <Route exact path="/" render={(routerProps) => (<Login {...routerProps} getUserInfo={this.getUserInfo} getLocationFromLogin={this.getLocationFromLogin}/>)} />
+          <Route exact path="/parties" render={(routerProps) => (<Parties {...routerProps} longitude={longitude} latitude={latitude} getPartyInfo={this.getPartyInfo} />)} />
           <Route exact path="/chatroom" render={(routerProps) => (<Chatroom {...routerProps} partyInfo={partyInfo} username={userInfo.name} />)} />
         </Switch>
       </HashRouter>
