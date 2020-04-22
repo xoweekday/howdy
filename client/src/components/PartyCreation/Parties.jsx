@@ -30,23 +30,19 @@ class Parties extends React.Component {
     this.getParties();
   }
 
-  // getPartyInfo(info) {
-  //   console.log('here is the party info: ', info);
-  // }
-
   render() {
     const { parties } = this.state;
-    const { getPartyInfo, getUserLocation } = this.props;
+    const { getPartyInfo, longitude, latitude } = this.props;
     return (
       <div className="container-fluid parties-page">
       <div className="row">
         </div>
       <div className="row">
         <div className="col create">
-          <CreateParty getNewPartyEntry={this.getNewPartyEntry} />
+          <CreateParty getNewPartyEntry={this.getNewPartyEntry} longitude={longitude} latitude={latitude} />
         </div>
         <div className="col list">
-          <PartyList parties={parties} getPartyInfo={getPartyInfo} getUserLocation={getUserLocation} />
+          <PartyList parties={parties} getPartyInfo={getPartyInfo} />
         </div>
       </div>
       </div>
