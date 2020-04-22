@@ -38,15 +38,17 @@ class Parties extends React.Component {
 
   render() {
     const { parties } = this.state;
-    const { getPartyInfo, longitude, latitude } = this.props;
+    const { getPartyInfo, longitude, latitude, imageUrl } = this.props;
     return (
       <div>
+      <div><img src={imageUrl}/>
       <div className="logoutGoogle">
       <GoogleLogout
       clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
       buttonText="Logout"
       onLogoutSuccess={this.logout} >
         </GoogleLogout>
+      </div>
       </div>
       <div className="container-fluid parties-page">
       <div className="row">
