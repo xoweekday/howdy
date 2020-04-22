@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Messages = ({ messages, message, sendMessage, setMessage, leftParty }) => {
   return (
     <div className="container">
-     <div className="row message-container">
+     <div className="row d-flex message-container overflow:auto">
       <ChatMessage messages={messages} />
       </div>
       <ChatInput message={message} sendMessage={sendMessage} setMessage={setMessage} />

@@ -197,12 +197,17 @@ body {
 }
 
 .message-container {
+  flex-direction: column-reverse;
+  background-color: lightgray;
   border-style: groove;
+  font-weight: bolder;
+  color: #262322;
   border-color: #EAEAEA;
   border-width: 4px;
-  border-radius: 10px;
-  min-height: 37vmax;
-
+  border-radius: 8px;
+  min-height: 36vmax;
+  max-height: 36vmax;
+  overflow: auto;
 }
 
 .people-list {
