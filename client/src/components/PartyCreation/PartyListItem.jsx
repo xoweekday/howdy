@@ -22,13 +22,18 @@ const PartyListItem = ({ party, getPartyInfo, longitude, latitude }) => (
             onClick={()=>{
               const partyLat = party.host_lat;
               const partyLong = party.host_long;
-              const partyRadius = party.radius;
               const userLat = latitude;
               const userLong = longitude;
+              const distanceFromParty = distance(partyLat, partyLong, userLat, userLong)
+              const partyRadius = party.radius;
+              let canJoin = false;
 
-              console.log(distance(partyLat, partyLong, userLat, userLong))
+              if(distanceFromParty <= partyRadius){
+                canJoin = true;
+              }
 
-              console.log({ partyLat, partyLong, partyRadius, userLat, userLong })
+              console.log('ABLE TO JOIN? ', canJoin)
+              console.log('DISTANCE FROM PARTY: ', Math.round(10*distanceFromParty)/10)
               getPartyInfo(party)
             }}
             >Join Party</button>
