@@ -170,6 +170,7 @@ body {
 
 .chat-room {
   display: flex;
+  font-family: "howdy";
   flex-direction: column;
   border-style: groove;
   border-color: #EAEAEA;
@@ -183,6 +184,7 @@ body {
 
 .sidebar {
   font-family: 'howdy';
+  text-shadow: 1px 1px black;
   flex: 3;
 }
 
@@ -190,6 +192,7 @@ body {
   flex-direction: left;
   flex-grow: 11;
   align-self: stretch;
+  font-family: 'Trebuchet MS';
 }
 
 .sidebar-container {
@@ -203,14 +206,18 @@ body {
   border-radius: 10px;
   min-height: 37vmax;
   max-height: 37vmax;
+  overflow: auto;
 }
 
 .message-container {
   flex-direction: column-reverse;
-  background-color: lightgray;
+  background-color: white;
   border-style: ridge;
-  font-weight: bolder;
   color: #262322;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bolder;
+  text-align: left;
+  font-size: 14pt;
   border-color: #EAEAEA;
   border-width: 4px;
   border-radius: 8px;
@@ -224,24 +231,27 @@ body {
   border-style: groove;
   border-color: #EAEAEA;
   color: #262322;
+  text-shadow: none;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bolder;
   text-align: left;
   border-width: 1px;
   border-radius: 10px;
   height: 25vh;
-  background-color: lightgray;
+  background-color: white;
   overflow: auto;
 }
 
 .details {
   color: #262322;
+  text-shadow: none;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bolder;
   text-align: left;
+  padding: 5px;
   border-width: 2px;
   border-radius: 10px;
   height: 15vh;
-  background-color: lightgray;
+  background-color: white;
   overflow: auto;
 }
