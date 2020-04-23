@@ -37,6 +37,8 @@ const PartyListItem = ({ party, getPartyInfo, longitude, latitude }) => {
           <div className="partyName col">{party.name}</div>
           <div className="partyStart col">{party.start}</div>
           <div className="partyEnd col">{party.end}</div>
+          <div className="partyEnd col">{party.city}</div>
+          <div className="partyEnd col">{party.radius}</div>
           <div className="partyDetails col" >{party.details}</div>
           <div className="partyLink col">
             <button
