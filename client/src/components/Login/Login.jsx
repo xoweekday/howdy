@@ -63,10 +63,16 @@ class LogIn extends React.Component {
     const { name, image_url, view, view2 } = this.state;
     return (
       <div className="loginGoogle">
-        <h1>WELCOME TO HOWDY</h1>
+        <h1>HOWDY</h1>
+        <h3 className="loginDescription">
+          <p className="loginPara">
+            <span> When you're stuck inside, it can feel lonely.</span>
+            <span> Why not throw an online party? </span>
+            <span> Howdy connects neighbors based on their location. </span>
+          </p>
+        </h3>
         {view === false ?
         <div>
-          <h4>Please sign in with Google: </h4>
           <GoogleLogin
             clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
             buttonText="Login"
@@ -74,8 +80,7 @@ class LogIn extends React.Component {
             onFailure={this.responseGoogle}
             cookiePolicy={'single_host_origin'}
           />
-        </div> : null
-        }
+        </div> : null }
         {view === true ?
         <div className="loginSigned" align="center">
           <h3>You have signed in as:</h3>
