@@ -63,7 +63,7 @@ class Parties extends React.Component {
     const { getPartyInfo, longitude, latitude, imageUrl } = this.props;
     return (
       <div>
-        {this.renderRedirect()}
+        {/* {this.renderRedirect()} */}
       <div><img src={imageUrl}/>
       <div className="logoutGoogle">
       <GoogleLogout

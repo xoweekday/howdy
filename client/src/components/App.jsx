@@ -101,7 +101,7 @@ class App extends React.Component {
     if (view) {
       renderContainer =
       <HashRouter>
-        {this.renderRedirect()}
+        {/* {this.renderRedirect()} */}
         <Switch>
           <Route exact path="/" render={(routerProps) => (<Login {...routerProps} getUserInfo={this.getUserInfo} getLocationFromLogin={this.getLocationFromLogin}/>)} />
           <Route exact path="/parties" render={(routerProps) => (<Parties {...routerProps} longitude={longitude} latitude={latitude} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url}/>)} />

@@ -204,8 +204,8 @@ body {
   border-color: #EAEAEA;
   border-width: 4px;
   border-radius: 10px;
-  min-height: 37vmax;
-  max-height: 37vmax;
+  min-height: 43vmax;
+  max-height: 43vmax;
   overflow: auto;
 }
 
@@ -254,4 +254,8 @@ body {
   height: 15vh;
   background-color: white;
   overflow: auto;
+}
+
+.party-details {
+  margin-top: 8px;
 }
