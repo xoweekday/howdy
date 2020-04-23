@@ -41,15 +41,15 @@ const getUser = (req, res) => {
 
 // create a party
 const addParty = (req, res) => {
-  const { name, host_id, longitude, latitude, radius, details, date, start, end } = req.body; // or req.body
-  const mysqlQuery = `INSERT INTO rooms (name, host_id, host_long, host_lat, radius, details, date, start, end) VALUES ('${name}', ${host_id}, '${longitude}', '${latitude}', ${radius}, '${details}', '${date}', '${start}', '${end}')`
+  const { name, host_id, longitude, latitude, radius, details, date, start, end, city, region } = req.body; // or req.body
+  const mysqlQuery = `INSERT INTO rooms (name, host_id, host_long, host_lat, radius, details, date, start, end, city, region) VALUES ('${name}', ${host_id}, '${longitude}', '${latitude}', ${radius}, '${details}', '${date}', '${start}', '${end}', '${city}', '${region}')`
   return query(mysqlQuery);
 }
 
 // create a user
 const addUser = (req, res) => {
-  const { google_id, image_url, name, latitude, longitude } = req.body;
-  const mysqlQuery = `INSERT INTO users (google_id, image_url, name, latitude, longitude) VALUES ('${google_id}', '${image_url}', '${name}', ${latitude}, ${longitude})`;
+  const { google_id, image_url, name, latitude, longitude, city, region } = req.body;
+  const mysqlQuery = `INSERT INTO users (google_id, image_url, name, latitude, longitude, city, region) VALUES ('${google_id}', '${image_url}', '${name}', ${latitude}, ${longitude}, '${city}', '${region}')`;
   return query(mysqlQuery);
 }
 
