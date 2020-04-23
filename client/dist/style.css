@@ -228,7 +228,7 @@ body {
   min-height: 37vmax;
   max-height: 37vmax;
   padding-left: 10px;
-  margin-bottom: 1px;
+  margin-bottom: 3px;
   overflow: auto;
 }
 
@@ -274,4 +274,8 @@ body {
 .leave-party {
   float: right;
   margin-right: 1px;
+}
+
+.message-input {
+  size: inherit;
 }

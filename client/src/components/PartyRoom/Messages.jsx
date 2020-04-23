@@ -10,7 +10,7 @@ const Messages = ({ messages, message, sendMessage, setMessage, leftParty }) => 
      <div className="row message-container overflow:auto">
       <ChatMessage messages={messages} />
       </div>
-      <div className="row message-input ">
+      <div className="row message-input">
         <ChatInput message={message} sendMessage={sendMessage} setMessage={setMessage} />
       </div>
       <div className="row leave-party">
