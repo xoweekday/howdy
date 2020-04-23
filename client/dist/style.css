@@ -90,6 +90,21 @@ body {
   padding-bottom: 2px;
 }
 
+.loginDescription {
+  display: block;
+}
+
+/* .loginDescription span{
+} */
+
+.loginPara span{
+  border-radius: 25px;
+  border: 2px double rgba(1, 75, 102, 0.5);
+  background-color: #FFCF99;
+  color: #7C0A02;
+  display: block;
+}
+
                                   /* Parties Page */
 
 .parties-page {
