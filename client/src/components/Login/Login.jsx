@@ -13,6 +13,8 @@ class LogIn extends React.Component {
       google_id: '',
       latitude: '',
       longitude: '',
+      city: '',
+      region: '',
       view: false,
       view2: false
     };
@@ -39,10 +41,13 @@ class LogIn extends React.Component {
     ipinfo.lookupIp(ip)
     .then((response) => {
       var loc = response.loc.split(',');
-      this.props.getLocationFromLogin(loc[0], loc[1]);
+      console.log({ response });
+      this.props.getLocationFromLogin(loc[0], loc[1], response._city, response.region);
       this.setState({
           latitude: loc[0],
           longitude: loc[1],
+          city: response._city,
+          region: response.region,
           view2: true
       });
         Axios.post('api/login', this.state)
