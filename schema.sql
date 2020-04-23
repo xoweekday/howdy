@@ -64,7 +64,7 @@ INSERT INTO rooms (name, host_id, host_lat, host_long, city, region, radius, det
 -- dummy data for location restrictions
 
 INSERT INTO users (name, latitude, longitude) VALUES ('Chris', 40.730610, -73.935242);
-INSERT INTO rooms (name, host_id, host_lat, host_long, radius, city, region) VALUES ('Everyone Join!', 3, 40.730610, -73.935242, 1350, 'New York City', 'New York');
+INSERT INTO rooms (name, host_id, host_lat, host_long, radius, city, region, date, start, end) VALUES ('Everyone Join!', 3, 40.730610, -73.935242, 1350, 'New York City', 'New York', '2020-09-20', '02:34:00', '14:15:00');
 INSERT INTO users (name, latitude, longitude) VALUES ('James', 30.009631, -90.158193);
-INSERT INTO rooms (name, host_id, host_lat, host_long, radius, city, region) VALUES ('Kenner Only', 4, 29.9941, -90.2417, 1, 'Kenner', 'Louisiana');
+INSERT INTO rooms (name, host_id, host_lat, host_long, radius, city, region, date, start, end) VALUES ('Kenner Only', 4, 29.9941, -90.2417, 1, 'Kenner', 'Louisiana', '2020-11-01', '01:04:00', '18:00:00');
 INSERT INTO users (name, latitude, longitude) VALUES ('Heather', 29.959757, -90.063974);
