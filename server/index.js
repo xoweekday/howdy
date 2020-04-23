@@ -4,6 +4,7 @@ const http = require('http');
 const socket = require('socket.io');
 const cors = require('cors');
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js');
+const { checkAnswer } = require('./game.js');
 
 require('dotenv').config();
 const { apiRouter } = require('./api');
@@ -31,7 +32,7 @@ io.on('connection',socket => {
 
   socket.on('sendMessage', ({ message }, callback) => {
     const user = getUser(socket.id);
-
+    checkAnswer(message, user.character);
     io.to(user.room).emit('receiveMessage', { user: user.name, text: message });
 
     callback(); // clears text input field
