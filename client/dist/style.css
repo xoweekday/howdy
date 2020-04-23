@@ -171,6 +171,7 @@ body {
 .chat-room {
   display: flex;
   font-family: "howdy";
+  text-shadow: 2px 2px black;
   flex-direction: column;
   /* border-style: groove;
   border-color: #EAEAEA;
@@ -180,12 +181,12 @@ body {
 }
 
 .chat-header {
-  flex: left;
+  text-shadow: 2px 2px black;
 }
 
 .sidebar {
   font-family: 'howdy';
-  text-shadow: 1px 1px black;
+  text-shadow: 2px 2px black;
   flex: 3;
 }
 
@@ -201,6 +202,7 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
+  justify-content: space-between;
   border-style: groove;
   border-color: #EAEAEA;
   border-width: 4px;
@@ -219,13 +221,14 @@ body {
   font-weight: bolder;
   text-align: left;
   font-size: 14pt;
+  text-shadow: none;
   border-color: #EAEAEA;
   border-width: 4px;
   border-radius: 8px;
   min-height: 37vmax;
   max-height: 37vmax;
   padding-left: 10px;
-  margin-bottom: 1px;
+  margin-bottom: 3px;
   overflow: auto;
 }
 
@@ -242,6 +245,7 @@ body {
   height: 25vh;
   background-color: white;
   overflow: auto;
+  margin-bottom: 20px;
 }
 
 .details {
@@ -253,11 +257,25 @@ body {
   padding: 5px;
   border-width: 2px;
   border-radius: 10px;
-  height: 15vh;
+  height: 21vh;
   background-color: white;
   overflow: auto;
 }
 
 .party-details {
-  margin-top: 8px;
+  margin-top: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.leave-party {
+  float: right;
+  margin-right: 1px;
+}
+
+.message-input {
+  size: inherit;
 }

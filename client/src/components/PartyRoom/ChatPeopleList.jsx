@@ -25,9 +25,9 @@ const ChatPeopleList = ({ users, username }) => {
       } </div>)}
       </div>
       <a href="https://icebreakerideas.com/who-am-i-game/" target="_blank"><h3>Game Rules:</h3></a>
-      <p> Ask questions to guess your character!</p>
+      <h5> Ask questions to guess your character!</h5>
 
-      <button type="button" onClick={showCharacter}>Play Game</button>
+      <button type="button" className="btn btn-primary" onClick={showCharacter}>Play Game</button>
 
     </div>
 
