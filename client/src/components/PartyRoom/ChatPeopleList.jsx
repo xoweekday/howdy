@@ -28,13 +28,6 @@ const ChatPeopleList = ({ users, username }) => {
 
       <button type="button" onClick={showCharacter}>Play Game</button>
 
-    <div className="container-fluid">
-      <div className="row">
-        <h3 className="partiers">Guest List:</h3>
-      <div className="container-fluid guest-list" >
-        {users.map(user => <div key={user.id}>{user.name}</div>)}
-      </div>
-      </div>
     </div>
 
   );
