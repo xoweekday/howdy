@@ -92,12 +92,12 @@ body {
 .loginDescription {
   background-color: #FFCF99;
 }
-
-.loginPara span {
-  /* background-color: white; */
+/* 
+.loginPara {
+  background-color: white;
   display: table;
   color: black;
-}
+} */
 
 .loginColor {
   background-color: #FFCF99;
@@ -106,6 +106,10 @@ body {
 .loginTitle {
   font-family: "howdy";
   font-size: 1000%;
+}
+
+.colorSpan {
+  color: black;
 }
 
 .firstSpan {
