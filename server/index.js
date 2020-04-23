@@ -32,9 +32,14 @@ io.on('connection',socket => {
 
   socket.on('sendMessage', ({ message }, callback) => {
     const user = getUser(socket.id);
-    checkAnswer(message, user.character);
+    
     io.to(user.room).emit('receiveMessage', { user: user.name, text: message });
-
+    
+    if(checkAnswer(message, user.character)) {
+      socket.emit('receiveMessage', {user: 'Admin', text: `You guessed it ${user.name}, your character was ${user.character}!`});
+      socket.broadcast.to(user.room).emit('receiveMessage', {user: 'Admin', text: `${user.name} has guessed their character ${user.character}!`});
+    }
+    
     callback(); // clears text input field
   })
 
