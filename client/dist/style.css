@@ -74,35 +74,33 @@ body {
 }
 
 .logoutGoogle {
-  padding-right: 20px;
+  padding-right: 10px;
+  padding-top: 18px;
   float: right;
-  margin-bottom: 5px;
-}
-.logout-bar {
-  max-height: 0px;
-  flex-direction: row-reverse;
-  align-items: flex-end;
 }
 
-.logout-image {
-  max-height: 55px;
-  max-width: 50px;
-  padding-bottom: 2px;
-}
-
-.loginDescription {
-  display: block;
-}
-
-/* .loginDescription span{
-} */
-
-.loginPara span{
-  border-radius: 25px;
-  border: 2px double rgba(1, 75, 102, 0.5);
-  background-color: #FFCF99;
+.loginPara {
   color: #7C0A02;
-  display: block;
+  display: inline-flex;
+  flex-direction: column;
+  border-style: ridge;
+  border-color: #EAEAEA;
+  border-width: 4px;
+  border-radius: 10px;
+}
+
+.loginPara span {
+  background-color: #FFCF99;
+  display: table;
+}
+
+.loginColor {
+  background-color: #FFCF99;
+}
+
+.loginTitle {
+  font-family: "howdy";
+  font-size: 500%;
 }
 
                                   /* Parties Page */
@@ -110,7 +108,7 @@ body {
 .parties-page {
   display: flex;
   flex-direction: column;
-  margin-top: 2px;
+  padding-top: 20px;
   /* width: 100%; */
 }
 
@@ -197,7 +195,6 @@ body {
 .chat-room {
   display: flex;
   font-family: "howdy";
-  text-shadow: 2px 2px black;
   flex-direction: column;
   /* border-style: groove;
   border-color: #EAEAEA;
@@ -207,12 +204,12 @@ body {
 }
 
 .chat-header {
-  text-shadow: 2px 2px black;
+  flex: left;
 }
 
 .sidebar {
   font-family: 'howdy';
-  text-shadow: 2px 2px black;
+  text-shadow: 1px 1px black;
   flex: 3;
 }
 
@@ -228,7 +225,6 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  justify-content: space-between;
   border-style: groove;
   border-color: #EAEAEA;
   border-width: 4px;
@@ -247,14 +243,13 @@ body {
   font-weight: bolder;
   text-align: left;
   font-size: 14pt;
-  text-shadow: none;
   border-color: #EAEAEA;
   border-width: 4px;
   border-radius: 8px;
   min-height: 37vmax;
   max-height: 37vmax;
   padding-left: 10px;
-  margin-bottom: 3px;
+  margin-bottom: 1px;
   overflow: auto;
 }
 
@@ -271,7 +266,6 @@ body {
   height: 25vh;
   background-color: white;
   overflow: auto;
-  margin-bottom: 20px;
 }
 
 .details {
@@ -283,25 +277,11 @@ body {
   padding: 5px;
   border-width: 2px;
   border-radius: 10px;
-  height: 21vh;
+  height: 15vh;
   background-color: white;
   overflow: auto;
 }
 
 .party-details {
-  margin-top: 20px;
-}
-
-.input-container {
-  display: flex;
-  flex-direction: row;
-}
-
-.leave-party {
-  float: right;
-  margin-right: 1px;
-}
-
-.message-input {
-  size: inherit;
+  margin-top: 8px;
 }
