@@ -60,7 +60,7 @@ class Parties extends React.Component {
 
   render() {
     const { parties } = this.state;
-    const { getPartyInfo, longitude, latitude, imageUrl } = this.props;
+    const { getPartyInfo, longitude, latitude, imageUrl, city, region } = this.props;
     return (
       <div>
         {this.renderRedirect()}
@@ -78,7 +78,7 @@ class Parties extends React.Component {
         </div>
       <div className="row">
         <div className="col create">
-          <CreateParty getNewPartyEntry={this.getNewPartyEntry} longitude={longitude} latitude={latitude} />
+          <CreateParty getNewPartyEntry={this.getNewPartyEntry} longitude={longitude} latitude={latitude} city={city} region={region} />
         </div>
         <div className="col list">
           <PartyList parties={parties} getPartyInfo={getPartyInfo} longitude={longitude} latitude={latitude} />
