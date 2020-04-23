@@ -14,15 +14,16 @@ const ChatPeopleList = ({ users, username }) => {
   }
 
   return (
-    <div>
-      <h3>Current Party-ers:</h3>
-
+    <div className="container-fluid">
+      <div className="row"></div>
+      <h2 className="partiers">Guests:</h2>
+        <div className="container-fluid guest-list">
       {users.map(user => <div key={user.id}>{user.name} {
 
         flag && username !== user.name ? user.character : null
 
       } </div>)}
-
+      </div>
       <a href="https://icebreakerideas.com/who-am-i-game/" target="_blank"><h3>Game Rules:</h3></a>
       <p> Ask questions to guess your character!</p>
 

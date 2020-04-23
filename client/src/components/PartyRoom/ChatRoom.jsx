@@ -59,7 +59,7 @@ const ChatRoom = ({ partyInfo, username }) => {
 
   return (
     <div className="container-fluid chat-room">
-      {renderRedirect()}
+      {/* {renderRedirect()} */}
       <div className='row'>
         <div className="col">
       <ChatHeader partyInfo={partyInfo} />

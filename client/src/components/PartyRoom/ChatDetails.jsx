@@ -2,9 +2,11 @@ import React from 'react';
 
 const ChatDetails = ({ partyInfo }) => {
   return (
-    <div>
+    <div className="container party-details">
       <h3>Party Details:</h3>
-      {partyInfo.details}
+      <div className="details">
+          {partyInfo.details}
+      </div>
     </div>
   );
 }
