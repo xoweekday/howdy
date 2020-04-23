@@ -64,44 +64,40 @@ class LogIn extends React.Component {
     return (
       <div className="loginGoogle">
         <div className="loginDescription loginPara">
-        <h1 className="loginTitle loginColor">♥ HOWDY ♥</h1>
-        <h2 className="loginColor"> get to know your neighbors </h2>
-        {view === false ?
-        <div>
-          <GoogleLogin
+          <h1 className="loginTitle loginColor">♥ HOWDY ♥</h1>
+          <h2 className="loginColor"> get to know your neighbors </h2>
+          {view === false ?
+          <div>
+            <GoogleLogin
             clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
             buttonText="Login"
             onSuccess={this.responseGoogle}
             onFailure={this.responseGoogle}
             isSignedIn={true}
-            cookiePolicy={'single_host_origin'}
-            />
-        </div> : null }
-        {view === true ?
-        <div className="loginSigned" align="center">
-          <h3>You have signed in as:</h3>
-          <div>{name}</div>
-          <div><img src={image_url}/></div>
-          {view2 === false ?
-          <div>
-            <div className="firstSpan colorSpan"> When you're stuck inside, it can feel lonely.</div>
-            <div className="colorSpan"> Why not throw an online party? </div>
-            <div className="lastSpan colorSpan"> Howdy connects neighbors based on their location. </div>
-            <div> Connect with your neighbors based on your location! </div>
-            <button className="btn btn-primary" onClick={this.getUserLocation}> Share location </button>
-          </div>
-          :
-          <Link to={{ pathname: '/parties' }}>
-            <button className="btn btn-primary" > Continue to Parties Page! </button>
-          </Link>
-          }
-          <div> Or enter your zip code! </div>
-          <input placeholder="zip code" />
-          <Link to={{ pathname: '/parties' }}>
-            <button className="btn btn-primary"> Submit </button>
-          </Link>
-        </div> : null
-        }
+            cookiePolicy={'single_host_origin'} />
+          </div> : null }
+          {view === true ?
+          <div className="loginSigned" align="center">
+            <h3>You have signed in as:</h3>
+            <div>{name}</div>
+            <div><img src={image_url}/></div>
+            {view2 === false ?
+            <div>
+              <div className="firstSpan colorSpan"> When you're stuck inside, it can feel lonely.</div>
+              <div className="colorSpan"> Why not throw an online party? </div>
+              <div className="lastSpan colorSpan"> Howdy connects neighbors based on their location. </div>
+              <div> Connect with your neighbors based on your location! </div>
+              <button className="btn btn-primary" onClick={this.getUserLocation}> Share location </button>
+            </div> :
+            <Link to={{ pathname: '/parties' }}>
+              <button className="btn btn-primary" > Continue to Parties Page! </button>
+            </Link> }
+            <div> Or enter your zip code! </div>
+            <input placeholder="zip code" />
+            <Link to={{ pathname: '/parties' }}>
+              <button className="btn btn-primary"> Submit </button>
+            </Link>
+          </div> : null }
         </div>
       </div>
     )
