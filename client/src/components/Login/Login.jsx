@@ -66,9 +66,6 @@ class LogIn extends React.Component {
         <div className="loginDescription loginPara">
         <h1 className="loginTitle loginColor">♥ HOWDY ♥</h1>
         <h2 className="loginColor"> get to know your neighbors </h2>
-          <span className="firstSpan"> When you're stuck inside, it can feel lonely.</span>
-          <span> Why not throw an online party? </span>
-          <span className="lastSpan"> Howdy connects neighbors based on their location. </span>
         {view === false ?
         <div>
           <GoogleLogin
@@ -87,6 +84,9 @@ class LogIn extends React.Component {
           <div><img src={image_url}/></div>
           {view2 === false ?
           <div>
+            <div className="firstSpan colorSpan"> When you're stuck inside, it can feel lonely.</div>
+            <div className="colorSpan"> Why not throw an online party? </div>
+            <div className="lastSpan colorSpan"> Howdy connects neighbors based on their location. </div>
             <div> Connect with your neighbors based on your location! </div>
             <button className="btn btn-primary" onClick={this.getUserLocation}> Share location </button>
           </div>
