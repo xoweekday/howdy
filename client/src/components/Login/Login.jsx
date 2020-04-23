@@ -64,7 +64,7 @@ class LogIn extends React.Component {
     return (
       <div className="loginGoogle">
         <h4 className="loginDescription loginPara">
-        <h1 className="loginTitle loginColor"> HOWDY </h1>
+        <h1 className="loginTitle loginColor">♥ HOWDY ♥</h1>
         <h2 className="loginColor"> get to know your neighbors </h2>
           <span> When you're stuck inside, it can feel lonely.</span>
           <span> Why not throw an online party? </span>
