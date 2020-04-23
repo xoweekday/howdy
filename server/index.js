@@ -3,7 +3,7 @@ const path = require('path');
 const http = require('http');
 const socket = require('socket.io');
 const cors = require('cors');
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js');
+const { addUser, removeUser, getUser, getUsersInRoom, getRandomCharacter } = require('./users.js');
 const { checkAnswer } = require('./game.js');
 
 require('dotenv').config();
@@ -36,10 +36,12 @@ io.on('connection',socket => {
     io.to(user.room).emit('receiveMessage', { user: user.name, text: message });
     
     if(checkAnswer(message, user.character)) {
-      socket.emit('receiveMessage', {user: 'Admin', text: `You guessed it ${user.name}, your character was ${user.character}!`});
+      socket.emit('receiveMessage', {user: 'Admin', text: `You guessed it ${user.name}, your character was ${user.character}! Now guess your next character.`});
       socket.broadcast.to(user.room).emit('receiveMessage', {user: 'Admin', text: `${user.name} has guessed their character ${user.character}!`});
+      user.character = getRandomCharacter();
+      io.to(user.room).emit('usersInRoom', getUsersInRoom(user.room));
     }
-    
+
     callback(); // clears text input field
   })
 
