@@ -63,14 +63,13 @@ class LogIn extends React.Component {
     const { name, image_url, view, view2 } = this.state;
     return (
       <div className="loginGoogle">
-        <h1>HOWDY</h1>
-        <h3 className="loginDescription">
-          <p className="loginPara">
-            <span> When you're stuck inside, it can feel lonely.</span>
-            <span> Why not throw an online party? </span>
-            <span> Howdy connects neighbors based on their location. </span>
-          </p>
-        </h3>
+        <h4 className="loginDescription loginPara">
+        <h1 className="loginTitle loginColor"> HOWDY </h1>
+        <h2 className="loginColor"> get to know your neighbors </h2>
+          <span> When you're stuck inside, it can feel lonely.</span>
+          <span> Why not throw an online party? </span>
+          <span> Howdy connects neighbors based on their location. </span>
+        </h4>
         {view === false ?
         <div>
           <GoogleLogin
