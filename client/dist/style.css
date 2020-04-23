@@ -89,8 +89,12 @@ body {
   border-radius: 10px;
 }
 
-.loginPara span {
+.loginDescription {
   background-color: #FFCF99;
+}
+
+.loginPara span {
+  /* background-color: white; */
   display: table;
   color: black;
 }
