@@ -63,13 +63,13 @@ class LogIn extends React.Component {
     const { name, image_url, view, view2 } = this.state;
     return (
       <div className="loginGoogle">
-        <h4 className="loginDescription loginPara">
+        <div className="loginDescription loginPara">
         <h1 className="loginTitle loginColor">♥ HOWDY ♥</h1>
         <h2 className="loginColor"> get to know your neighbors </h2>
           <span className="firstSpan"> When you're stuck inside, it can feel lonely.</span>
           <span> Why not throw an online party? </span>
           <span className="lastSpan"> Howdy connects neighbors based on their location. </span>
-        </h4>
+        </div>
         {view === false ?
         <div>
           <GoogleLogin
@@ -77,6 +77,7 @@ class LogIn extends React.Component {
             buttonText="Login"
             onSuccess={this.responseGoogle}
             onFailure={this.responseGoogle}
+            isSignedIn={true}
             cookiePolicy={'single_host_origin'}
           />
         </div> : null }
@@ -86,7 +87,10 @@ class LogIn extends React.Component {
           <div>{name}</div>
           <div><img src={image_url}/></div>
           {view2 === false ?
-          <button className="btn btn-primary" onClick={this.getUserLocation}> Click here to allow your location! </button>
+          <div>
+            <div> Connect with your neighbors based on your location! </div>
+            <button className="btn btn-primary" onClick={this.getUserLocation}> Share location </button>
+          </div>
           :
           <Link to={{ pathname: '/parties' }}>
             <button className="btn btn-primary" > Continue to Parties Page! </button>
