@@ -66,9 +66,9 @@ class LogIn extends React.Component {
         <h4 className="loginDescription loginPara">
         <h1 className="loginTitle loginColor">♥ HOWDY ♥</h1>
         <h2 className="loginColor"> get to know your neighbors </h2>
-          <span> When you're stuck inside, it can feel lonely.</span>
+          <span className="firstSpan"> When you're stuck inside, it can feel lonely.</span>
           <span> Why not throw an online party? </span>
-          <span> Howdy connects neighbors based on their location. </span>
+          <span className="lastSpan"> Howdy connects neighbors based on their location. </span>
         </h4>
         {view === false ?
         <div>
