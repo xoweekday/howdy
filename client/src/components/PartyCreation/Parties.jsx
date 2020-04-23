@@ -14,7 +14,6 @@ class Parties extends React.Component {
       redirect: false,
     };
     this.getNewPartyEntry = this.getNewPartyEntry.bind(this);
-    // this.getPartyInfo = this.getPartyInfo.bind(this);
     this.logout = this.logout.bind(this);
     this.setRedirect = this.setRedirect.bind(this);
     this.renderRedirect = this.renderRedirect.bind(this);
@@ -32,7 +31,12 @@ class Parties extends React.Component {
   //  Get Parties from DB
   getParties() {
     axios.get('/api/homepage')
-      .then((response) => this.setState({ parties: response.data }))
+      .then((response) => {
+        const parties = response.data;
+        parties.forEach(obj => obj.date = new Date(obj.date.substring(0,10)));
+        parties.sort((a,b)=> a.date - b.date);
+        this.setState({ parties });
+      })
       .catch((error) => { throw error; });
   }
 
