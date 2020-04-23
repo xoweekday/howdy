@@ -15,9 +15,9 @@ const ChatRoom = ({ partyInfo, username }) => {
   const [room, setRoom] = useState(partyInfo.name);
 
   // DEVELOPMENT variable
-  // const endPoint = 'localhost:8080';
+  const endPoint = 'localhost:8080';
   // PRODUCTION variable
-  const endPoint = 'http://ec2-18-221-135-146.us-east-2.compute.amazonaws.com:8081/#/';
+  // const endPoint = 'http://ec2-18-221-135-146.us-east-2.compute.amazonaws.com:8081/#/';
 
   useEffect(() => {
     socket = io(endPoint);
@@ -70,7 +70,7 @@ const ChatRoom = ({ partyInfo, username }) => {
           <Messages messages={messages} message={message} setMessage={setMessage} sendMessage={sendMessage} leftParty={leftParty} />
         </div>
         <div className="col sidebar">
-          <ChatSidebar users={users} partyInfo={partyInfo} />
+          <ChatSidebar username={username} users={users} partyInfo={partyInfo} />
         </div>
       </div>
     </div>
