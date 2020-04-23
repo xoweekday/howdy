@@ -181,14 +181,22 @@ body {
   flex: left;
 }
 
+.sidebar {
+  font-family: 'howdy';
+  flex: 3;
+}
+
 .message-view {
   flex-direction: left;
   flex-grow: 11;
   align-self: stretch;
 }
 
-.sidebar {
+.sidebar-container {
   flex: 3;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
   border-style: groove;
   border-color: #EAEAEA;
   border-width: 4px;
@@ -199,20 +207,40 @@ body {
 .message-container {
   flex-direction: column-reverse;
   background-color: lightgray;
-  border-style: groove;
+  border-style: ridge;
   font-weight: bolder;
   color: #262322;
   border-color: #EAEAEA;
   border-width: 4px;
   border-radius: 8px;
-  min-height: 36vmax;
-  max-height: 36vmax;
+  min-height: 37vmax;
+  max-height: 37vmax;
+  padding-left: 10px;
   overflow: auto;
 }
 
-.people-list {
+.guest-list {
   border-style: groove;
   border-color: #EAEAEA;
-  border-width: 4px;
+  color: #262322;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bolder;
+  text-align: left;
+  border-width: 1px;
   border-radius: 10px;
+  height: 25vh;
+  background-color: lightgray;
+  overflow: auto;
+}
+
+.details {
+  color: #262322;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bolder;
+  text-align: left;
+  border-width: 2px;
+  border-radius: 10px;
+  height: 12vh;
+  background-color: lightgray;
+  overflow: auto;
 }
