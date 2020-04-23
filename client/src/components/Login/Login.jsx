@@ -69,7 +69,6 @@ class LogIn extends React.Component {
           <span className="firstSpan"> When you're stuck inside, it can feel lonely.</span>
           <span> Why not throw an online party? </span>
           <span className="lastSpan"> Howdy connects neighbors based on their location. </span>
-        </div>
         {view === false ?
         <div>
           <GoogleLogin
@@ -79,7 +78,7 @@ class LogIn extends React.Component {
             onFailure={this.responseGoogle}
             isSignedIn={true}
             cookiePolicy={'single_host_origin'}
-          />
+            />
         </div> : null }
         {view === true ?
         <div className="loginSigned" align="center">
@@ -103,6 +102,7 @@ class LogIn extends React.Component {
           </Link>
         </div> : null
         }
+        </div>
       </div>
     )
   }
