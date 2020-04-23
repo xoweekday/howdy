@@ -32,8 +32,12 @@ class Parties extends React.Component {
   getParties() {
     axios.get('/api/homepage')
       .then((response) => {
-        const parties = response.data;
+        let parties = response.data;
+        //create date obj from date field
         parties.forEach(obj => obj.date = new Date(obj.date.substring(0,10)));
+        // filter current and future
+        parties = parties.filter(party => party.date > new Date());
+        // sort parties by date
         parties.sort((a,b)=> a.date - b.date);
         this.setState({ parties });
       })
