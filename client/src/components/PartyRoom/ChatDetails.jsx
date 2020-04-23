@@ -3,9 +3,9 @@ import React from 'react';
 const ChatDetails = ({ partyInfo }) => {
   return (
     <div className="container party-details">
-      <h3>Party Details:</h3>
-      <div className="details">
+      <h3>Details:</h3>
           {partyInfo.details}
+      <div className="details">
       </div>
     </div>
   );
