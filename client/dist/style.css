@@ -172,12 +172,13 @@ body {
   display: flex;
   font-family: "howdy";
   flex-direction: column;
-  border-style: groove;
+  /* border-style: groove;
   border-color: #EAEAEA;
   border-width: 4px;
-  border-radius: 10px;
+  border-radius: 10px; */
   min-height: 92vh;
 }
+
 .chat-header {
   flex: left;
 }
@@ -224,6 +225,7 @@ body {
   min-height: 37vmax;
   max-height: 37vmax;
   padding-left: 10px;
+  margin-bottom: 1px;
   overflow: auto;
 }
 
