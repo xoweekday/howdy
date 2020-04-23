@@ -7,6 +7,7 @@ const PartyList = ({ parties, getPartyInfo, longitude, latitude }) => (
       <div className="container-fluid">
         <div className="row">
           <div className="col"><h4>Party Name</h4></div>
+          <div className="col"><h4>Date</h4></div>
           <div className="col"><h4>Start</h4></div>
           <div className="col"><h4>End</h4></div>
           <div className="col"><h4>Location</h4></div>
