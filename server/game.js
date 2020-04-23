@@ -10,11 +10,8 @@ const checkAnswer = (text, character) => {
       guessedAnswer = false;
     }
   });
-  if (guessedAnswer) {
-    console.log('you guessed it');
-  } else {
-    console.log('you guessed wrong');
-  }
+  
+  return guessedAnswer;
 }
 
 module.exports = { checkAnswer };
