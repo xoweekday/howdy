@@ -15,6 +15,8 @@ class App extends React.Component {
       view: false,
       longitude: '',
       latitude: '',
+      city: '',
+      region: '',
       redirect: false
     };
     this.getPartyInfo = this.getPartyInfo.bind(this);
@@ -58,8 +60,8 @@ class App extends React.Component {
     }
   }
 
-  getLocationFromLogin(latitude, longitude) {
-    this.setState({ latitude, longitude });
+  getLocationFromLogin(latitude, longitude, city, region) {
+    this.setState({ latitude, longitude, city, region });
   }
 
   getUserLocationFromDB() {
@@ -84,7 +86,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { partyInfo, userInfo, view, longitude, latitude } = this.state;
+    const { partyInfo, userInfo, view, longitude, latitude, city, region } = this.state;
     let renderContainer =
     <div>
       <div className="hideMe">
@@ -104,7 +106,7 @@ class App extends React.Component {
         {this.renderRedirect()}
         <Switch>
           <Route exact path="/" render={(routerProps) => (<Login {...routerProps} getUserInfo={this.getUserInfo} getLocationFromLogin={this.getLocationFromLogin}/>)} />
-          <Route exact path="/parties" render={(routerProps) => (<Parties {...routerProps} longitude={longitude} latitude={latitude} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url}/>)} />
+          <Route exact path="/parties" render={(routerProps) => (<Parties {...routerProps} longitude={longitude} latitude={latitude} city={city} region={region} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url}/>)} />
           <Route exact path="/chatroom" render={(routerProps) => (<Chatroom {...routerProps} partyInfo={partyInfo} username={userInfo.name} />)} />
         </Switch>
       </HashRouter>
