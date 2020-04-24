@@ -9,7 +9,6 @@ const PartyList = ({ parties, getPartyInfo, longitude, latitude }) => (
           <div className="col"><h4>Party Name</h4></div>
           <div className="col"><h4>Date</h4></div>
           <div className="col"><h4>Start</h4></div>
-          <div className="col"><h4>End</h4></div>
           <div className="col"><h4>Location</h4></div>
           <div className="col"><h4>Distance</h4></div>
           <div className="col"><h4>Party Details</h4></div>
