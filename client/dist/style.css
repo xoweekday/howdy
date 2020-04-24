@@ -152,7 +152,7 @@ body {
 .parties-page {
   display: flex;
   flex-direction: column;
-    margin-top: -3px;
+    margin-top: 5px;
   /* width: 100%; */
 }
 
@@ -344,20 +344,29 @@ body {
   overflow: auto;
 }
 
-.party-details {
-  margin-top: 8px;
-}
-
 .rules {
+  margin-left: -15px;
   text-align: left;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bolder;
-  font-size: x-small;
-  min-width: 15vh;
+  font-size: 9pt;
+  min-width: 16vh;
 }
 
 .leave-party {
-  float: right;
-  margin-right: 15px;
-  margin-top: -10px;
+  float: left;
+  margin-left: 2px
+}
+
+.custom-file-upload {
+  float: left;
+  font-family: "howdy";
+  text-decoration: black;
+  color: #7C0A02;
+  outline: black;
+  text-shadow: 2px 2px black;
+  background-color: #513B3C;
+  border-color: #262322;
+  width: 25%;
+  margin-left: 16px;
 }
