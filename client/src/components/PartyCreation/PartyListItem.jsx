@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
 import distance from '../../Utils/LocationEquation.js';
-import { thirtyMinBeforeTodaysParty, formatTime, formatDate } from '../../Utils/time.js'
+import { thirtyMinBeforeTodaysParty, formatTime, formatDate } from '../../Utils/time.js';
 
 const PartyListItem = ({
   party,
   getPartyInfo,
   longitude,
-  latitude
+  latitude,
 }) => {
   const [redirect, setRedirect] = useState(false);
 
@@ -38,28 +38,38 @@ const PartyListItem = ({
     getPartyInfo(party);
   };
 
+  const {
+    name,
+    date,
+    start,
+    city,
+    radius,
+    details,
+  } = party;
   return (
     <div>
       {renderParty()}
       <div className="party-container container-fluid border">
         <div className="row party-list-item">
-          <div className="partyName col">{party.name}</div>
-          <div className="partyName col"><Moment parse="YYYY-MM-DD" format="MMM D, YYYY" >{party.date}</Moment></div>
-          <div className="partyStart col"><Moment parse="HH:mm:ss" format="h:mm a" >{party.start}</Moment></div>
-          <div className="partyEnd col">{party.city}</div>
-          <div className="partyEnd col">{party.radius}</div>
-          <div className="partyDetails col" >{party.details}</div>
+          <div className="partyName col">{name}</div>
+          <div className="partyName col"><Moment parse="YYYY-MM-DD" format="MMM D, YYYY">{date}</Moment></div>
+          <div className="partyStart col"><Moment parse="HH:mm:ss" format="h:mm a">{start}</Moment></div>
+          <div className="partyEnd col">{city}</div>
+          <div className="partyEnd col">{radius}</div>
+          <div className="partyDetails col">{details}</div>
           <div className="partyLink col">
             <button
               type="button"
               className="btn btn-primary"
-              onClick={()=>(canJoinParty(party.date, party.start))}
-              >Join Party</button>
+              onClick={() => (canJoinParty(date, start))}
+            >
+              Join Party
+            </button>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default PartyListItem;
