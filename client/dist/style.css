@@ -229,7 +229,7 @@ body {
 
 .sidebar {
   font-family: 'howdy';
-  text-shadow: 1px 1px black;
+  /* text-shadow: 1px 1px black; */
   flex: 3;
 }
 
@@ -252,6 +252,8 @@ body {
   min-height: 43vmax;
   max-height: 43vmax;
   overflow: auto;
+  background-color: #FFCF99;
+  color: black
 }
 
 .message-container {
@@ -275,7 +277,7 @@ body {
 
 .guest-list {
   border-style: groove;
-  border-color: #EAEAEA;
+  border-color: black;
   color: #262322;
   text-shadow: none;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -284,8 +286,9 @@ body {
   border-width: 1px;
   border-radius: 10px;
   height: 25vh;
-  background-color: white;
+  background-color: #FFCF99;
   overflow: auto;
+  margin-bottom: 20px;
 }
 
 .details {
@@ -293,15 +296,19 @@ body {
   text-shadow: none;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bolder;
-  text-align: left;
+  text-align: center;
   padding: 5px;
   border-width: 2px;
   border-radius: 10px;
   height: 15vh;
-  background-color: white;
+  background-color: #FFCF99;
   overflow: auto;
 }
 
 .party-details {
   margin-top: 8px;
+}
+
+.rules {
+  text-align: left;
 }
