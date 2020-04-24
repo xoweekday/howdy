@@ -48,6 +48,7 @@ body {
   flex: auto;
   max-height: 55px;
   max-width: 50px;
+  margin-left: 4%;
 }
 
 .tagline{
