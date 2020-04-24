@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
+import { Redirect } from 'react-router-dom';
 import ChatHeader from './ChatHeader.jsx';
 import ChatSidebar from './ChatSidebar.jsx';
-import Messages from './Messages.jsx'
-import { Redirect } from 'react-router-dom'
+import Messages from './Messages.jsx';
 
 let socket;
 
@@ -26,25 +26,25 @@ const ChatRoom = ({ partyInfo, username }) => {
     return () => {
       socket.emit('disconnect');
       socket.off();
-    }
-  }, [])
+    };
+  }, []);
 
   useEffect(() => {
-    socket.on('receiveMessage', message => {
-      setMessages(messages => [...messages, message]);
+    socket.on('receiveMessage', (message) => {
+      setMessages((messages) => [...messages, message]);
     });
 
-    socket.on('receiveImage', image => {
-      setMessages(messages => [...messages, image])
+    socket.on('receiveImage', (image) => {
+      setMessages((messages) => [...messages, image]);
     })
 
-    socket.on('usersInRoom', users => {
+    socket.on('usersInRoom', (users) => {
       setUsers(users);
     })
   }, []);
 
   const sendMessage = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     if (message) {
       socket.emit('sendMessage', { message }, () => setMessage(''));
     }
@@ -52,26 +52,25 @@ const ChatRoom = ({ partyInfo, username }) => {
 
   const leftParty = () => {
     socket.emit('leaveParty', room);
-  }
+  };
 
   const renderRedirect = () => {
     if (!username || !partyInfo.name) {
-      console.log("Cannot enter chatroom without signing in, dummy")
-      return <Redirect to='/' />
+      return <Redirect to="/" />;
     }
-  }
+  };
 
   const sendUrl = (imageUrl) => {
     socket.emit('sendMessage', { message: imageUrl }, () => setMessage(''));
-  }
+  };
 
   return (
     <div className="container-fluid chat-room">
       {/* {renderRedirect()} */}
       <div className='row'>
         <div className="col">
-      <ChatHeader partyInfo={partyInfo} />
-      </div>
+          <ChatHeader partyInfo={partyInfo} />
+        </div>
       </div>
       <div className="d-flex flex-row">
         <div className="col message-view">
@@ -83,6 +82,6 @@ const ChatRoom = ({ partyInfo, username }) => {
       </div>
     </div>
   );
-}
+};
 
 export default ChatRoom;
