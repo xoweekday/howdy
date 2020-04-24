@@ -25,7 +25,7 @@ const ChatPeopleList = ({ users, username }) => {
       } </div>)}
       </div>
       <h3>Game Rules:</h3>
-      <ul>
+      <ul className="rules">
         <li>Everyone receives the name of a famous person.</li>
         <li>Players circulate and ask yes or no questions until everyone has identified their famous person</li>
         <li>Start by asking broad questions.</li>

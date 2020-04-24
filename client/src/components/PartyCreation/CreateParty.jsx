@@ -55,7 +55,7 @@ class CreateParty extends React.Component {
         <div className="row">
           <div className="col center">
             <form onSubmit={this.handleSubmit}>
-              <h3>Party Creation Tools</h3>
+              <h3>Host a Party</h3>
               <div className="form-group">
                 <label>Party</label>
                   <input
@@ -68,11 +68,11 @@ class CreateParty extends React.Component {
                     />
               </div>
               <div className="form-group">
-            <label>Party details</label>
+            <label>Party Details</label>
             <textarea
               className="form-control"
               name="details"
-              placeholder="Details"
+              placeholder="80's theme? Signature cocktail? Let your neighbors know!"
               value={this.state.details}
               onChange={this.handleChange}
               />

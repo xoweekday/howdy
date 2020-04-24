@@ -6,8 +6,8 @@ const ChatSidebar = ({ users, partyInfo, username }) => {
   return (
     <div className="container-fluid sidebar-container">
       <div className="row d-flex-col">
-        <ChatPeopleList users={users} username={username} />
         <ChatDetails partyInfo={partyInfo} />
+        <ChatPeopleList users={users} username={username} />
       </div>
     </div>
   );

@@ -66,7 +66,7 @@ class LogIn extends React.Component {
       <div className="loginGoogle">
         <div className="loginDescription loginPara">
           <FadeIn>
-            <h1 className="loginTitle loginColor">♥ HOWDY ♥</h1>
+            <h1 className="loginTitle">♥ HOWDY ♥</h1>
             <h2 className="loginColor"> get to know your neighbors </h2>
           </FadeIn>
           {view === false ?
@@ -88,18 +88,18 @@ class LogIn extends React.Component {
             <div>
               <div className="firstSpan colorSpan"> When you're stuck inside, it can feel lonely.</div>
               <div className="colorSpan"> Why not throw an online party? </div>
-              <div className="lastSpan colorSpan"> Howdy connects neighbors based on their location. </div>
-              <div> Connect with your neighbors based on your location! </div>
+              {/* <div className="lastSpan colorSpan"> Howdy connects neighbors based on their location. </div> */}
+              <div className="lastSpan colorSpan"> Connect with your neighbors based on your location: </div>
               <button className="btn btn-primary" onClick={this.getUserLocation}> Share location </button>
             </div> :
             <Link to={{ pathname: '/parties' }}>
               <button className="btn btn-primary" > Continue to Parties Page! </button>
             </Link> }
-            <div> Or enter your zip code! </div>
+            {/* <div> Or enter your zip code! </div>
             <input placeholder="zip code" />
             <Link to={{ pathname: '/parties' }}>
               <button className="btn btn-primary"> Submit </button>
-            </Link>
+            </Link> */}
           </div> : null }
         </div>
       </div>

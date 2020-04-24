@@ -19,7 +19,7 @@ io.on('connection',socket => {
     const user = addUser({ id: socket.id, name: username, room })
 
     // Welcome message to the new user
-    socket.emit('receiveMessage', {user: 'Admin', text: `Welcome to the ${user.room}, ${user.name}!`});
+    socket.emit('receiveMessage', {user: 'Admin', text: `Welcome to ${user.room}, ${user.name}!`});
     // New user joined party alert to specific room
     socket.broadcast.to(user.room).emit('receiveMessage', {user: 'Admin', text: `${user.name} has joined ${user.room}!`});
 
