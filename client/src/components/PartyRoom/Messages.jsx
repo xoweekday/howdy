@@ -1,6 +1,7 @@
 import React from 'react';
 import ChatMessage from './ChatMessage.jsx';
 import ChatInput from './ChatInput.jsx';
+import ImageUpload from './ImageUpload.jsx';
 
 import { Link } from 'react-router-dom';
 
@@ -12,6 +13,7 @@ const Messages = ({ messages, message, sendMessage, setMessage, leftParty }) => 
       </div>
       <div className="row message-input">
         <ChatInput message={message} sendMessage={sendMessage} setMessage={setMessage} />
+        <ImageUpload />
       </div>
       <div className="row leave-party">
       <Link to={{ pathname: '/parties' }}>
