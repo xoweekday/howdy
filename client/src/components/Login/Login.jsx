@@ -93,7 +93,7 @@ class LogIn extends React.Component {
               <button className="btn btn-primary" onClick={this.getUserLocation}> Share location </button>
             </div> :
             <Link to={{ pathname: '/parties' }}>
-              <button className="btn btn-primary" > Continue to Parties Page! </button>
+              <button className="btn btn-primary continue" > Continue to Parties Page! </button>
             </Link> }
             {/* <div> Or enter your zip code! </div>
             <input placeholder="zip code" />

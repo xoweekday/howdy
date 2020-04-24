@@ -48,6 +48,7 @@ body {
   flex: auto;
   max-height: 55px;
   max-width: 50px;
+  margin-left: 4%;
 }
 
 .tagline{
@@ -93,6 +94,11 @@ body {
 .loginDescription {
   background-color: #FFCF99;
 }
+
+.continue {
+  margin-top: 10px;
+}
+
 /* 
 .loginPara {
   background-color: white;
@@ -123,12 +129,30 @@ body {
   padding-bottom: 10px;
 }
 
+.logoutGoogle {
+  float: right;
+  margin-bottom: 5px;
+  margin-right: 15vw;
+  margin-left: 1px;
+}
+.logout-bar {
+  max-height: 0px;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+}
+
+.logout-image {
+  max-height: 55px;
+  max-width: 50px;
+  margin-right: 1px;
+}
+
                                   /* Parties Page */
 
 .parties-page {
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
+    margin-top: -3px;
   /* width: 100%; */
 }
 
@@ -148,19 +172,32 @@ body {
   font-family: "howdy";
   text-shadow: 1px 1px black;
   text-align: center;
-  padding-bottom: 3px;
+  font-size: small;
+  /* padding-bottom: 3px; */
   /* width: 25vw; */
   border-style: ridge;
   border-color: #EAEAEA;
   border-width: 4px;
   border-radius: 10px;
-  min-height: 45vmax;
-  max-height: 45vmax;
+  min-height: 43vmax;
+  max-height: 43vmax;
   overflow: auto;
+}
+
+.create-submit{
+  /* margin-top: -5px; */
 }
 
 .form-control {
   box-sizing: border-box;
+}
+
+.creation-group {
+  margin-top: -10px;
+}
+
+.creation-items {
+  margin-top: -5px;
 }
 
                                   /* Party List */
@@ -173,8 +210,8 @@ body {
   border-color: #EAEAEA;
   border-width: 4px;
   border-radius: 10px;
-  min-height: 45vmax;
-  max-height: 45vmax;
+  min-height: 43vmax;
+  max-height: 43vmax;
   display: flex;
   flex-direction: column;
   /* width: -70vw; */
@@ -188,7 +225,7 @@ body {
   text-shadow: none;
   flex-grow: auto;
   border-radius: 3px;
-  padding: 3px;
+  padding: 1px;
   border-color: black;
   align-items: center;
   display: -webkit-flex;
@@ -201,7 +238,6 @@ body {
   display: flex;
   flex-direction: column;
   overflow: auto;
-  margin-bottom: 4px;
   border: black;
 }
 
@@ -220,7 +256,7 @@ body {
   border-color: #EAEAEA;
   border-width: 4px;
   border-radius: 10px; */
-  min-height: 92vh;
+  min-height: 90vh;
 }
 
 .chat-header {
@@ -249,11 +285,12 @@ body {
   border-color: #EAEAEA;
   border-width: 4px;
   border-radius: 10px;
-  min-height: 43vmax;
-  max-height: 43vmax;
+  min-height: 40vmax;
+  max-height: 40vmax;
   overflow: auto;
   background-color: #FFCF99;
-  color: black
+  color: black;
+  font-size: small;
 }
 
 .message-container {
@@ -268,10 +305,12 @@ body {
   border-color: #EAEAEA;
   border-width: 4px;
   border-radius: 8px;
-  min-height: 37vmax;
-  max-height: 37vmax;
+  min-height: 30vmax;
+  max-height: 30vmax;
   padding-left: 10px;
-  margin-bottom: 1px;
+  margin-bottom: 5px;
+  margin-left: 1px;
+  margin-right: 2px;
   overflow: auto;
 }
 
@@ -285,10 +324,10 @@ body {
   text-align: left;
   border-width: 1px;
   border-radius: 10px;
-  height: 25vh;
+  height: 20vh;
   background-color: #FFCF99;
   overflow: auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .details {
@@ -300,7 +339,7 @@ body {
   padding: 5px;
   border-width: 2px;
   border-radius: 10px;
-  height: 15vh;
+  height: 10vh;
   background-color: #FFCF99;
   overflow: auto;
 }
@@ -313,4 +352,12 @@ body {
   text-align: left;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bolder;
+  font-size: x-small;
+  min-width: 15vh;
+}
+
+.leave-party {
+  float: right;
+  margin-right: 15px;
+  margin-top: -10px;
 }
