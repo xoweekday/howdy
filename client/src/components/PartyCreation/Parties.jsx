@@ -68,13 +68,15 @@ class Parties extends React.Component {
         {/* {this.renderRedirect()} */}
       <div>
         <div className="container d-flex logout-bar">
-      <img className="logout-image" src={imageUrl}/>
+          <div className="row">
       <div className="logoutGoogle row">
+      <img className="logout-image" src={imageUrl}/>
       <GoogleLogout
       clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
       buttonText="Logout"
       onLogoutSuccess={this.logout} >
         </GoogleLogout>
+      </div>
       </div>
       </div>
       </div>
