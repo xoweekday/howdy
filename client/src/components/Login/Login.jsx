@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import IPinfo from "node-ipinfo";
 import Axios from 'axios';
+import FadeIn from 'react-fade-in';
 
 class LogIn extends React.Component {
   constructor(props) {
@@ -64,8 +65,10 @@ class LogIn extends React.Component {
     return (
       <div className="loginGoogle">
         <div className="loginDescription loginPara">
-          <h1 className="loginTitle loginColor">♥ HOWDY ♥</h1>
-          <h2 className="loginColor"> get to know your neighbors </h2>
+          <FadeIn>
+            <h1 className="loginTitle loginColor">♥ HOWDY ♥</h1>
+            <h2 className="loginColor"> get to know your neighbors </h2>
+          </FadeIn>
           {view === false ?
           <div>
             <GoogleLogin
