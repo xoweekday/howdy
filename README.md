@@ -1,6 +1,8 @@
-# Project Name
+<h1 align="center">Howdy</h1>
 
-> Howdy
+<h2 align="center">A Location Based Party App</h2>
+
+<h4 align="center">Connect with your neighbors based on your location and experience real time chat, image sharing, and game features!</h4>
 
 ## Team
 
@@ -11,45 +13,59 @@
 ## Table of Contents
 
 1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
-1. [Contributing](#contributing)
+2. [Requirements](#requirements)
+3. [Development](#development)
+    - [Installing Dependencies](#installing-dependencies)
+4. [Team](#team)
+5. [Contributing](#contributing)
 
 ## Usage
 
-> Some usage instructions
+1. Login using google account and allow access to your location. 
+2. Once logged in, navigate to the Parties page and either create or join a party.
+3. Parties shown are organized chronologically. 
+4. A User is allowed access to a party if their location is within the specified radius set by the party creator.
+5. Parties can only be entered within 30 minutes of their start time.
+6. Join a party to experience real time chat, image sharing, and game features!
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node 8.17.0
+- MySQL Ver. 14.14 Dist. 5.7.28 
 
 ## Development
 
 ### Installing Dependencies
 
-From within the root directory:
+> Clone down the [repo](http://github.com/team-tauros/) and from within the root directory run:
 
-```sh
-1. npm install
-2. // Have mysql running
-3. mysql -u root < schema.sql
-4. npm run start:client
-5. npm run start:server
-6. Open localhost
 ```
+npm install
+```
+> Ensure that Mysql Is Running
+```
+mysql -u root < schema.sql
+```
+> Then start the server
+```
+npm run start:client
+npm run start
+```
+> Open localhost:8080
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
-
+View the project roadmap [here](https://github.com/team-tauros/team-tauros/projects/1)
 
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+## Technologies Used:
+
+React, Node.js, Express, Axios, Socket.io, Geo-location, Cloudinary, Google Login. 
+
+
+
+
+
