@@ -34,6 +34,10 @@ const ChatRoom = ({ partyInfo, username }) => {
       setMessages(messages => [...messages, message]);
     });
 
+    socket.on('receiveImage', image => {
+      setMessages(messages => [...messages, image])
+    })
+
     socket.on('usersInRoom', users => {
       setUsers(users);
     })
@@ -57,6 +61,10 @@ const ChatRoom = ({ partyInfo, username }) => {
     }
   }
 
+  const sendUrl = (imageUrl) => {
+    socket.emit('sendMessage', { message: imageUrl }, () => setMessage(''));
+  }
+
   return (
     <div className="container-fluid chat-room">
       {/* {renderRedirect()} */}
@@ -67,7 +75,7 @@ const ChatRoom = ({ partyInfo, username }) => {
       </div>
       <div className="d-flex flex-row">
         <div className="col message-view">
-          <Messages messages={messages} message={message} setMessage={setMessage} sendMessage={sendMessage} leftParty={leftParty} />
+          <Messages messages={messages} message={message} setMessage={setMessage} sendMessage={sendMessage} leftParty={leftParty} sendUrl={sendUrl} />
         </div>
         <div className="col sidebar">
           <ChatSidebar username={username} users={users} partyInfo={partyInfo} />

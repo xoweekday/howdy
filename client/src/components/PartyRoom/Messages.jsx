@@ -5,7 +5,7 @@ import ImageUpload from './ImageUpload.jsx';
 
 import { Link } from 'react-router-dom';
 
-const Messages = ({ messages, message, sendMessage, setMessage, leftParty }) => {
+const Messages = ({ messages, message, sendMessage, setMessage, leftParty, sendUrl }) => {
   return (
     <div className="container-fluid d-flex-col">
      <div className="row message-container overflow:auto">
@@ -13,7 +13,7 @@ const Messages = ({ messages, message, sendMessage, setMessage, leftParty }) => 
       </div>
       <div className="row message-input">
         <ChatInput message={message} sendMessage={sendMessage} setMessage={setMessage} />
-        <ImageUpload />
+        <ImageUpload sendUrl={sendUrl} />
       </div>
       <div className="row leave-party">
       <Link to={{ pathname: '/parties' }}>

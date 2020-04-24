@@ -32,20 +32,25 @@ io.on('connection',socket => {
 
   socket.on('sendMessage', ({ message }, callback) => {
     const user = getUser(socket.id);
-    
-    io.to(user.room).emit('receiveMessage', { user: user.name, text: message });
-    
-    if(checkAnswer(message, user.character)) {
-      socket.emit('receiveMessage', {user: 'Admin', text: `You guessed it ${user.name}, your character was ${user.character}! Now guess your next character.`});
-      socket.broadcast.to(user.room).emit('receiveMessage', {user: 'Admin', text: `${user.name} has guessed their character ${user.character}!`});
-      user.character = getRandomCharacter();
-      io.to(user.room).emit('usersInRoom', getUsersInRoom(user.room));
+
+    if(message.includes(`https://res.cloudinary.com/`)) {
+      console.log(message)
+      io.to(user.room).emit('receiveImage', { user: user.name, img: message });
+    } else {
+      io.to(user.room).emit('receiveMessage', { user: user.name, text: message });
+
+      if(checkAnswer(message, user.character)) {
+        socket.emit('receiveMessage', {user: 'Admin', text: `You guessed it ${user.name}, your character was ${user.character}! Now guess your next character.`});
+        socket.broadcast.to(user.room).emit('receiveMessage', {user: 'Admin', text: `${user.name} has guessed their character ${user.character}!`});
+        user.character = getRandomCharacter();
+        io.to(user.room).emit('usersInRoom', getUsersInRoom(user.room));
+      }
     }
 
     callback(); // clears text input field
   })
 
-  socket.on('leaveParty', (room) => {
+  socket.on('leaveParty', () => {
     io.sockets.connected[socket.id].disconnect();
   })
 
