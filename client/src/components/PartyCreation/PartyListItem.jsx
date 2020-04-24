@@ -41,7 +41,6 @@ const PartyListItem = ({ party, getPartyInfo, longitude, latitude }) => {
           <div className="partyName col">{party.name}</div>
           <div className="partyName col"><Moment parse="YYYY-MM-DD" format="MMM D, YYYY" >{party.date}</Moment></div>
           <div className="partyStart col"><Moment parse="HH:mm:ss" format="h:mm a" >{party.start}</Moment></div>
-          <div className="partyEnd col"><Moment parse="HH:mm:ss" format="h:mm a" >{party.end}</Moment></div>
           <div className="partyEnd col">{party.city}</div>
           <div className="partyEnd col">{party.radius}</div>
           <div className="partyDetails col" >{party.details}</div>
