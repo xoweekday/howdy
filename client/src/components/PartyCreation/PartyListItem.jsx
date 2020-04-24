@@ -1,37 +1,42 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import distance from '../../Utils/LocationEquation.js';
 import Moment from 'react-moment';
+import distance from '../../Utils/LocationEquation.js';
 import { thirtyMinBeforeTodaysParty, formatTime, formatDate } from '../../Utils/time.js'
 
-const PartyListItem = ({ party, getPartyInfo, longitude, latitude }) => {
-  const [ redirect, setRedirect ] = useState(false);
+const PartyListItem = ({
+  party,
+  getPartyInfo,
+  longitude,
+  latitude
+}) => {
+  const [redirect, setRedirect] = useState(false);
 
   const joinParty = () => {
     setRedirect(true);
-  }
+  };
 
   const renderParty = () => {
-    if(redirect){
-      return <Redirect to='/chatroom' />
+    if (redirect) {
+      return <Redirect to="/chatroom" />;
     }
-  }
+  };
 
   const canJoinParty = (date, start) => {
     const distanceFromParty = distance(party.host_lat, party.host_long, latitude, longitude);
     if (distanceFromParty <= party.radius) {
-      if(thirtyMinBeforeTodaysParty(date, start)){
+      if (thirtyMinBeforeTodaysParty(date, start)) {
         joinParty();
       } else {
-        alert(`The party hasn't started yet. You can join 30 minutes before ${formatTime(start)} on ${formatDate(date)}`)
+        alert(`The party hasn't started yet. You can join 30 minutes before ${formatTime(start)} on ${formatDate(date)}`);
       }
     } else {
       alert(`
-        You are ${Math.round(10*distanceFromParty)/10} mile(s) away from this party.
-        The host has invited people within ${party.radius} mile(s).`)
-      }
-    getPartyInfo(party)
-  }
+        You are ${Math.round(10 * distanceFromParty) / 10} mile(s) away from this party.
+        The host has invited people within ${party.radius} mile(s).`);
+    }
+    getPartyInfo(party);
+  };
 
   return (
     <div>
