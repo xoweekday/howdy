@@ -16,7 +16,7 @@ const ChatPeopleList = ({ users, username }) => {
   return (
     <div className="container-fluid">
       <div className="row"></div>
-      <h2 className="partiers">Guests:</h2>
+      <h4 className="partiers">Guests:</h4>
         <div className="container-fluid guest-list">
       {users.map(user => <div key={user.id}>{user.name} {
 
@@ -24,9 +24,9 @@ const ChatPeopleList = ({ users, username }) => {
 
       } </div>)}
       </div>
-      <h3>Game Rules:</h3>
+      <h4>Game Rules:</h4>
       <ul className="rules">
-        <li>Everyone receives the name of a famous person</li>
+        <li>Everyone receives a famous person's name</li>
         <li>Players circulate and ask yes or no questions until everyone has identified their famous person</li>
         <li>Start by asking broad questions</li>
         <li>Get more specific with your questions</li>
