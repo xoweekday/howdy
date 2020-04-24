@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 const ChatPeopleList = ({ users, username }) => {
-
   const [flag, setFlag] = useState(false);
 
   const showCharacter = (e) => {
@@ -11,7 +10,7 @@ const ChatPeopleList = ({ users, username }) => {
     } else {
       setFlag(false);
     }
-  }
+  };
 
   return (
     <div className="container-fluid">
