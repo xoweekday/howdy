@@ -102,6 +102,8 @@ body {
 
 .loginColor {
   background-color: #FFCF99;
+  color: black;
+  margin-top: -30px;
 }
 
 .loginTitle {
