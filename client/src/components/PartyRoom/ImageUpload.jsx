@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const ImageUpload = ({ }) => {
+const ImageUpload = ({ sendUrl }) => {
   const [img, setImage] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   const uploadImage = e => {
     const files = e.target.files[0];
     const formData = new FormData();
@@ -13,7 +13,10 @@ const ImageUpload = ({ }) => {
     setLoading(true);
 
     axios.post('https://api.cloudinary.com/v1_1/dsc6dlrwc/image/upload', formData)
-    .then(res=> setImage(res.data.secure_url))
+    .then(res=> {
+      sendUrl(res.data.secure_url);
+      // setImage(res.data.secure_url)
+    })
     .then(setLoading(false))
     .catch(err=> console.log('upload error'));
   }
