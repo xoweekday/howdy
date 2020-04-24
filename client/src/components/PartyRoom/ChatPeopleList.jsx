@@ -26,10 +26,10 @@ const ChatPeopleList = ({ users, username }) => {
       </div>
       <h3>Game Rules:</h3>
       <ul className="rules">
-        <li>Everyone receives the name of a famous person.</li>
+        <li>Everyone receives the name of a famous person</li>
         <li>Players circulate and ask yes or no questions until everyone has identified their famous person</li>
-        <li>Start by asking broad questions.</li>
-        <li>Get more specific with your questions.</li>
+        <li>Start by asking broad questions</li>
+        <li>Get more specific with your questions</li>
         <li>State your guess as to your identity</li>
       </ul>
       <button type="button" className="btn btn-primary" onClick={showCharacter}>Play Game</button>
