@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
-import IPinfo from "node-ipinfo";
+import IPinfo from 'node-ipinfo';
 import Axios from 'axios';
 import FadeIn from 'react-fade-in';
 
@@ -17,14 +17,39 @@ class LogIn extends React.Component {
       city: '',
       region: '',
       view: false,
-      view2: false
+      view2: false,
     };
     this.responseGoogle = this.responseGoogle.bind(this);
     this.getUserLocation = this.getUserLocation.bind(this);
   }
 
+  getUserLocation() {
+    const token = 'd7336b6238ccfc';
+    const ip = 'geo';
+    let asn = 'AS7922';
+    const ipinfo = new IPinfo(token);
+    ipinfo.lookupIp(ip)
+      .then((response) => {
+        const loc = response.loc.split(',');
+        console.log({ response });
+        this.props.getLocationFromLogin(loc[0], loc[1], response._city, response.region);
+        this.setState({
+          latitude: loc[0],
+          longitude: loc[1],
+          city: response._city,
+          region: response.region,
+          view2: true,
+        });
+        Axios.post('api/login', this.state)
+          .then((res)=> { console.log(res); })
+          .catch((err)=> { console.log(err); });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   responseGoogle(response) {
-    console.log(response);
     this.setState({
       name: response.profileObj.name,
       image_url: response.profileObj.imageUrl,
@@ -32,32 +57,6 @@ class LogIn extends React.Component {
       view: true,
     });
     this.props.getUserInfo(this.state);
-  }
-
-  getUserLocation() {
-    var token = "d7336b6238ccfc"
-    var ip = "geo"
-    var asn = "AS7922";
-    var ipinfo = new IPinfo(token);
-    ipinfo.lookupIp(ip)
-    .then((response) => {
-      var loc = response.loc.split(',');
-      console.log({ response });
-      this.props.getLocationFromLogin(loc[0], loc[1], response._city, response.region);
-      this.setState({
-          latitude: loc[0],
-          longitude: loc[1],
-          city: response._city,
-          region: response.region,
-          view2: true
-      });
-        Axios.post('api/login', this.state)
-        .then((res)=> { console.log(res); })
-        .catch((err)=> { console.log(err); })
-    })
-    .catch((error) => {
-    console.log(error);
-    });
   }
 
   render() {
