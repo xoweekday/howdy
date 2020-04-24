@@ -36,7 +36,6 @@ const ChatRoom = ({ partyInfo, username }) => {
 
     socket.on('receiveImage', image => {
       setMessages(messages => [...messages, image])
-      console.log(image);
     })
 
     socket.on('usersInRoom', users => {
