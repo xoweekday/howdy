@@ -65,7 +65,12 @@ class Parties extends React.Component {
   render() {
     const { parties } = this.state;
     const {
-      getPartyInfo, longitude, latitude, imageUrl, city, region,
+      getPartyInfo,
+      longitude,
+      latitude,
+      imageUrl,
+      city,
+      region,
     } = this.props;
     return (
       <div>
@@ -74,7 +79,7 @@ class Parties extends React.Component {
           <div className="container d-flex logout-bar">
             <div className="row">
               <div className="logoutGoogle row">
-                <img className="logout-image" src={imageUrl} />
+                <img className="logout-image" src={imageUrl} alt="" />
                 <GoogleLogout
                   clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
                   buttonText="Logout"
