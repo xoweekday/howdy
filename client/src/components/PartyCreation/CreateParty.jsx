@@ -4,6 +4,12 @@ import axios from 'axios';
 class CreateParty extends React.Component {
   constructor(props) {
     super(props);
+    const {
+      longitude,
+      latitude,
+      city,
+      region,
+    } = this.props;
     this.state = {
       name: '',
       start: '',
@@ -11,10 +17,10 @@ class CreateParty extends React.Component {
       date: '',
       radius: '',
       details: '',
-      longitude: this.props.longitude,
-      latitude: this.props.latitude,
-      city: this.props.city,
-      region: this.props.region,
+      longitude,
+      latitude,
+      city,
+      region,
       host_id: 1,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -27,7 +33,13 @@ class CreateParty extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { getNewPartyEntry, longitude, latitude, city, region } = this.props
+    const {
+      getNewPartyEntry,
+      longitude,
+      latitude,
+      city,
+      region,
+    } = this.props;
     axios.post('/api/homepage', this.state)
       .then(() => {
         getNewPartyEntry();
@@ -38,12 +50,12 @@ class CreateParty extends React.Component {
           date: '',
           radius: '',
           details: '',
-          longitude: longitude,
-          latitude: latitude,
-          city: city,
-          region: region,
+          longitude,
+          latitude,
+          city,
+          region,
           host_id: 1,
-        })
+        });
       })
       .catch((error) => { console.log(error); });
   }
