@@ -65,7 +65,7 @@ class Parties extends React.Component {
     const { getPartyInfo, longitude, latitude, imageUrl, city, region } = this.props;
     return (
       <div>
-        {/* {this.renderRedirect()} */}
+        {this.renderRedirect()}
       <div>
         <div className="container d-flex logout-bar">
           <div className="row">
