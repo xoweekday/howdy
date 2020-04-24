@@ -28,11 +28,12 @@ class LogIn extends React.Component {
     const ip = 'geo';
     let asn = 'AS7922';
     const ipinfo = new IPinfo(token);
+    const { getLocationFromLogin } = this.props;
     ipinfo.lookupIp(ip)
       .then((response) => {
         const loc = response.loc.split(',');
         console.log({ response });
-        this.props.getLocationFromLogin(loc[0], loc[1], response._city, response.region);
+        getLocationFromLogin(loc[0], loc[1], response._city, response.region);
         this.setState({
           latitude: loc[0],
           longitude: loc[1],
@@ -41,8 +42,8 @@ class LogIn extends React.Component {
           view2: true,
         });
         Axios.post('api/login', this.state)
-          .then((res)=> { console.log(res); })
-          .catch((err)=> { console.log(err); });
+          .then((res) => { console.log(res); })
+          .catch((err) => { console.log(err); });
       })
       .catch((error) => {
         console.log(error);
@@ -50,17 +51,23 @@ class LogIn extends React.Component {
   }
 
   responseGoogle(response) {
+    const { getUserInfo } = this.props;
     this.setState({
       name: response.profileObj.name,
       image_url: response.profileObj.imageUrl,
       google_id: response.googleId,
       view: true,
     });
-    this.props.getUserInfo(this.state);
+    getUserInfo(this.state);
   }
 
   render() {
-    const { name, image_url, view, view2 } = this.state;
+    const {
+      name,
+      image_url,
+      view,
+      view2,
+    } = this.state;
     return (
       <div className="loginGoogle">
         <div className="loginDescription loginPara">
@@ -68,16 +75,19 @@ class LogIn extends React.Component {
             <h1 className="loginTitle">♥ HOWDY ♥</h1>
             <h2 className="loginColor"> get to know your neighbors </h2>
           </FadeIn>
-          {view === false ?
-          <div>
-            <GoogleLogin
-            clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
-            buttonText="Login"
-            onSuccess={this.responseGoogle}
-            onFailure={this.responseGoogle}
-            isSignedIn={true}
-            cookiePolicy={'single_host_origin'} />
-          </div> : null }
+          {view === false
+            ? (
+              <div>
+                <GoogleLogin
+                  clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
+                  buttonText="Login"
+                  onSuccess={this.responseGoogle}
+                  onFailure={this.responseGoogle}
+                  isSignedIn={true}
+                  cookiePolicy="single_host_origin"
+                />
+              </div>
+) : null }
           {view === true ?
           <div className="loginSigned" align="center">
             <h3>You have signed in as:</h3>
