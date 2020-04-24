@@ -93,6 +93,11 @@ body {
 .loginDescription {
   background-color: #FFCF99;
 }
+
+.continue {
+  margin-top: 10px;
+}
+
 /* 
 .loginPara {
   background-color: white;
