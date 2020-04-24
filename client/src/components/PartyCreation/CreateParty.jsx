@@ -72,7 +72,7 @@ class CreateParty extends React.Component {
             <textarea
               className="form-control"
               name="details"
-              placeholder="Details"
+              placeholder="80's theme? Signature cocktail? Let your neighbors know!"
               value={this.state.details}
               onChange={this.handleChange}
               />
