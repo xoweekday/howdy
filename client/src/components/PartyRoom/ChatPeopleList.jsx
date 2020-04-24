@@ -16,15 +16,15 @@ const ChatPeopleList = ({ users, username }) => {
   return (
     <div className="container-fluid">
       <div className="row"></div>
-      <h4 className="partiers">Guests:</h4>
+      <h5 className="partiers">Guests:</h5>
         <div className="container-fluid guest-list">
       {users.map(user => <div key={user.id}>{user.name} {
 
-        flag && username !== user.name ? user.character : null
+        flag && username !== user.name ? <div>({user.character})</div> : null
 
       } </div>)}
       </div>
-      <h4>Game Rules:</h4>
+      <h5>Game Rules:</h5>
       <ul className="rules">
         <li>Everyone receives a famous person's name</li>
         <li>Players circulate and ask yes or no questions until everyone has identified their famous person</li>
