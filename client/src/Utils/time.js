@@ -1,17 +1,16 @@
 const moment = require('moment');
 
 
-const within30Minutes = (time) => {
+const thirtyMinBeforeTodaysParty = (date, start) => {
   // current time
-  const now = moment().format("HH:mm:ss");
-  // party's start time
-  let startTime = moment(time, "HH:mm:ss").subtract(30, 'minutes');
-  // within 30 minutes before start time
+  const now = moment();
 
-  console.log({start: time})
-  console.log({ now })
+  // party's start time and date
+  const startTime = moment(start, "HH:mm:ss").subtract(30, 'minutes');
+  const partyDate = moment(date);
 
-  return now >= startTime;
+  // Can join 30 minutes before start on day of the party
+  return now >= startTime && partyDate.format("MMM DD, YYYY") === now.format("MMM DD, YYYY");
 }
 
 
@@ -34,4 +33,13 @@ const currentPartiesSorted = (parties) => {
   parties.sort((x, y) => { return x.date - y.date || x.startInt - y.startInt; });
   return parties;
 }
-module.exports = { within30Minutes, currentPartiesSorted };
+
+const formatTime = (time) => {
+  return moment(time, "HH:mm:ss").format("h:mm a");
+}
+
+const formatDate = (date) => {
+  return moment(date).format("MMM DD, YYYY");
+}
+
+module.exports = { thirtyMinBeforeTodaysParty, currentPartiesSorted, formatTime, formatDate };
