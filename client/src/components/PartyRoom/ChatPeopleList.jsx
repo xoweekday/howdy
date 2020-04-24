@@ -20,7 +20,7 @@ const ChatPeopleList = ({ users, username }) => {
         <div className="container-fluid guest-list">
       {users.map(user => <div key={user.id}>{user.name} {
 
-        flag && username !== user.name ? user.character : null
+        flag && username !== user.name ? <div>({user.character})</div> : null
 
       } </div>)}
       </div>
