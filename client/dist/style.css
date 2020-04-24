@@ -184,7 +184,7 @@ body {
 }
 
 .create-submit{
-  margin-top: -7px;
+  /* margin-top: -5px; */
 }
 
 .form-control {
@@ -307,7 +307,9 @@ body {
   min-height: 30vmax;
   max-height: 30vmax;
   padding-left: 10px;
-  margin-bottom: 1px;
+  margin-bottom: 5px;
+  margin-left: 1px;
+  margin-right: 2px;
   overflow: auto;
 }
 
@@ -355,6 +357,6 @@ body {
 
 .leave-party {
   float: right;
-  margin-right: 20px;
+  margin-right: 15px;
   margin-top: -10px;
 }
