@@ -3,7 +3,8 @@ import PartyList from './PartyList.jsx';
 import CreateParty from './CreateParty.jsx';
 import axios from 'axios';
 import { GoogleLogout } from 'react-google-login';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import { currentPartiesSorted } from '../../Utils/time.js'
 
 
 class Parties extends React.Component {
@@ -32,14 +33,7 @@ class Parties extends React.Component {
   getParties() {
     axios.get('/api/homepage')
       .then((response) => {
-        let parties = response.data;
-        //create date obj from date field
-        parties.forEach(obj => obj.date = new Date(obj.date.substring(0,10)));
-        // filter current and future
-        parties = parties.filter(party => party.date > new Date());
-        // sort parties by date
-        parties.sort((a,b)=> a.date - b.date);
-        this.setState({ parties });
+        this.setState({ parties: currentPartiesSorted(response.data) });
       })
       .catch((error) => { throw error; });
   }
