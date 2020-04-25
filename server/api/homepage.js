@@ -8,10 +8,7 @@ const homeRouter = Router();
 homeRouter.post('/', (req, res) => {
   db.addParty(req)
     .then(() => res.send(201))
-    .catch((error) => {
-      console.log(error);
-      res.sendStatus(500);
-    });
+    .catch(() => res.sendStatus(500));
 });
 
 // GET /api/homepage
@@ -21,10 +18,7 @@ homeRouter.get('/', (req, res) => {
     .then((parties) => {
       res.send(parties);
     })
-    .catch((error) => {
-      console.log(error);
-      res.sendStatus(500);
-    });
+    .catch((rror) => res.sendStatus(500));
 });
 
 module.exports = {
