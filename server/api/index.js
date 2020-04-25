@@ -15,4 +15,4 @@ apiRouter.use('/logout', logoutRouter);
 
 module.exports = {
   apiRouter,
-}
+};

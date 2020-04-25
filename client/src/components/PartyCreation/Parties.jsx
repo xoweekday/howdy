@@ -1,10 +1,10 @@
 import React from 'react';
-import PartyList from './PartyList.jsx';
-import CreateParty from './CreateParty.jsx';
 import axios from 'axios';
 import { GoogleLogout } from 'react-google-login';
 import { Redirect } from 'react-router-dom';
-import { currentPartiesSorted } from '../../Utils/time.js'
+import CreateParty from './CreateParty.jsx';
+import PartyList from './PartyList.jsx';
+import { currentPartiesSorted } from '../../Utils/time.js';
 
 
 class Parties extends React.Component {
@@ -21,11 +21,12 @@ class Parties extends React.Component {
   }
 
   componentDidMount() {
+    const { imageUrl } = this.props;
     this.getParties();
-    if (!this.props.imageUrl) {
+    if (!imageUrl) {
       this.setState({
-        redirect: true
-      })
+        redirect: true,
+      });
     }
   }
 
@@ -43,55 +44,62 @@ class Parties extends React.Component {
     this.getParties();
   }
 
+  setRedirect() {
+    this.setState({
+      redirect: true,
+    });
+  }
+
   logout() {
-    console.log("You have logged out, dummy")
+    console.log('You have logged out, dummy');
     this.setRedirect();
   }
 
-  setRedirect() {
-    this.setState({
-      redirect: true
-    })
-  }
-
-  renderRedirect () {
-    if (this.state.redirect) {
-      return <Redirect to='/' />
+  renderRedirect() {
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to="/" />;
     }
   }
 
   render() {
     const { parties } = this.state;
-    const { getPartyInfo, longitude, latitude, imageUrl, city, region } = this.props;
+    const {
+      getPartyInfo,
+      longitude,
+      latitude,
+      imageUrl,
+      city,
+      region,
+    } = this.props;
     return (
       <div>
         {/* {this.renderRedirect()} */}
-      <div>
-        <div className="container d-flex logout-bar">
+        <div>
+          <div className="container d-flex logout-bar">
+            <div className="row">
+              <div className="logoutGoogle row">
+                <img className="logout-image" src={imageUrl} alt="" />
+                <GoogleLogout
+                  clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
+                  buttonText="Logout"
+                  onLogoutSuccess={this.logout}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="container-fluid parties-page">
+          <div className="row" />
           <div className="row">
-      <div className="logoutGoogle row">
-      <img className="logout-image" src={imageUrl}/>
-      <GoogleLogout
-      clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
-      buttonText="Logout"
-      onLogoutSuccess={this.logout} >
-        </GoogleLogout>
-      </div>
-      </div>
-      </div>
-      </div>
-      <div className="container-fluid parties-page">
-      <div className="row">
+            <div className="col create">
+              <CreateParty getNewPartyEntry={this.getNewPartyEntry} longitude={longitude} latitude={latitude} city={city} region={region} />
+            </div>
+            <div className="col list">
+              <PartyList parties={parties} getPartyInfo={getPartyInfo} longitude={longitude} latitude={latitude} />
+            </div>
+          </div>
         </div>
-      <div className="row">
-        <div className="col create">
-          <CreateParty getNewPartyEntry={this.getNewPartyEntry} longitude={longitude} latitude={latitude} city={city} region={region} />
-        </div>
-        <div className="col list">
-          <PartyList parties={parties} getPartyInfo={getPartyInfo} longitude={longitude} latitude={latitude} />
-        </div>
-      </div>
-      </div>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 const users = [];
 
 const getRandomCharacter = () => {
-  let characters = [
+  const characters = [
     'Snow White',
     'Snoopy',
     'Scooby Doo',
@@ -53,30 +53,32 @@ const getRandomCharacter = () => {
     'SpongeBob',
     'Ellen DeGeneres',
     'Simon Cowell',
-    'George Bush'
+    'George Bush',
   ];
-  let index = Math.floor(Math.random() * characters.length);
+  const index = Math.floor(Math.random() * characters.length);
   return characters[index];
-}
+};
 
 const addUser = ({ id, name, room }) => {
   const user = { id, name, room };
-  //Add a random character alias for gaming purposes
+  // Add a random character alias for gaming purposes
   user.character = getRandomCharacter();
   users.push(user);
   return user;
-}
+};
 
 const removeUser = (id) => {
   const index = users.findIndex((user) => user.id === id);
 
-  if(index !== -1){
+  if (index !== -1) {
     return users.splice(index, 1)[0];
   }
-}
+};
 
 const getUser = (id) => users.find((user) => user.id === id);
 
 const getUsersInRoom = (room) => users.filter((user) => user.room === room);
 
-module.exports = { addUser, removeUser, getUser, getUsersInRoom, getRandomCharacter };
+module.exports = {
+  addUser, removeUser, getUser, getUsersInRoom, getRandomCharacter,
+};

@@ -11,6 +11,6 @@ const ChatSidebar = ({ users, partyInfo, username }) => {
       </div>
     </div>
   );
-}
+};
 
 export default ChatSidebar;

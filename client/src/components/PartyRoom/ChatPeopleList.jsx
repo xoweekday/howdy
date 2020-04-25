@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 const ChatPeopleList = ({ users, username }) => {
-
   const [flag, setFlag] = useState(false);
 
   const showCharacter = (e) => {
@@ -11,18 +10,18 @@ const ChatPeopleList = ({ users, username }) => {
     } else {
       setFlag(false);
     }
-  }
+  };
 
   return (
     <div className="container-fluid">
-      <div className="row"></div>
+      <div className="row" />
       <h5 className="partiers">Guests:</h5>
-        <div className="container-fluid guest-list">
-      {users.map(user => <div key={user.id}>{user.name} {
-
-        flag && username !== user.name ? <div>({user.character})</div> : null
-
-      } </div>)}
+      <div className="container-fluid guest-list">
+        {users.map((user) => (
+          <div key={user.id}>
+            {user.name} { flag && username !== user.name ? <div>({user.character})</div> : null}
+          </div>
+        ))}
       </div>
       <h5>Game Rules:</h5>
       <ul className="rules">
@@ -35,6 +34,6 @@ const ChatPeopleList = ({ users, username }) => {
       <button type="button" className="btn btn-primary" onClick={showCharacter}>Play Game</button>
     </div>
   );
-}
+};
 
 export default ChatPeopleList;

@@ -10,18 +10,20 @@ const ChatInput = ({ message, sendMessage, setMessage }) => (
           placeholder="ChatBoard: enter message"
           value={message}
           onChange={(event) => setMessage(event.target.value)}
-          onKeyPress={(event) => event.key === 'Enter' ? sendMessage(event) : null}
-        ></input>
+          onKeyPress={(event) => (event.key === 'Enter' ? sendMessage(event) : null)}
+        />
       </div>
       <div className="col-2">
         <button
           type="button"
           className="btn btn-primary form-control send-button"
           onClick={(event) => sendMessage(event)}
-        >SEND</button>
+        >
+          END
+        </button>
       </div>
     </div>
   </div>
-)
+);
 
 export default ChatInput;
