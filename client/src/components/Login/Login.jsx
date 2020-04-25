@@ -4,6 +4,7 @@ import GoogleLogin from 'react-google-login';
 import IPinfo from 'node-ipinfo';
 import Axios from 'axios';
 import FadeIn from 'react-fade-in';
+import PropTypes from 'prop-types';
 
 class LogIn extends React.Component {
   constructor(props) {
@@ -31,7 +32,6 @@ class LogIn extends React.Component {
     ipinfo.lookupIp(ip)
       .then((response) => {
         const loc = response.loc.split(',');
-        console.log({ response });
         getLocationFromLogin(loc[0], loc[1], response._city, response.region);
         this.setState({
           latitude: loc[0],
@@ -41,12 +41,10 @@ class LogIn extends React.Component {
           view2: true,
         });
         Axios.post('api/login', this.state)
-          .then((res) => { console.log(res); })
-          .catch((err) => { console.log(err); });
+          .then((res) => res)
+          .catch((err) => err);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => error);
   }
 
   responseGoogle(response) {
@@ -92,9 +90,8 @@ class LogIn extends React.Component {
               </div>
               {view2 === false ? (
                 <div>
-                  <div className="firstSpan colorSpan"> When you're stuck inside, it can feel lonely.</div>
+                  <div className="firstSpan colorSpan">{" When you're stuck inside, it can feel lonely."}</div>
                   <div className="colorSpan"> Why not throw an online party? </div>
-                  {/* <div className="lastSpan colorSpan"> Howdy connects neighbors based on their location. </div> */}
                   <div className="lastSpan colorSpan"> Connect with your neighbors based on your location: </div>
                   <button type="button" className="btn btn-primary" onClick={this.getUserLocation}> Share location </button>
                 </div>
@@ -115,5 +112,15 @@ class LogIn extends React.Component {
     );
   }
 }
+
+LogIn.propTypes = {
+  getLocationFromLogin: PropTypes.func,
+  getUserInfo: PropTypes.func,
+};
+
+LogIn.defaultProps = {
+  getLocationFromLogin: () => {},
+  getUserInfo: () => {},
+};
 
 export default LogIn;
