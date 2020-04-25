@@ -9,8 +9,10 @@ loginRouter.post('/', (req, res) => {
   db.addUser(req)
     .then(() => res.send(201))
     .catch((error) => {
-      console.log(error);
-      res.sendStatus(500);
+      if (error.errno === 1062) {
+        return null;
+      }
+      return res.sendStatus(500);
     });
 });
 
@@ -20,10 +22,7 @@ loginRouter.get('/', (req, res) => {
     .then((user) => {
       res.send(user);
     })
-    .catch((error) => {
-      console.log(error);
-      res.sendStatus(500);
-    });
+    .catch(() => res.sendStatus(500));
 });
 
 module.exports = {
