@@ -19,7 +19,7 @@ const ChatInput = ({ message, sendMessage, setMessage }) => (
           className="btn btn-primary form-control send-button"
           onClick={(event) => sendMessage(event)}
         >
-          END
+          SEND
         </button>
       </div>
     </div>
