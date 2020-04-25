@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
 import distance from '../../Utils/LocationEquation.js';
@@ -71,6 +72,23 @@ const PartyListItem = ({
       </div>
     </div>
   );
+};
+
+PartyListItem.propTypes = {
+  party: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string, PropTypes.number,
+    PropTypes.objectOf(PropTypes.string),
+  ])),
+  getPartyInfo: PropTypes.func,
+  longitude: PropTypes.string,
+  latitude: PropTypes.string,
+};
+
+PartyListItem.defaultProps = {
+  party: {},
+  getPartyInfo: () => {},
+  longitude: '',
+  latitude: '',
 };
 
 export default PartyListItem;
