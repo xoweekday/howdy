@@ -63,10 +63,7 @@ class LogIn extends React.Component {
 
   render() {
     const {
-      name,
-      image_url,
-      view,
-      view2,
+      name, image_url, view, view2,
     } = this.state;
     return (
       <div className="loginGoogle">
