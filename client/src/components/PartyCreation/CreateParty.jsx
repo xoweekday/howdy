@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class CreateParty extends React.Component {
   constructor(props) {
@@ -142,5 +143,21 @@ class CreateParty extends React.Component {
     );
   }
 }
+
+CreateParty.propTypes = {
+  getNewPartyEntry: PropTypes.func,
+  longitude: PropTypes.string,
+  latitude: PropTypes.string,
+  city: PropTypes.string,
+  region: PropTypes.string,
+};
+
+CreateParty.defaultProps = {
+  getNewPartyEntry: () => {},
+  longitude: '',
+  latitude: '',
+  city: '',
+  region: '',
+};
 
 export default CreateParty;
