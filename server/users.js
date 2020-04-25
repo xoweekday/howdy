@@ -53,11 +53,11 @@ const getRandomCharacter = () => {
     'SpongeBob',
     'Ellen DeGeneres',
     'Simon Cowell',
-    'George Bush'
+    'George Bush',
   ];
   const index = Math.floor(Math.random() * characters.length);
   return characters[index];
-}
+};
 
 const addUser = ({ id, name, room }) => {
   const user = { id, name, room };
