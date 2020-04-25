@@ -15,7 +15,6 @@ loginRouter.post('/', (req, res) => {
 });
 
 // GET /api/login
-// 
 loginRouter.get('/', (req, res) => {
   db.getUser(req)
     .then((user) => {
