@@ -2,10 +2,7 @@ import React from 'react';
 import PartyListItem from './PartyListItem.jsx';
 
 const PartyList = ({
-  parties,
-  getPartyInfo,
-  longitude,
-  latitude,
+  parties, getPartyInfo, longitude, latitude,
 }) => (
   <div className="party-list">
     <h3>Find a Party in Your Neighborhood</h3>
