@@ -74,7 +74,7 @@ class Parties extends React.Component {
     } = this.props;
     return (
       <div>
-        {/* {this.renderRedirect()} */}
+        {this.renderRedirect()}
         <div>
           <div className="container d-flex logout-bar">
             <div className="row">
