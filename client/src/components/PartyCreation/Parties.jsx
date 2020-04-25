@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { GoogleLogout } from 'react-google-login';
 import { Redirect } from 'react-router-dom';
 import CreateParty from './CreateParty.jsx';
 import PartyList from './PartyList.jsx';
 import { currentPartiesSorted } from '../../Utils/time.js';
-
 
 class Parties extends React.Component {
   constructor(props) {
@@ -51,15 +51,12 @@ class Parties extends React.Component {
   }
 
   logout() {
-    console.log('You have logged out, dummy');
     this.setRedirect();
   }
 
   renderRedirect() {
     const { redirect } = this.state;
-    if (redirect) {
-      return <Redirect to="/" />;
-    }
+    return redirect ? <Redirect to="/" /> : null;
   }
 
   render() {
@@ -93,10 +90,21 @@ class Parties extends React.Component {
           <div className="row" />
           <div className="row">
             <div className="col create">
-              <CreateParty getNewPartyEntry={this.getNewPartyEntry} longitude={longitude} latitude={latitude} city={city} region={region} />
+              <CreateParty
+                getNewPartyEntry={this.getNewPartyEntry}
+                longitude={longitude}
+                latitude={latitude}
+                city={city}
+                region={region}
+              />
             </div>
             <div className="col list">
-              <PartyList parties={parties} getPartyInfo={getPartyInfo} longitude={longitude} latitude={latitude} />
+              <PartyList
+                parties={parties}
+                getPartyInfo={getPartyInfo}
+                longitude={longitude}
+                latitude={latitude}
+              />
             </div>
           </div>
         </div>
@@ -104,5 +112,23 @@ class Parties extends React.Component {
     );
   }
 }
+
+Parties.propTypes = {
+  imageUrl: PropTypes.string,
+  getPartyInfo: PropTypes.func,
+  longitude: PropTypes.string,
+  latitude: PropTypes.string,
+  city: PropTypes.string,
+  region: PropTypes.string,
+};
+
+Parties.defaultProps = {
+  imageUrl: '',
+  getPartyInfo: () => {},
+  longitude: '',
+  latitude: '',
+  city: '',
+  region: '',
+};
 
 export default Parties;
