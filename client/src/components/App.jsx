@@ -1,10 +1,12 @@
 import React from 'react';
-import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
+import {
+  HashRouter, Switch, Route, Redirect,
+} from 'react-router-dom';
+import GoogleLogin from 'react-google-login';
+import Axios from 'axios';
 import Parties from './PartyCreation/Parties.jsx';
 import Login from './Login/Login.jsx';
 import Chatroom from './PartyRoom/ChatRoom.jsx';
-import GoogleLogin from 'react-google-login';
-import Axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class App extends React.Component {
       latitude: '',
       city: '',
       region: '',
-      redirect: false
+      redirect: false,
     };
     this.getPartyInfo = this.getPartyInfo.bind(this);
     this.getUserInfo = this.getUserInfo.bind(this);
@@ -28,6 +30,18 @@ class App extends React.Component {
     this.renderRedirect = this.renderRedirect.bind(this);
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        view: true,
+      });
+      const { userInfo } = this.state;
+      if (!userInfo.name) {
+        this.setRedirect();
+      }
+    }, 1000);
+  }
+
   getPartyInfo(partyInfo) {
     this.setState({ partyInfo });
   }
@@ -36,52 +50,44 @@ class App extends React.Component {
     this.setState({ userInfo });
   }
 
-  componentDidMount() {
-    setTimeout(function() {
-      this.setState({
-        view: true
-      })
-      if (!this.state.userInfo.name) {
-        this.setRedirect();
-      }
-    }.bind(this), 1000)
-  }
-
-  responseGoogle(response) {
-    this.setState({
-      userInfo: response.profileObj,
-    })
-    console.log(this.state.userInfo);
-    this.getUserLocationFromDB();
-    if (!this.state.userInfo.name) {
-      this.setState({
-        redirect: true
-      })
-    }
-  }
-
   getLocationFromLogin(latitude, longitude, city, region) {
-    this.setState({ latitude, longitude, city, region });
+    this.setState({
+      latitude, longitude, city, region,
+    });
   }
 
   getUserLocationFromDB() {
     const { userInfo } = this.state;
     Axios.get('/api/login', { params: { google_id: userInfo.googleId } })
-      .then((res)=> {
+      .then((res) => {
         this.setState({ longitude: res.data[0].longitude, latitude: res.data[0].latitude});
       })
-      .catch((err)=> { console.log(err); })
+      .catch((err) => { console.log(err); });
   }
 
   setRedirect() {
     this.setState({
-      redirect: true
-    })
+      redirect: true,
+    });
   }
 
-  renderRedirect () {
-    if (this.state.redirect) {
-      return <Redirect to='/' />
+  responseGoogle(response) {
+    this.setState({
+      userInfo: response.profileObj,
+    });
+    this.getUserLocationFromDB();
+    const { userInfo } = this.state;
+    if (!userInfo.name) {
+      this.setState({
+        redirect: true,
+      });
+    }
+  }
+
+  renderRedirect() {
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to="/" />;
     }
   }
 
