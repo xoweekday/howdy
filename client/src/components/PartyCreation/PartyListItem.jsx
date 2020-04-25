@@ -45,6 +45,7 @@ const PartyListItem = ({
     city,
     radius,
     details,
+    region,
   } = party;
   return (
     <div>
@@ -55,7 +56,7 @@ const PartyListItem = ({
           <div className="partyName col"><Moment parse="YYYY-MM-DD" format="MMM D, YYYY">{date}</Moment></div>
           <div className="partyStart col"><Moment parse="HH:mm:ss" format="h:mm a">{start}</Moment></div>
           <div className="partyEnd col">{city}</div>
-          <div className="partyEnd col">{radius}</div>
+          <div className="partyEnd col">{radius}, {region}</div>
           <div className="partyDetails col">{details}</div>
           <div className="partyLink col">
             <button
