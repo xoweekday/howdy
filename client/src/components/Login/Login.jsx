@@ -26,7 +26,6 @@ class LogIn extends React.Component {
   getUserLocation() {
     const token = 'd7336b6238ccfc';
     const ip = 'geo';
-    let asn = 'AS7922';
     const ipinfo = new IPinfo(token);
     const { getLocationFromLogin } = this.props;
     ipinfo.lookupIp(ip)
