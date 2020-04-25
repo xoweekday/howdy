@@ -5,10 +5,7 @@ class CreateParty extends React.Component {
   constructor(props) {
     super(props);
     const {
-      longitude,
-      latitude,
-      city,
-      region,
+      longitude, latitude, city, region,
     } = this.props;
     this.state = {
       name: '',
@@ -34,11 +31,7 @@ class CreateParty extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const {
-      getNewPartyEntry,
-      longitude,
-      latitude,
-      city,
-      region,
+      getNewPartyEntry, longitude, latitude, city, region,
     } = this.props;
     axios.post('/api/homepage', this.state)
       .then(() => {
@@ -62,12 +55,7 @@ class CreateParty extends React.Component {
 
   render() {
     const {
-      name,
-      details,
-      start,
-      end,
-      date,
-      radius,
+      name, details, start, end, date, radius,
     } = this.state;
     return (
       <div className="party-creation" >
