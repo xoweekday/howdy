@@ -1,5 +1,5 @@
 const checkAnswer = (text, character) => {
-  const answer = text.toLowerCase().replace(/\?|\.|\,|\!/g, ' ').split(' ');
+  const answer = text.toLowerCase().replace(/\?|\.|,|!/g, ' ').split(' ');
   const names = character.toLowerCase().split(' ');
   let guessedAnswer = true;
 
