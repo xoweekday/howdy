@@ -26,7 +26,7 @@ const currentPartiesSorted = (parties) => {
 
   // return only the current and future parties
   const now = new Date();
-  parties = parties.filter((party) => party.date >= now);
+  parties = parties.filter((party) => party.date >= now.setHours(0, 0, 0, 0));
 
   // sort parties by date then time
   parties.sort((x, y) => x.date - y.date || x.startInt - y.startInt);

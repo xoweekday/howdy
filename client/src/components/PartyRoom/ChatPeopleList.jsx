@@ -23,7 +23,7 @@ const ChatPeopleList = ({ users, username }) => {
           </div>
         ))}
       </div>
-      <h5>Game Rules:</h5>
+      <h5>Marie Antoinette Rules:</h5>
       <ul className="rules">
         <li>Everyone receives a famous person's name</li>
         <li>Players circulate and ask yes or no questions until everyone has identified their famous person</li>
