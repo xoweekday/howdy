@@ -118,7 +118,7 @@ class CreateParty extends React.Component {
                   />
                 </div>
                 <div className="form-group creation-group">
-                  <label>Radius</label>
+                  <label>Distance</label>
                   <input
                     className="form-control creation-items"
                     type="number"
