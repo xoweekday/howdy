@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PartyListItem from './PartyListItem.jsx';
 
 const PartyList = ({
@@ -18,9 +19,33 @@ const PartyList = ({
       </div>
     </div>
     <div className="items-list">
-      {parties.map((party) => <PartyListItem key={party.id} party={party} getPartyInfo={getPartyInfo} longitude={longitude} latitude={latitude} />)}
+      {parties.map((party) => {
+        return (
+          <PartyListItem
+            key={party.id}
+            party={party}
+            getPartyInfo={getPartyInfo}
+            longitude={longitude}
+            latitude={latitude}
+          />
+        );
+      })}
     </div>
   </div>
 );
+
+PartyList.propTypes = {
+  parties: PropTypes.arrayOf(PropTypes.shape),
+  getPartyInfo: PropTypes.func,
+  longitude: PropTypes.string,
+  latitude: PropTypes.string,
+};
+
+PartyList.defaultProps = {
+  parties: [],
+  getPartyInfo: () => {},
+  longitude: '',
+  latitude: '',
+};
 
 export default PartyList;
