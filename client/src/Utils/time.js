@@ -17,7 +17,7 @@ const thirtyMinBeforeTodaysParty = (date, start) => {
 const currentPartiesSorted = (parties) => {
   // create date obj from date field
   parties.forEach((obj) => {
-    const date = new Date(obj.date.substring(0,10));
+    const date = new Date(obj.date.substring(0, 10));
     date.setDate(date.getDate() + 1);
     obj.date = date;
     // create integer out of 24hour time to sort with
@@ -33,13 +33,9 @@ const currentPartiesSorted = (parties) => {
   return parties;
 };
 
-const formatTime = (time) => {
-  return moment(time, 'HH:mm:ss').format('h:mm a');
-};
+const formatTime = (time) => moment(time, 'HH:mm:ss').format('h:mm a');
 
-const formatDate = (date) => {
-  return moment(date).format('MMM DD, YYYY');
-};
+const formatDate = (date) => moment(date).format('MMM DD, YYYY');
 
 module.exports = {
   thirtyMinBeforeTodaysParty, currentPartiesSorted, formatTime, formatDate,
