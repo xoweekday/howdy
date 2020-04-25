@@ -11,52 +11,55 @@ const connection = mysql.createConnection({
 
 connection.connect((err) => {
   if (err) {
-      console.log('Error');
-      return;
-  } else {
-      console.log('Connected to database howdy!');
+    console.log('Error');
+    return;
   }
+  console.log('Connected to database howdy!');
 });
 
 const query = util.promisify(connection.query).bind(connection);
 
 // get all rooms from database
 const getRooms = (req, res) => {
-  const mysqlQuery = `SELECT * FROM rooms`;
+  const mysqlQuery = 'SELECT * FROM rooms';
   return query(mysqlQuery);
 };
 
 // get all messages from database
 const getMessages = (req, res) => {
-  const mysqlQuery = `SELECT * FROM messages`;
+  const mysqlQuery = 'SELECT * FROM messages';
   return query(mysqlQuery);
 };
 
 // get all messages from database
 const getUser = (req, res) => {
-  const {google_id} = req.query;
+  const { google_id } = req.query;
   const mysqlQuery = `SELECT * FROM users WHERE google_id=${google_id}`;
   return query(mysqlQuery);
 };
 
 // create a party
 const addParty = (req, res) => {
-  const { name, host_id, longitude, latitude, radius, details, date, start, end, city, region } = req.body; // or req.body
-  const mysqlQuery = `INSERT INTO rooms (name, host_id, host_long, host_lat, radius, details, date, start, end, city, region) VALUES ('${name}', ${host_id}, '${longitude}', '${latitude}', ${radius}, '${details}', '${date}', '${start}', '${end}', '${city}', '${region}')`
+  const {
+    name, host_id, longitude, latitude, radius, details, date, start, end, city, region,
+  } = req.body;
+  const mysqlQuery = `INSERT INTO rooms (name, host_id, host_long, host_lat, radius, details, date, start, end, city, region) VALUES ('${name}', ${host_id}, '${longitude}', '${latitude}', ${radius}, '${details}', '${date}', '${start}', '${end}', '${city}', '${region}')`;
   return query(mysqlQuery);
-}
+};
 
 // create a user
 const addUser = (req, res) => {
-  const { google_id, image_url, name, latitude, longitude, city, region } = req.body;
+  const {
+    google_id, image_url, name, latitude, longitude, city, region,
+  } = req.body;
   const mysqlQuery = `INSERT INTO users (google_id, image_url, name, latitude, longitude, city, region) VALUES ('${google_id}', '${image_url}', '${name}', ${latitude}, ${longitude}, '${city}', '${region}')`;
   return query(mysqlQuery);
-}
+};
 
 module.exports = {
   getRooms,
   getMessages,
   getUser,
   addParty,
-  addUser
+  addUser,
 };
