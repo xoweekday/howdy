@@ -60,7 +60,7 @@ class App extends React.Component {
     const { userInfo } = this.state;
     Axios.get('/api/login', { params: { google_id: userInfo.googleId } })
       .then((res) => {
-        this.setState({ longitude: res.data[0].longitude, latitude: res.data[0].latitude});
+        this.setState({ longitude: res.data[0].longitude, latitude: res.data[0].latitude });
       })
       .catch((err) => { console.log(err); });
   }
@@ -92,32 +92,36 @@ class App extends React.Component {
   }
 
   render() {
-    const { partyInfo, userInfo, view, longitude, latitude, city, region } = this.state;
-    let renderContainer =
-    <div>
-      <div className="hideMe">
-        <GoogleLogin
-          clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
-          buttonText="Login"
-          onSuccess={this.responseGoogle}
-          onFailure={this.setRedirect}
-          isSignedIn={true}
-          cookiePolicy={'single_host_origin'}
+    const {
+      partyInfo, userInfo, view, longitude, latitude, city, region,
+    } = this.state;
+    let renderContainer = (
+      <div>
+        <div className="hideMe">
+          <GoogleLogin
+            clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={this.responseGoogle}
+            onFailure={this.setRedirect}
+            isSignedIn
+            cookiePolicy="single_host_origin"
           />
+        </div>
       </div>
-    </div>
+    );
     if (view) {
-      renderContainer =
-      <HashRouter>
-        {/* {this.renderRedirect()} */}
-        <Switch>
-          <Route exact path="/" render={(routerProps) => (<Login {...routerProps} getUserInfo={this.getUserInfo} getLocationFromLogin={this.getLocationFromLogin}/>)} />
-          <Route exact path="/parties" render={(routerProps) => (<Parties {...routerProps} longitude={longitude} latitude={latitude} city={city} region={region} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url}/>)} />
-          <Route exact path="/chatroom" render={(routerProps) => (<Chatroom {...routerProps} partyInfo={partyInfo} username={userInfo.name} />)} />
-        </Switch>
-      </HashRouter>
+      renderContainer = (
+        <HashRouter>
+          {/* {this.renderRedirect()} */}
+          <Switch>
+            <Route exact path="/" render={(routerProps) => (<Login {...routerProps} getUserInfo={this.getUserInfo} getLocationFromLogin={this.getLocationFromLogin} />)} />
+            <Route exact path="/parties" render={(routerProps) => (<Parties {...routerProps} longitude={longitude} latitude={latitude} city={city} region={region} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url} />)} />
+            <Route exact path="/chatroom" render={(routerProps) => (<Chatroom {...routerProps} partyInfo={partyInfo} username={userInfo.name} />)} />
+          </Switch>
+        </HashRouter>
+      );
     }
-    return(
+    return (
       renderContainer
     );
   }
