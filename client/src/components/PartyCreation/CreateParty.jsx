@@ -59,12 +59,14 @@ class CreateParty extends React.Component {
       name, details, start, end, date, radius,
     } = this.state;
     return (
-      <div className="party-creation" >
+      <div className="party-creation">
         <div className="container-fluid">
           <div className="row">
             <div className="col center">
               <form onSubmit={this.handleSubmit}>
-                <h4>Host a Party</h4>
+                <div className="create-list-title">
+                  <h4>Host a Party</h4>
+                </div>
                 <div className="form-group creation-group">
                   <label htmlFor="party">
                     Party

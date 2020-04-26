@@ -184,20 +184,20 @@ body {
   overflow: auto;
 }
 
-.create-submit{
-  /* margin-top: -5px; */
+.create-list-title {
+  margin-bottom: 20px;
+}
+
+.creation-group {
+  margin-top: -15px;
 }
 
 .form-control {
   box-sizing: border-box;
 }
 
-.creation-group {
-  margin-top: -10px;
-}
-
-.creation-items {
-  margin-top: -5px;
+label {
+  width: 100%;
 }
 
                                   /* Party List */
