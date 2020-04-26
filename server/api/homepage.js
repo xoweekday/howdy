@@ -18,7 +18,7 @@ homeRouter.get('/', (req, res) => {
     .then((parties) => {
       res.send(parties);
     })
-    .catch((rror) => res.sendStatus(500));
+    .catch(() => res.sendStatus(500));
 });
 
 module.exports = {
