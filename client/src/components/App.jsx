@@ -62,7 +62,7 @@ class App extends React.Component {
       .then((res) => {
         this.setState({ longitude: res.data[0].longitude, latitude: res.data[0].latitude });
       })
-      .catch((err) => { console.log(err); });
+      .catch((err) => err);
   }
 
   setRedirect() {
@@ -86,9 +86,10 @@ class App extends React.Component {
 
   renderRedirect() {
     const { redirect } = this.state;
-    if (redirect) {
-      return <Redirect to="/" />;
+    if (!redirect) {
+      return null;
     }
+    return <Redirect to="/" />;
   }
 
   render() {
@@ -114,9 +115,9 @@ class App extends React.Component {
         <HashRouter>
           {this.renderRedirect()}
           <Switch>
-            <Route exact path="/" render={(routerProps) => (<Login {...routerProps} getUserInfo={this.getUserInfo} getLocationFromLogin={this.getLocationFromLogin} />)} />
-            <Route exact path="/parties" render={(routerProps) => (<Parties {...routerProps} longitude={longitude} latitude={latitude} city={city} region={region} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url} />)} />
-            <Route exact path="/chatroom" render={(routerProps) => (<Chatroom {...routerProps} partyInfo={partyInfo} username={userInfo.name} />)} />
+            <Route exact path="/" render={() => (<Login getUserInfo={this.getUserInfo} getLocationFromLogin={this.getLocationFromLogin} />)} />
+            <Route exact path="/parties" render={() => (<Parties longitude={longitude} latitude={latitude} city={city} region={region} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url} />)} />
+            <Route exact path="/chatroom" render={() => (<Chatroom partyInfo={partyInfo} username={userInfo.name} />)} />
           </Switch>
         </HashRouter>
       );

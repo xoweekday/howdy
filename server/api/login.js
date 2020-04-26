@@ -10,6 +10,7 @@ loginRouter.post('/', (req, res) => {
     .then(() => res.send(201))
     .catch((error) => {
       if (error.errno === 1062) {
+        // this is if the user is returning and has already been entered into the database
         return null;
       }
       return res.sendStatus(500);

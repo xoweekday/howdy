@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import ChatMessage from './ChatMessage.jsx';
 import ChatInput from './ChatInput.jsx';
 import ImageUpload from './ImageUpload.jsx';
@@ -24,4 +25,20 @@ const Messages = ({
   </div>
 );
 
+Messages.propTypes = {
+  messages: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+  message: PropTypes.string,
+  sendMessage: PropTypes.func,
+  setMessage: PropTypes.func,
+  leftParty: PropTypes.func,
+  sendUrl: PropTypes.func,
+};
+Messages.defaultProps = {
+  messages: [],
+  message: '',
+  sendMessage: () => {},
+  setMessage: () => {},
+  leftParty: () => {},
+  sendUrl: () => {},
+};
 export default Messages;
