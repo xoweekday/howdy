@@ -66,67 +66,80 @@ class CreateParty extends React.Component {
               <form onSubmit={this.handleSubmit}>
                 <h4>Host a Party</h4>
                 <div className="form-group creation-group">
-                  <label>Party</label>
-                  <input
-                    className="form-control creation-items"
-                    name="name"
-                    type="text"
-                    value={name}
-                    placeholder="Name Your Party"
-                    onChange={this.handleChange}
-                  />
+                  <label htmlFor="party">
+                    Party
+                    <input
+                      className="form-control creation-items creationListFormat"
+                      name="name"
+                      type="text"
+                      value={name}
+                      placeholder="Name Your Party"
+                      onChange={this.handleChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group creation-group">
-                  <label>Party Details</label>
-                  <textarea
-                    className="form-control creation-items"
-                    name="details"
-                    rows="3.5"
-                    placeholder="80's theme? Signature cocktail? Let your neighbors know!"
-                    value={details}
-                    onChange={this.handleChange}
-                  />
+                  <label htmlFor="party-details">
+                    Party Details
+                    <textarea
+                      className="form-control creation-items"
+                      name="details"
+                      rows="3.5"
+                      placeholder="80's theme? Signature cocktail? Let your neighbors know!"
+                      value={details}
+                      onChange={this.handleChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group creation-group">
-                  <label>Start Time</label>
-                  <input
-                    className="form-control creation-items"
-                    name="start"
-                    type="time"
-                    value={start}
-                    onChange={this.handleChange}
-                  />
+                  <label htmlFor="start-time">
+                    Start Time
+                    <input
+                      className="form-control creation-items"
+                      name="start"
+                      type="time"
+                      value={start}
+                      onChange={this.handleChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group creation-group">
-                  <label>End Time</label>
-                  <input
-                    className="form-control creation-items"
-                    type="time"
-                    name="end"
-                    value={end}
-                    onChange={this.handleChange}
-                  />
+                  <label htmlFor="end-time">
+                    End Time
+                    <input
+                      className="form-control creation-items"
+                      type="time"
+                      name="end"
+                      value={end}
+                      onChange={this.handleChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group creation-group">
-                  <label>Date</label>
-                  <input
-                    className="form-control creation-items"
-                    type="date"
-                    name="date"
-                    value={date}
-                    onChange={this.handleChange}
-                  />
+                  <label htmlFor="date">
+                    Date
+                    <input
+                      id="date"
+                      className="form-control creation-items"
+                      type="date"
+                      name="date"
+                      value={date}
+                      onChange={this.handleChange}
+                    />
+                  </label>
                 </div>
                 <div className="form-group creation-group">
-                  <label>Distance</label>
-                  <input
-                    className="form-control creation-items"
-                    type="number"
-                    name="radius"
-                    placeholder="Miles"
-                    value={radius}
-                    onChange={this.handleChange}
-                  />
+                  <label htmlFor="distance">
+                    Distance
+                    <input
+                      className="form-control creation-items"
+                      type="number"
+                      name="radius"
+                      placeholder="Miles"
+                      value={radius}
+                      onChange={this.handleChange}
+                    />
+                  </label>
                 </div>
                 <div>
                   <input
