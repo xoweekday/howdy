@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ChatInput = ({ message, sendMessage, setMessage }) => (
   <div className="container-fluid">
@@ -25,5 +26,17 @@ const ChatInput = ({ message, sendMessage, setMessage }) => (
     </div>
   </div>
 );
+
+ChatInput.propTypes = {
+  message: PropTypes.objectOf(PropTypes.string),
+  sendMessage: PropTypes.func,
+  setMessage: PropTypes.func,
+};
+
+ChatInput.defaultProps = {
+  message: {},
+  sendMessage: () => {},
+  setMessage: () => {},
+};
 
 export default ChatInput;
