@@ -196,6 +196,10 @@ body {
   box-sizing: border-box;
 }
 
+label {
+  width: 100%;
+}
+
                                   /* Party List */
 
 .party-list {
