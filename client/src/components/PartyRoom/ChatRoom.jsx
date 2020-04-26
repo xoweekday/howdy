@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import PropTypes from 'prop-types';
 
 import { Redirect } from 'react-router-dom';
 import ChatHeader from './ChatHeader.jsx';
@@ -12,7 +13,7 @@ const ChatRoom = ({ partyInfo, username }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
-  const [room, setRoom] = useState(partyInfo.name);
+  const [room] = useState(partyInfo.name);
 
   // DEVELOPMENT variable
   // const endPoint = 'localhost:8080';
@@ -27,20 +28,20 @@ const ChatRoom = ({ partyInfo, username }) => {
       socket.emit('disconnect');
       socket.off();
     };
-  }, []);
+  }, [room, username]);
 
   useEffect(() => {
-    socket.on('receiveMessage', (message) => {
-      setMessages((messages) => [...messages, message]);
+    socket.on('receiveMessage', (incomingMessage) => {
+      setMessages((messages) => [...messages, incomingMessage]);
     });
 
     socket.on('receiveImage', (image) => {
       setMessages((messages) => [...messages, image]);
-    })
+    });
 
-    socket.on('usersInRoom', (users) => {
-      setUsers(users);
-    })
+    socket.on('usersInRoom', (currentUsers) => {
+      setUsers(currentUsers);
+    });
   }, []);
 
   const sendMessage = (event) => {
@@ -55,9 +56,10 @@ const ChatRoom = ({ partyInfo, username }) => {
   };
 
   const renderRedirect = () => {
-    if (!username || !partyInfo.name) {
-      return <Redirect to="/" />;
+    if (username || partyInfo.name) {
+      return null;
     }
+    return <Redirect to="/" />;
   };
 
   const sendUrl = (imageUrl) => {
@@ -67,14 +69,21 @@ const ChatRoom = ({ partyInfo, username }) => {
   return (
     <div className="container-fluid chat-room">
       {renderRedirect()}
-      <div className='row'>
+      <div className="row">
         <div className="col">
           <ChatHeader partyInfo={partyInfo} />
         </div>
       </div>
       <div className="d-flex flex-row">
         <div className="col message-view">
-          <Messages messages={messages} message={message} setMessage={setMessage} sendMessage={sendMessage} leftParty={leftParty} sendUrl={sendUrl} />
+          <Messages
+            messages={messages}
+            message={message}
+            setMessage={setMessage}
+            sendMessage={sendMessage}
+            leftParty={leftParty}
+            sendUrl={sendUrl}
+          />
         </div>
         <div className="col sidebar">
           <ChatSidebar username={username} users={users} partyInfo={partyInfo} />
@@ -84,4 +93,16 @@ const ChatRoom = ({ partyInfo, username }) => {
   );
 };
 
+ChatRoom.propTypes = {
+  partyInfo: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string, PropTypes.number,
+    PropTypes.objectOf(PropTypes.string),
+  ])),
+  username: PropTypes.string,
+};
+
+ChatRoom.defaultProps = {
+  partyInfo: {},
+  username: '',
+};
 export default ChatRoom;
