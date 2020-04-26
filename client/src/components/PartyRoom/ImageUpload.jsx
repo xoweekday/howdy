@@ -21,8 +21,8 @@ const ImageUpload = ({ sendUrl }) => {
 
   return (
     <div>
-      <label className="custom-file-upload">
-        <input type="file" name="file" onChange={uploadImage} />
+      <label className="custom-file-upload" htmlFor="uploadFile">
+        <input id="uploadFile" type="file" name="file" onChange={uploadImage} />
       </label>
       { loading ? <h1>Loading...</h1> : <img className="img-fluid" style={{ width: '10%' }} src={img} alt="" /> }
     </div>
