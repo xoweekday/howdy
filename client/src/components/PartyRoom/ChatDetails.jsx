@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ChatDetails = ({ partyInfo }) => (
   <div className="container party-details">
@@ -8,5 +9,18 @@ const ChatDetails = ({ partyInfo }) => (
     </div>
   </div>
 );
+
+ChatDetails.propTypes = {
+  partyInfo: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string, PropTypes.number,
+    PropTypes.objectOf(PropTypes.string),
+  ])),
+
+};
+
+ChatDetails.defaultProps = {
+  partyInfo: {},
+
+};
 
 export default ChatDetails;

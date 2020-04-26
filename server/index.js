@@ -33,7 +33,6 @@ io.on('connection', (socket) => {
     const user = getUser(socket.id);
 
     if (message.includes('https://res.cloudinary.com/')) {
-      console.log(message);
       io.to(user.room).emit('receiveImage', { user: user.name, img: message });
     } else {
       io.to(user.room).emit('receiveMessage', { user: user.name, text: message });

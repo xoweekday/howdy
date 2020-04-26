@@ -51,7 +51,7 @@ class CreateParty extends React.Component {
           host_id: 1,
         });
       })
-      .catch((error) => { console.log(error); });
+      .catch((error) => error);
   }
 
   render() {

@@ -8,10 +8,7 @@ chatRouter.get('/', (req, res) => {
     .then((messages) => {
       res.send(messages);
     })
-    .catch((error) => {
-      console.log(error);
-      res.sendStatus(500);
-    });
+    .catch(() => res.sendStatus(500));
 });
 
 module.exports = {

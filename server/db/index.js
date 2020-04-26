@@ -10,36 +10,35 @@ const connection = mysql.createConnection({
 });
 
 connection.connect((err) => {
-  if (err) {
-    console.log('Error');
-    return;
+  if (!err) {
+    console.log('Connected to database howdy!');
   }
-  console.log('Connected to database howdy!');
+  return err;
 });
 
 const query = util.promisify(connection.query).bind(connection);
 
 // get all rooms from database
-const getRooms = (req, res) => {
+const getRooms = () => {
   const mysqlQuery = 'SELECT * FROM rooms';
   return query(mysqlQuery);
 };
 
 // get all messages from database
-const getMessages = (req, res) => {
+const getMessages = () => {
   const mysqlQuery = 'SELECT * FROM messages';
   return query(mysqlQuery);
 };
 
 // get all messages from database
-const getUser = (req, res) => {
+const getUser = (req) => {
   const { google_id } = req.query;
   const mysqlQuery = `SELECT * FROM users WHERE google_id=${google_id}`;
   return query(mysqlQuery);
 };
 
 // create a party
-const addParty = (req, res) => {
+const addParty = (req) => {
   const {
     name, host_id, longitude, latitude, radius, details, date, start, end, city, region,
   } = req.body;
@@ -48,7 +47,7 @@ const addParty = (req, res) => {
 };
 
 // create a user
-const addUser = (req, res) => {
+const addUser = (req) => {
   const {
     google_id, image_url, name, latitude, longitude, city, region,
   } = req.body;
