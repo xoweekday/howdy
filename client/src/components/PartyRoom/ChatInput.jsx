@@ -28,13 +28,13 @@ const ChatInput = ({ message, sendMessage, setMessage }) => (
 );
 
 ChatInput.propTypes = {
-  message: PropTypes.objectOf(PropTypes.string),
+  message: PropTypes.string,
   sendMessage: PropTypes.func,
   setMessage: PropTypes.func,
 };
 
 ChatInput.defaultProps = {
-  message: {},
+  message: '',
   sendMessage: () => {},
   setMessage: () => {},
 };
