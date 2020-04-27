@@ -63,7 +63,7 @@ INSERT INTO rooms (name, host_id, host_lat, host_long, city, region, radius, det
 
 -- dummy data for location restrictions
 
-INSERT INTO rooms (name, host_id, host_lat, host_long, radius, details, city, region, date, start, end) VALUES ('Solidarity With NYC', 3, 40.730610, -73.935242, 1350, 'Toast to NYC with your favorite drink', 'New York City', 'New York', '2020-04-27', '08:00:00', '12:00:00');
-INSERT INTO rooms (name, host_id, host_lat, host_long, radius, details, city, region, date, start, end) VALUES ('Kenner Only', 4, 29.9941, -90.2417, 1, 'Virtual Crawfish Boil', 'Kenner', 'Louisiana', '2020-04-27', '07:00:00', '12:00:00');
+INSERT INTO rooms (name, host_id, host_lat, host_long, radius, details, city, region, date, start, end) VALUES ('Solidarity With NYC', 3, 40.730610, -73.935242, 1350, 'Toast to NYC with your favorite drink', 'New York City', 'New York', '2020-04-27', '16:00:00', '12:00:00');
+INSERT INTO rooms (name, host_id, host_lat, host_long, radius, details, city, region, date, start, end) VALUES ('Kenner Only', 4, 29.9941, -90.2417, 1, 'Virtual Crawfish Boil', 'Kenner', 'Louisiana', '2020-04-27', '08:15:00', '12:00:00');
 INSERT INTO rooms (name, host_id, host_lat, host_long, radius, details, city, region, date, start, end) VALUES ('Jazz-Festing at Home', 4, 29.9511, -90.0715, 30, 'Share your favorite JazzFest memories', 'New Orleans', 'Louisiana', '2020-04-25', '08:15:00', '12:00:00');
 INSERT INTO rooms (name, host_id, host_lat, host_long, radius, details, city, region, date, start, end) VALUES ('Jazz-Festing at Home', 4, 29.9511, -90.0715, 30, 'Share your favorite JazzFest memories', 'New Orleans', 'Louisiana', '2020-04-27', '08:00:00', '12:00:00');
