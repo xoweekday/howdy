@@ -7,11 +7,11 @@ import ImageUpload from './ImageUpload.jsx';
 
 
 const Messages = ({
-  messages, message, sendMessage, setMessage, leftParty, sendUrl,
+  messages, message, sendMessage, setMessage, leftParty, sendUrl, deleteMessage, deleted,
 }) => (
   <div className="container-fluid d-flex-col">
     <div className="row message-container overflow:auto">
-      <ChatMessage messages={messages} />
+      <ChatMessage messages={messages} deleteMessage={deleteMessage} deleted={deleted} />
     </div>
     <div className="row message-input">
       <ChatInput message={message} sendMessage={sendMessage} setMessage={setMessage} />

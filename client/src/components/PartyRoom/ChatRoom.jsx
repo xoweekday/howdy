@@ -13,6 +13,7 @@ let socket;
 const ChatRoom = ({ partyInfo, username, userId }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const [deleted, setDeleted] = useState([]);
   const [users, setUsers] = useState([]);
   const [room] = useState(partyInfo.name);
   const [kick, setKick] = useState(false);
@@ -34,6 +35,7 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
 
   useEffect(() => {
     socket.on('receiveMessage', (incomingMessage) => {
+      console.log(incomingMessage);
       setMessages((messages) => [...messages, incomingMessage]);
     });
 
@@ -50,7 +52,13 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
       getKicked();
     });
 
+    socket.on('receiveDelete', (message) => {
+      setDeleted((deleted) => [...deleted, `${message.user}${message.text}${message.time}`]);
+    });
+
   }, []);
+
+  useEffect(() => console.log(deleted), [deleted]);
 
   const sendMessage = (event) => {
     event.preventDefault();
@@ -58,6 +66,10 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
       socket.emit('sendMessage', { message }, () => setMessage(''));
     }
   };
+
+  const deleteMessage = (message) => {
+    socket.emit('deleteMessage', message);
+  }
 
   const leftParty = () => {
     socket.emit('leaveParty');
@@ -107,6 +119,8 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
             sendMessage={sendMessage}
             leftParty={leftParty}
             sendUrl={sendUrl}
+            deleteMessage={deleteMessage}
+            deleted={deleted}
           />
         </div>
         <div className="col sidebar">

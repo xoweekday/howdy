@@ -33,9 +33,9 @@ io.on('connection', (socket) => {
     const user = getUser(socket.id);
 
     if (message.includes('https://res.cloudinary.com/')) {
-      io.to(user.room).emit('receiveImage', { user: user.name, img: message });
+      io.to(user.room).emit('receiveImage', { user: user.name, img: message, time: new Date() });
     } else {
-      io.to(user.room).emit('receiveMessage', { user: user.name, text: message });
+      io.to(user.room).emit('receiveMessage', { user: user.name, text: message, time: new Date() });
 
       if (checkAnswer(message, user.character)) {
         socket.emit('receiveMessage', { user: 'Admin', text: `You guessed it ${user.name}, your character was ${user.character}! Now guess your next character.` });
@@ -46,6 +46,12 @@ io.on('connection', (socket) => {
     }
 
     callback(); // clears text input field
+  });
+
+  socket.on('deleteMessage', (message) => {
+    const user = getUser(socket.id);
+
+    io.to(user.room).emit('receiveDelete', message);
   });
 
   socket.on('leaveParty', () => {
