@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ChatMessage = ({ messages, deleted, deleteMessage }) => {
-  console.log(deleted);
   return (
     <div className="messages">
       {messages
@@ -40,6 +39,7 @@ const ChatMessage = ({ messages, deleted, deleteMessage }) => {
 ChatMessage.propTypes = {
   messages: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   deleted: PropTypes.arrayOf(PropTypes.string),
+  deleteMessage: PropTypes.func,
 };
 
 ChatMessage.defaultProps = {

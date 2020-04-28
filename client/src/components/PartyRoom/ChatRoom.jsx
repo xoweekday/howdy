@@ -35,7 +35,6 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
 
   useEffect(() => {
     socket.on('receiveMessage', (incomingMessage) => {
-      console.log(incomingMessage);
       setMessages((messages) => [...messages, incomingMessage]);
     });
 
@@ -58,8 +57,6 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
 
   }, []);
 
-  useEffect(() => console.log(deleted), [deleted]);
-
   const sendMessage = (event) => {
     event.preventDefault();
     if (message) {
@@ -68,7 +65,9 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
   };
 
   const deleteMessage = (message) => {
-    socket.emit('deleteMessage', message);
+    if (username === partyInfo.hostname) {
+      socket.emit('deleteMessage', message);
+    }
   }
 
   const leftParty = () => {
