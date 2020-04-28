@@ -49,18 +49,24 @@ io.on('connection', (socket) => {
   });
 
   socket.on('leaveParty', () => {
+    const { room, name } = getUser(socket.id);
+    io.to(room).emit('receiveMessage', { user: 'Admin', text: `${name} has left.` });
+    io.sockets.connected[socket.id].disconnect();
+  });
+
+  socket.on('getKicked', () => {
+    const { room, name } = getUser(socket.id);
+    io.to(room).emit('receiveMessage', { user: 'Admin', text: `${name} has been kicked.` });
     io.sockets.connected[socket.id].disconnect();
   });
 
   socket.on('disconnect', () => {
     if (getUser(socket.id)) {
-      const { room, name } = removeUser(socket.id);
+      const { room } = removeUser(socket.id);
 
       socket.leave(room);
 
       io.to(room).emit('usersInRoom', getUsersInRoom(room));
-
-      io.to(room).emit('receiveMessage', { user: 'Admin', text: `${name} has left.` });
     }
   });
 

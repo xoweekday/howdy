@@ -47,7 +47,7 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
 
     socket.on('receiveKick', () => {
       setKick(true);
-      leftParty();
+      getKicked();
     });
 
   }, []);
@@ -62,6 +62,10 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
   const leftParty = () => {
     socket.emit('leaveParty');
   };
+
+  const getKicked = () => {
+    socket.emit('getKicked');
+  }
 
   const renderRedirect = () => {
     if (username || partyInfo.name) {

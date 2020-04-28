@@ -45,7 +45,6 @@ const PartyListItem = ({
         } else {
           alert('You have been banned from this party.');
         }
-        // getPartyInfo(party);
       });
     
    
