@@ -22,7 +22,7 @@ const DeleteAll = ({ users, messages, deleteMessage }) => {
   };
   
   return (
-    <div>
+    <div className="container-fluid">
       <Select options={selectOptions} onChange={(e) => setSelect(e.value)}/>
       <button type="button" onClick={() => deleteAll(selected)}>Delete All</button>
     </div>

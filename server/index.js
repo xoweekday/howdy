@@ -16,7 +16,7 @@ const io = socket(server);
 io.on('connection', (socket) => {
   socket.on('join', ({ room, username, userId }, callback) => {
     const user = addUser({ id: socket.id, name: username, room, userId });
-
+    
     // Welcome message to the new user
     socket.emit('receiveMessage', { user: 'Admin', text: `Welcome to ${user.room}, ${user.name}!` });
     // New user joined party alert to specific room

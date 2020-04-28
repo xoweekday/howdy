@@ -16,7 +16,7 @@ const KickUser = ({ users, kickUser }) => {
   }, [users]);
 
   return (
-    <div>
+    <div className="container-fluid">
       <Select options={selectOptions} onChange={(e) => setSelect(e.value)}/>
       <button type="button" onClick={() => kickUser(selected)}>Kick User</button>
     </div>

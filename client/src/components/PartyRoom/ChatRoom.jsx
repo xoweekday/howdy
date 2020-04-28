@@ -124,6 +124,10 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
             sendUrl={sendUrl}
             deleteMessage={deleteMessage}
             deleted={deleted}
+            users={users}
+            kickUser={kickUser}
+            partyInfo={partyInfo}
+            username={username}
           />
         </div>
         <div className="col sidebar">
@@ -131,9 +135,6 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
             username={username}
             users={users}
             partyInfo={partyInfo}
-            kickUser={kickUser}
-            messages={messages}
-            deleteMessage={deleteMessage}
           />
         </div>
       </div>
