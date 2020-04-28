@@ -97,7 +97,9 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
 
   const kickUser = ({ id, userId, name }) => {
     if (confirm(`Kick ${name}?`)) {
-      axios.post('/api/ban', { user_id: userId, room_id: partyInfo.id });
+      if (confirm(`Permanently ban ${name} from this party?`)) {
+        axios.post('/api/ban', { user_id: userId, room_id: partyInfo.id });
+      }
       socket.emit('kickUser', id);
     }
   }
