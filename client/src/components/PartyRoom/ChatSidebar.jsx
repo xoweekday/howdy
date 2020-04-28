@@ -13,7 +13,7 @@ const ChatSidebar = ({ users, partyInfo, username, kickUser }) => {
         {username === partyInfo.hostname && 
           (
             <KickUser
-              users={users}
+              users={users.filter((user) => user.name !== partyInfo.hostname)}
               kickUser={kickUser}
             />
           )}

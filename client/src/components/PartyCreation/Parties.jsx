@@ -97,6 +97,7 @@ class Parties extends React.Component {
                 latitude={latitude}
                 city={city}
                 region={region}
+                userId={userId}
               />
             </div>
             <div className="col list">
