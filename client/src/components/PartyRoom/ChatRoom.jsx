@@ -14,11 +14,12 @@ const ChatRoom = ({ partyInfo, username }) => {
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
   const [room] = useState(partyInfo.name);
+  const [kick, setKick] = useState(false);
 
   // DEVELOPMENT variable
-  // const endPoint = 'localhost:8080';
+  const endPoint = 'localhost:8080';
   // PRODUCTION variable
-  const endPoint = 'http://ec2-18-221-135-146.us-east-2.compute.amazonaws.com:8081/#/';
+  // const endPoint = 'http://ec2-18-221-135-146.us-east-2.compute.amazonaws.com:8081/#/';
 
   useEffect(() => {
     socket = io(endPoint);
@@ -42,6 +43,12 @@ const ChatRoom = ({ partyInfo, username }) => {
     socket.on('usersInRoom', (currentUsers) => {
       setUsers(currentUsers);
     });
+
+    socket.on('receiveKick', () => {
+      setKick(true);
+      leftParty(true);
+    });
+
   }, []);
 
   const sendMessage = (event) => {
@@ -51,8 +58,8 @@ const ChatRoom = ({ partyInfo, username }) => {
     }
   };
 
-  const leftParty = () => {
-    socket.emit('leaveParty', room);
+  const leftParty = (kicked) => {
+    socket.emit('leaveParty', kicked);
   };
 
   const renderRedirect = () => {
@@ -62,13 +69,24 @@ const ChatRoom = ({ partyInfo, username }) => {
     return <Redirect to="/" />;
   };
 
+  const kickRedirect = () => {
+    if(kick) {
+      return <Redirect to="/parties" />;
+    }
+  }
+
   const sendUrl = (imageUrl) => {
     socket.emit('sendMessage', { message: imageUrl }, () => setMessage(''));
   };
 
+  const kickUser = (id) => {
+    socket.emit('kickUser', id);
+  }
+
   return (
     <div className="container-fluid chat-room">
       {renderRedirect()}
+      {kickRedirect()}
       <div className="row">
         <div className="col">
           <ChatHeader partyInfo={partyInfo} />
@@ -86,7 +104,12 @@ const ChatRoom = ({ partyInfo, username }) => {
           />
         </div>
         <div className="col sidebar">
-          <ChatSidebar username={username} users={users} partyInfo={partyInfo} />
+          <ChatSidebar
+            username={username}
+            users={users}
+            partyInfo={partyInfo}
+            kickUser={kickUser}
+          />
         </div>
       </div>
     </div>

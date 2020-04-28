@@ -20,7 +20,7 @@ const query = util.promisify(connection.query).bind(connection);
 
 // get all rooms from database
 const getRooms = () => {
-  const mysqlQuery = 'SELECT * FROM rooms';
+  const mysqlQuery = 'SELECT rooms.*, users.name AS hostname FROM rooms, users WHERE rooms.host_id = users.id';
   return query(mysqlQuery);
 };
 

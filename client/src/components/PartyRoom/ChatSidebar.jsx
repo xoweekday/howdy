@@ -2,13 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ChatPeopleList from './ChatPeopleList.jsx';
 import ChatDetails from './ChatDetails.jsx';
+import KickUser from './KickUser.jsx';
 
-const ChatSidebar = ({ users, partyInfo, username }) => {
+const ChatSidebar = ({ users, partyInfo, username, kickUser }) => {
   return (
     <div className="container-fluid sidebar-container">
       <div className="row d-flex-col">
         <ChatDetails partyInfo={partyInfo} />
         <ChatPeopleList users={users} username={username} />
+        {username === partyInfo.hostname && 
+          (
+            <KickUser
+              users={users}
+              kickUser={kickUser}
+            />
+          )}
       </div>
     </div>
   );

@@ -48,7 +48,11 @@ io.on('connection', (socket) => {
     callback(); // clears text input field
   });
 
-  socket.on('leaveParty', () => {
+  socket.on('leaveParty', (kicked) => {
+    const user = getUser(socket.id);
+    if (kicked) {
+      socket.broadcast.to(user.room).emit('receiveMessage', { user: 'Admin', text: `${user.name} has been kicked.`});
+    }
     io.sockets.connected[socket.id].disconnect();
   });
 
@@ -63,7 +67,14 @@ io.on('connection', (socket) => {
       io.to(room).emit('receiveMessage', { user: 'Admin', text: `${name} has left.` });
     }
   });
+
+  socket.on('kickUser', (id) => {
+    io.to(id).emit('receiveMessage', { user: 'Admin', text: 'You have been kicked.'});
+    setTimeout(() => io.to(id).emit('receiveKick', {user: 'Admin'}), 500);
+  });
+
 });
+
 
 const PORT = process.env.RDS_PORT || 8080;
 const CLIENT_PATH = path.join(__dirname, '../client/dist');
