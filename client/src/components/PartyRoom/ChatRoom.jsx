@@ -95,9 +95,11 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
     socket.emit('sendMessage', { message: imageUrl }, () => setMessage(''));
   };
 
-  const kickUser = ({ id, userId }) => {
-    axios.post('/api/ban', { user_id: userId, room_id: partyInfo.id })
-    socket.emit('kickUser', id);
+  const kickUser = ({ id, userId, name }) => {
+    if (confirm(`Kick ${name}?`)) {
+      axios.post('/api/ban', { user_id: userId, room_id: partyInfo.id });
+      socket.emit('kickUser', id);
+    }
   }
 
   return (
