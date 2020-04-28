@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import ChatPeopleList from './ChatPeopleList.jsx';
 import ChatDetails from './ChatDetails.jsx';
 import KickUser from './KickUser.jsx';
+import DeleteAll from './DeleteAll.jsx';
 
-const ChatSidebar = ({ users, partyInfo, username, kickUser }) => {
+const ChatSidebar = ({ users, partyInfo, username, kickUser, messages, deleteMessage }) => {
   return (
     <div className="container-fluid sidebar-container">
       <div className="row d-flex-col">
@@ -15,6 +16,14 @@ const ChatSidebar = ({ users, partyInfo, username, kickUser }) => {
             <KickUser
               users={users.filter((user) => user.name !== partyInfo.hostname)}
               kickUser={kickUser}
+            />
+          )}
+          {username === partyInfo.hostname && 
+          (
+            <DeleteAll
+              users={users.filter((user) => user.name !== partyInfo.hostname)}
+              deleteMessage={deleteMessage}
+              messages={messages}
             />
           )}
       </div>

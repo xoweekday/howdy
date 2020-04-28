@@ -132,6 +132,8 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
             users={users}
             partyInfo={partyInfo}
             kickUser={kickUser}
+            messages={messages}
+            deleteMessage={deleteMessage}
           />
         </div>
       </div>
