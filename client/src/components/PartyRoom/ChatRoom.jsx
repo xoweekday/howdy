@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import { Redirect } from 'react-router-dom';
 import ChatHeader from './ChatHeader.jsx';
@@ -9,7 +10,7 @@ import Messages from './Messages.jsx';
 
 let socket;
 
-const ChatRoom = ({ partyInfo, username }) => {
+const ChatRoom = ({ partyInfo, username, userId }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
@@ -23,7 +24,7 @@ const ChatRoom = ({ partyInfo, username }) => {
 
   useEffect(() => {
     socket = io(endPoint);
-    socket.emit('join', { room, username }, () => { });
+    socket.emit('join', { room, username, userId }, () => { });
 
     return () => {
       socket.emit('disconnect');
@@ -46,7 +47,7 @@ const ChatRoom = ({ partyInfo, username }) => {
 
     socket.on('receiveKick', () => {
       setKick(true);
-      leftParty(true);
+      leftParty();
     });
 
   }, []);
@@ -58,8 +59,8 @@ const ChatRoom = ({ partyInfo, username }) => {
     }
   };
 
-  const leftParty = (kicked) => {
-    socket.emit('leaveParty', kicked);
+  const leftParty = () => {
+    socket.emit('leaveParty');
   };
 
   const renderRedirect = () => {
@@ -79,7 +80,8 @@ const ChatRoom = ({ partyInfo, username }) => {
     socket.emit('sendMessage', { message: imageUrl }, () => setMessage(''));
   };
 
-  const kickUser = (id) => {
+  const kickUser = ({ id, userId }) => {
+    axios.post('/api/ban', { user_id: userId, room_id: partyInfo.id })
     socket.emit('kickUser', id);
   }
 

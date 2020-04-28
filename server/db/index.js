@@ -55,10 +55,24 @@ const addUser = (req) => {
   return query(mysqlQuery);
 };
 
+const addBan = (req) => {
+  const { user_id, room_id } = req.body;
+  const mysqlQuery = `INSERT INTO bans (user_id, room_id) VALUES (${user_id}, ${room_id})`;
+  return query(mysqlQuery);
+}
+
+const getBan = (req) => {
+  const { userId, roomId } = req.params;
+  const mysqlQuery = `SELECT * FROM bans WHERE user_id = ${userId} AND room_id = ${roomId}`;
+  return query(mysqlQuery);
+}
+
 module.exports = {
   getRooms,
   getMessages,
   getUser,
   addParty,
   addUser,
+  addBan,
+  getBan,
 };

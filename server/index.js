@@ -14,8 +14,8 @@ const server = http.createServer(app);
 const io = socket(server);
 
 io.on('connection', (socket) => {
-  socket.on('join', ({ room, username }, callback) => {
-    const user = addUser({ id: socket.id, name: username, room });
+  socket.on('join', ({ room, username, userId }, callback) => {
+    const user = addUser({ id: socket.id, name: username, room, userId });
 
     // Welcome message to the new user
     socket.emit('receiveMessage', { user: 'Admin', text: `Welcome to ${user.room}, ${user.name}!` });
@@ -48,11 +48,7 @@ io.on('connection', (socket) => {
     callback(); // clears text input field
   });
 
-  socket.on('leaveParty', (kicked) => {
-    const user = getUser(socket.id);
-    if (kicked) {
-      socket.broadcast.to(user.room).emit('receiveMessage', { user: 'Admin', text: `${user.name} has been kicked.`});
-    }
+  socket.on('leaveParty', () => {
     io.sockets.connected[socket.id].disconnect();
   });
 

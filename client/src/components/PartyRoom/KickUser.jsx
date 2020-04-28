@@ -18,7 +18,7 @@ const KickUser = ({ users, kickUser }) => {
   return (
     <div>
       <Select options={selectOptions} onChange={(e) => setSelect(e.value)}/>
-      <button type="button" onClick={() => kickUser(selected.id)}>Kick User</button>
+      <button type="button" onClick={() => kickUser(selected)}>Kick User</button>
     </div>
   )
 };
