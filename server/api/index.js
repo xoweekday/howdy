@@ -6,6 +6,7 @@ const { logoutRouter } = require('./logout');
 const { chatRouter } = require('./chatRoom');
 const { twilioRoute } = require('./twilio');
 const { rsvpRouter } = require('./rsvp');
+const { banRouter } = require('./ban');
 
 const apiRouter = Router();
 
@@ -16,6 +17,7 @@ apiRouter.use('/login', loginRouter);
 apiRouter.use('/logout', logoutRouter);
 apiRouter.use('/twilio', twilioRoute);
 apiRouter.use('/rsvp', rsvpRouter);
+apiRouter.use('/ban', banRouter);
 
 module.exports = {
   apiRouter,

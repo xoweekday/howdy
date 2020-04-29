@@ -68,6 +68,7 @@ class Parties extends React.Component {
       imageUrl,
       city,
       region,
+      userId,
     } = this.props;
     return (
       <div>
@@ -96,6 +97,7 @@ class Parties extends React.Component {
                 latitude={latitude}
                 city={city}
                 region={region}
+                userId={userId}
               />
             </div>
             <div className="col list">
@@ -104,6 +106,7 @@ class Parties extends React.Component {
                 getPartyInfo={getPartyInfo}
                 longitude={longitude}
                 latitude={latitude}
+                userId={userId}
               />
             </div>
           </div>

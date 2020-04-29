@@ -6,7 +6,7 @@ class CreateParty extends React.Component {
   constructor(props) {
     super(props);
     const {
-      longitude, latitude, city, region,
+      longitude, latitude, city, region, userId,
     } = this.props;
     this.state = {
       name: '',
@@ -19,9 +19,9 @@ class CreateParty extends React.Component {
       latitude,
       city,
       region,
-      host_id: 1,
       recipient: '',
       textmessage: '',
+      host_id: userId,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,7 +30,6 @@ class CreateParty extends React.Component {
 
   sendText() {
     const { recipient, textmessage } = this.state;
-    console.log(recipient, textmessage, 'hferiu fhewoifherwiugherio feriuo');
     axios.post('/api/twilio', { recipient, textmessage })
       .then((results) => console.log(results.data))
       .catch((err) => console.error(err));
@@ -43,7 +42,7 @@ class CreateParty extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const {
-      getNewPartyEntry, longitude, latitude, city, region,
+      getNewPartyEntry, longitude, latitude, city, region, userId,
     } = this.props;
 
     const { start, date, name } = this.state;
@@ -65,8 +64,8 @@ class CreateParty extends React.Component {
           latitude,
           city,
           region,
-          host_id: 1,
           recipient: '',
+          host_id: userId,
         });
       })
       .catch((error) => error);

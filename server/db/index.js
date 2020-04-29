@@ -20,7 +20,7 @@ const query = util.promisify(connection.query).bind(connection);
 
 // get all rooms from database
 const getRooms = () => {
-  const mysqlQuery = 'SELECT * FROM rooms';
+  const mysqlQuery = 'SELECT rooms.*, users.name AS hostname FROM rooms, users WHERE rooms.host_id = users.id';
   return query(mysqlQuery);
 };
 
@@ -55,10 +55,24 @@ const addUser = (req) => {
   return query(mysqlQuery);
 };
 
+const addBan = (req) => {
+  const { user_id, room_id } = req.body;
+  const mysqlQuery = `INSERT INTO bans (user_id, room_id) VALUES (${user_id}, ${room_id})`;
+  return query(mysqlQuery);
+}
+
+const getBan = (req) => {
+  const { userId, roomId } = req.params;
+  const mysqlQuery = `SELECT * FROM bans WHERE user_id = ${userId} AND room_id = ${roomId}`;
+  return query(mysqlQuery);
+}
+
 module.exports = {
   getRooms,
   getMessages,
   getUser,
   addParty,
   addUser,
+  addBan,
+  getBan,
 };
