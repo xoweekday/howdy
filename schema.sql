@@ -47,6 +47,12 @@ CREATE TABLE characters (
   name varchar(255)
  );
 
+ CREATE TABLE rsvp (
+   id int PRIMARY KEY AUTO_INCREMENT,
+   phone int,
+   party_name varchar(255)
+ )
+
 -- ALTER TABLE rooms FOREIGN KEY (user_id) REFERENCES users (id);
 -- ALTER TABLE rooms FOREIGN KEY (id) REFERENCES messages (room_id);
 -- ALTER TABLE rooms FOREIGN KEY (host_id) REFERENCES users (id);
