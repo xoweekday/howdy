@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ChatPeopleList from './ChatPeopleList.jsx';
 import ChatDetails from './ChatDetails.jsx';
-import KickUser from './KickUser.jsx';
-import DeleteAll from './DeleteAll.jsx';
 
 const ChatSidebar = ({ users, partyInfo, username, }) => {
   return (
