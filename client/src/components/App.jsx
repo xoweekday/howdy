@@ -2,11 +2,14 @@ import React from 'react';
 import {
   HashRouter, Switch, Route, Redirect,
 } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 import GoogleLogin from 'react-google-login';
 import Axios from 'axios';
 import Parties from './PartyCreation/Parties.jsx';
 import Login from './Login/Login.jsx';
 import Chatroom from './PartyRoom/ChatRoom.jsx';
+import { lightTheme, darkTheme } from '../themes.jsx';
+import { GlobalStyles } from '../Global.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -124,7 +127,12 @@ class App extends React.Component {
       );
     }
     return (
-      renderContainer
+      <ThemeProvider theme={darkTheme}>
+        <>
+          <GlobalStyles />
+          {renderContainer}
+        </>
+      </ThemeProvider>
     );
   }
 }
