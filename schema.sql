@@ -49,8 +49,14 @@ CREATE TABLE characters (
 
 CREATE TABLE rsvp (
    id int PRIMARY KEY AUTO_INCREMENT,
-   phone int,
-   party_name varchar(255)
+   phone varchar(20),
+   room_id int
+);
+
+CREATE TABLE bans (
+   id int PRIMARY KEY AUTO_INCREMENT,
+   user_id int,
+   room_id int
 );
 
 -- ALTER TABLE rooms FOREIGN KEY (user_id) REFERENCES users (id);
