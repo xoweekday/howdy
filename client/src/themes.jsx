@@ -1,4 +1,4 @@
-export const lightTheme = {
+export const originalTheme = {
   body: '#7C0A02',
   text: '#FFCF99',
 }
