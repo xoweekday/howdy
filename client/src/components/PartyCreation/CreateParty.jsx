@@ -20,9 +20,20 @@ class CreateParty extends React.Component {
       city,
       region,
       host_id: 1,
+      recipient: '',
+      textmessage: 'yo',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.sendText = this.sendText.bind(this);
+  }
+
+  sendText() {
+    const { recipient, textmessage } = this.state;
+    console.log(recipient, textmessage, 'hferiu fhewoifherwiugherio feriuo');
+    axios.post('/api/twilio', { recipient, textmessage })
+      .then((results) => console.log(results.data))
+      .catch((err) => console.error(err));
   }
 
   handleChange(event) {
@@ -36,6 +47,7 @@ class CreateParty extends React.Component {
     } = this.props;
     axios.post('/api/homepage', this.state)
       .then(() => {
+        this.sendText();
         getNewPartyEntry();
         this.setState({
           name: '',
@@ -49,6 +61,8 @@ class CreateParty extends React.Component {
           city,
           region,
           host_id: 1,
+          recipient: '',
+          textmessage: '',
         });
       })
       .catch((error) => error);
@@ -56,7 +70,7 @@ class CreateParty extends React.Component {
 
   render() {
     const {
-      name, details, start, end, date, radius,
+      name, details, start, end, date, radius, recipient,
     } = this.state;
     return (
       <div className="party-creation">
@@ -139,6 +153,19 @@ class CreateParty extends React.Component {
                       name="radius"
                       placeholder="Miles"
                       value={radius}
+                      onChange={this.handleChange}
+                    />
+                  </label>
+                </div>
+                <div className="form-group creation-group">
+                  <label htmlFor="phone number">
+                    Phone Number
+                    <input
+                      className="form-control creation-items"
+                      type="number"
+                      name="recipient"
+                      placeholder="000-000-000"
+                      value={recipient}
                       onChange={this.handleChange}
                     />
                   </label>
