@@ -102,6 +102,16 @@ class App extends React.Component {
     this.setState({ theme });
   }
 
+  getTheme() {
+    const { theme } = this.state;
+    switch(theme) {
+      case 'original':
+        return originalTheme;
+      case 'dark':
+        return darkTheme;
+    }
+  }
+
   render() {
     const {
       partyInfo, userInfo, view, longitude, latitude, city, region, userId, theme,
@@ -133,7 +143,7 @@ class App extends React.Component {
       );
     }
     return (
-      <ThemeProvider theme={theme === 'original' ? originalTheme : darkTheme}>
+      <ThemeProvider theme={this.getTheme()}>
         <>
           <GlobalStyles />
           {renderContainer}
