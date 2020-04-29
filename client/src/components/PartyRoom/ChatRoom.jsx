@@ -35,6 +35,10 @@ const ChatRoom = ({ partyInfo, username }) => {
       setMessages((messages) => [...messages, incomingMessage]);
     });
 
+    socket.on('privateMessage', (incomingMessage) => {
+      setMessages((messages) => [...messages, incomingMessage]);
+    });
+
     socket.on('receiveImage', (image) => {
       setMessages((messages) => [...messages, image]);
     });
@@ -48,6 +52,13 @@ const ChatRoom = ({ partyInfo, username }) => {
     event.preventDefault();
     if (message) {
       socket.emit('sendMessage', { message }, () => setMessage(''));
+    }
+  };
+
+  const sendPrivateMessage = (id, event) => {
+    event.preventDefault();
+    if (message) {
+      socket.to(id).emit('privateMessage', { message }, () => setMessage(''));
     }
   };
 
@@ -83,6 +94,8 @@ const ChatRoom = ({ partyInfo, username }) => {
             sendMessage={sendMessage}
             leftParty={leftParty}
             sendUrl={sendUrl}
+            users={users}
+            sendPrivateMessage={sendPrivateMessage}
           />
         </div>
         <div className="col sidebar">
