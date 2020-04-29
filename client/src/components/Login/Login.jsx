@@ -48,6 +48,7 @@ class LogIn extends React.Component {
   }
 
   responseGoogle(response) {
+    console.log( "FIRST LOGIN");
     const { getUserInfo } = this.props;
     this.setState({
       name: response.profileObj.name,
