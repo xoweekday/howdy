@@ -5,7 +5,6 @@ const socket = require('socket.io');
 const cors = require('cors');
 const { addUser, removeUser, getUser, getUsersInRoom, getRandomCharacter } = require('./users.js');
 const { checkAnswer } = require('./game.js');
-const { twilioRoute } = require('./api/twilio');
 
 
 require('dotenv').config();
@@ -72,7 +71,6 @@ const CLIENT_PATH = path.join(__dirname, '../client/dist');
 
 app.use(express.json());
 app.use('/api', apiRouter);
-app.use('/api/twilio', twilioRoute);
 app.use(express.static(CLIENT_PATH));
 app.use(cors());
 
