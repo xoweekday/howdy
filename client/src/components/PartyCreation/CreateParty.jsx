@@ -21,7 +21,7 @@ class CreateParty extends React.Component {
       region,
       host_id: 1,
       recipient: '',
-      textmessage: 'yo',
+      textmessage: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,6 +45,11 @@ class CreateParty extends React.Component {
     const {
       getNewPartyEntry, longitude, latitude, city, region,
     } = this.props;
+
+    const { start, date, name } = this.state;
+    this.setState({
+      textmessage: `Your party: ${name}, has been created for ${start} on ${date}`,
+    });
     axios.post('/api/homepage', this.state)
       .then(() => {
         this.sendText();
@@ -62,7 +67,6 @@ class CreateParty extends React.Component {
           region,
           host_id: 1,
           recipient: '',
-          textmessage: '',
         });
       })
       .catch((error) => error);
