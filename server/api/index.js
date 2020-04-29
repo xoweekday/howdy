@@ -5,6 +5,7 @@ const { loginRouter } = require('./login');
 const { logoutRouter } = require('./logout');
 const { chatRouter } = require('./chatRoom');
 const { twilioRoute } = require('./twilio');
+const { rsvpRouter } = require('./rsvp');
 
 const apiRouter = Router();
 
@@ -14,6 +15,7 @@ apiRouter.use('/signup', signupRouter);
 apiRouter.use('/login', loginRouter);
 apiRouter.use('/logout', logoutRouter);
 apiRouter.use('/twilio', twilioRoute);
+apiRouter.use('/rsvp', rsvpRouter);
 
 module.exports = {
   apiRouter,
