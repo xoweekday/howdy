@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import deleteIcon from '../../../dist/icons8-delete-48.png';
 
-const ChatMessage = ({ messages, deleted, deleteMessage }) => {
+const ChatMessage = ({ messages, deleted, deleteMessage, isMod }) => {
   return (
     <div className="messages">
       {messages
@@ -19,7 +19,7 @@ const ChatMessage = ({ messages, deleted, deleteMessage }) => {
                   {': '}
                   {message.text}
                 </div>
-                <img src={deleteIcon} className="delete-icon" onClick={() => deleteMessage(message)} />
+                {isMod && <img src={deleteIcon} className="delete-icon" onClick={() => deleteMessage(message)} />}
               </div>
             );
           }
@@ -44,11 +44,13 @@ ChatMessage.propTypes = {
   messages: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   deleted: PropTypes.arrayOf(PropTypes.string),
   deleteMessage: PropTypes.func,
+  isMod: PropTypes.bool,
 };
 
 ChatMessage.defaultProps = {
   messages: [],
   deleted: [],
+  isMod: false,
 };
 
 export default ChatMessage;

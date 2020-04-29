@@ -12,7 +12,12 @@ const Messages = ({
 }) => (
   <div className="container-fluid d-flex-col">
     <div className="row message-container overflow:auto">
-      <ChatMessage messages={messages} deleteMessage={deleteMessage} deleted={deleted} />
+      <ChatMessage
+        messages={messages}
+        deleteMessage={deleteMessage}
+        deleted={deleted}
+        isMod={username === partyInfo.hostname}
+      />
     </div>
     <div className="row message-input">
       <ChatInput message={message} sendMessage={sendMessage} setMessage={setMessage} />
