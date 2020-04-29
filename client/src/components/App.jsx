@@ -19,6 +19,7 @@ class App extends React.Component {
       latitude: '',
       city: '',
       region: '',
+      userId: null,
       redirect: false,
     };
     this.getPartyInfo = this.getPartyInfo.bind(this);
@@ -60,7 +61,7 @@ class App extends React.Component {
     const { userInfo } = this.state;
     Axios.get('/api/login', { params: { google_id: userInfo.googleId } })
       .then((res) => {
-        this.setState({ longitude: res.data[0].longitude, latitude: res.data[0].latitude });
+        this.setState({ longitude: res.data[0].longitude, latitude: res.data[0].latitude, userId: res.data[0].id });
       })
       .catch((err) => err);
   }
@@ -94,7 +95,7 @@ class App extends React.Component {
 
   render() {
     const {
-      partyInfo, userInfo, view, longitude, latitude, city, region,
+      partyInfo, userInfo, view, longitude, latitude, city, region, userId,
     } = this.state;
     let renderContainer = (
       <div>
@@ -116,8 +117,8 @@ class App extends React.Component {
           {this.renderRedirect()}
           <Switch>
             <Route exact path="/" render={() => (<Login getUserInfo={this.getUserInfo} getLocationFromLogin={this.getLocationFromLogin} />)} />
-            <Route exact path="/parties" render={() => (<Parties longitude={longitude} latitude={latitude} city={city} region={region} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url} />)} />
-            <Route exact path="/chatroom" render={() => (<Chatroom partyInfo={partyInfo} username={userInfo.name} />)} />
+            <Route exact path="/parties" render={() => (<Parties longitude={longitude} latitude={latitude} city={city} region={region} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url} userId={userId} />)} />
+            <Route exact path="/chatroom" render={() => (<Chatroom partyInfo={partyInfo} username={userInfo.name} userId={userId} />)} />
           </Switch>
         </HashRouter>
       );
