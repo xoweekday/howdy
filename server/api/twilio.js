@@ -5,17 +5,20 @@ require('dotenv').config();
 // twilio requirements -- texting api
 const accoutSid = process.env.S_ID;
 const authToken = process.env.AUTH_TOKEN;
-const client = (accoutSid, authToken);
+const client = new twilio(accoutSid, authToken);
 
 const twilioRoute = Router();
 
-twilioRoute.get('/send-text', (req, res) => {
-  const { recipient, textmessage } = req.query;
+twilioRoute.post('/', (req, res) => {
+  const { recipient, textmessage } = req.body;
+  console.log(recipient, textmessage);
   client.messages.create({
     body: textmessage,
-    to: recipient,
+    to: `+1${recipient}`,
     from: process.env.PHONE_NUMBER,
-  }).then((message) => console.log(message.body));
+  })
+    .then((message) => res.status(200).send(message.body))
+    .catch((err) => console.error(err));
 });
 
 module.exports = {
