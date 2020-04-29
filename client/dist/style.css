@@ -370,3 +370,21 @@ label {
   width: 25%;
   margin-left: 16px;
 }
+
+.delete-icon {
+  height: 12px;
+  width: 12px;
+  display: none;
+}
+
+.message-text {
+  display: inline;
+}
+
+.message-text:hover + .delete-icon {
+  display: inline;
+}
+
+.delete-icon:hover {
+  display: inline;
+}

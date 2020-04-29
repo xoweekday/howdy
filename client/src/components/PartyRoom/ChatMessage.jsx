@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import deleteIcon from '../../../dist/icons8-delete-48.png';
 
 const ChatMessage = ({ messages, deleted, deleteMessage }) => {
   return (
@@ -12,10 +13,13 @@ const ChatMessage = ({ messages, deleted, deleteMessage }) => {
         .map((message, i) => {
           if (message.text) {
             return (
-              <div key={i} onClick={() => deleteMessage(message)}>
-                {message.user}
-                {': '}
-                {message.text}
+              <div className="message">
+                <div className="message-text" key={i}>
+                  {message.user}
+                  {': '}
+                  {message.text}
+                </div>
+                <img src={deleteIcon} className="delete-icon" onClick={() => deleteMessage(message)} />
               </div>
             );
           }
