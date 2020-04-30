@@ -46,6 +46,7 @@ class CreateParty extends React.Component {
     const {
       getNewPartyEntry, longitude, latitude, city, region, userId,
     } = this.props;
+    console.log('hi', userId);
     const { start, date, name } = this.state;
     this.setState({
       textmessage: `Your party: ${name}, has been created for ${start} on ${date}`,
@@ -174,6 +175,9 @@ class CreateParty extends React.Component {
                       value={password}
                       onChange={this.handleChange}
                     />
+                  </label>
+                </div>
+                <div className="form-group creation-group">
                   <label htmlFor="phone number">
                     Phone Number
                     <input
@@ -189,12 +193,15 @@ class CreateParty extends React.Component {
                 <div>
                   <label htmlFor="theme">
                     Theme:
-                    <select id="theme" name="theme" onChange={this.handleChange}>
+                    <select
+                      id="theme"
+                      name="theme"
+                      onChange={this.handleChange}
+                    >
                       <option value="original">Original</option>
                       <option value="dark">Dark</option>
                     </select>
                   </label>
-                  
                 </div>
                 <div>
                   <input

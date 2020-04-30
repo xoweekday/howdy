@@ -19,7 +19,7 @@ const ChatRoom = ({ partyInfo, username, userId, setTheme }) => {
   const [kick, setKick] = useState(false);
 
   // DEVELOPMENT variable
-  const endPoint = 'localhost:8080';
+  const endPoint = process.env.ENDPOINT;
   // PRODUCTION variable
   // const endPoint = 'http://ec2-18-221-135-146.us-east-2.compute.amazonaws.com:8081/#/';
 

@@ -22,7 +22,6 @@ class App extends React.Component {
       latitude: '',
       city: '',
       region: '',
-      userId: null,
       redirect: false,
       theme: 'original',
     };
