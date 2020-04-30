@@ -7,6 +7,7 @@ const cors = require('cors');
 const { addUser, removeUser, getUser, getUsersInRoom, getRandomCharacter } = require('./users.js');
 const { checkAnswer } = require('./game.js');
 
+
 require('dotenv').config();
 const { apiRouter } = require('./api');
 
