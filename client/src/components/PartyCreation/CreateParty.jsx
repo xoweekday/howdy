@@ -10,6 +10,7 @@ class CreateParty extends React.Component {
     } = this.props;
     this.state = {
       name: '',
+      theme: 'original',
       start: '',
       end: '',
       date: '',
@@ -45,17 +46,22 @@ class CreateParty extends React.Component {
     const {
       getNewPartyEntry, longitude, latitude, city, region, userId,
     } = this.props;
+<<<<<<< HEAD
 
     const { start, date, name } = this.state;
     this.setState({
       textmessage: `Your party: ${name}, has been created for ${start} on ${date}`,
     });
+=======
+    console.log(this.state.theme);
+>>>>>>> fa9681ce7f3c7d848fc0f3d7aa043d2f5c966bef
     axios.post('/api/homepage', this.state)
       .then(() => {
         this.sendText();
         getNewPartyEntry();
         this.setState({
           name: '',
+          theme: 'original',
           start: '',
           end: '',
           date: '',
@@ -173,6 +179,16 @@ class CreateParty extends React.Component {
                       onChange={this.handleChange}
                     />
                   </label>
+                </div>
+                <div>
+                  <label htmlFor="theme">
+                    Theme:
+                    <select id="theme" name="theme" onChange={this.handleChange}>
+                      <option value="original">Original</option>
+                      <option value="dark">Dark</option>
+                    </select>
+                  </label>
+                  
                 </div>
                 <div>
                   <input
