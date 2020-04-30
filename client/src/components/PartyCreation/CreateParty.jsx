@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { google } from 'googleapis';
 
 class CreateParty extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class CreateParty extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const {
-      getNewPartyEntry, longitude, latitude, city, region, userId,
+      getNewPartyEntry, longitude, latitude, city, region, userId, calendar_link,
     } = this.props;
     console.log(this.state.theme);
     axios.post('/api/homepage', this.state)
@@ -52,10 +53,12 @@ class CreateParty extends React.Component {
           city,
           region,
           host_id: userId,
+          calendar_link,
         });
       })
       .catch((error) => error);
   }
+
 
   render() {
     const {
@@ -154,7 +157,6 @@ class CreateParty extends React.Component {
                       <option value="dark">Dark</option>
                     </select>
                   </label>
-                  
                 </div>
                 <div>
                   <input
