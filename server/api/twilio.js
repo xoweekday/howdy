@@ -1,11 +1,10 @@
 const { Router } = require('express');
-const twilio = require('twilio');
 require('dotenv').config();
 
 // twilio requirements -- texting api
 const accoutSid = process.env.S_ID;
 const authToken = process.env.AUTH_TOKEN;
-const client = new twilio(accoutSid, authToken);
+const client = require('twilio')(accoutSid, authToken);
 
 const twilioRoute = Router();
 
