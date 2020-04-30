@@ -54,6 +54,19 @@ io.on('connection', (socket) => {
     callback(); // clears text input field
   });
 
+  socket.on('privateMessage', ({ message, id, name }, callback) => {
+    const user = getUser(socket.id);
+    if (message.includes('https://res.cloudinary.com/')) {
+      io.to(socket.id).emit('receiveImage', { user: `${user.name} Privately to ${name}`, img: message, time: new Date() });
+      io.to(id).emit('receiveImage', { user: user.name.concat(' (PRIVATE) '), img: message, time: new Date() });
+    } else {
+      io.to(socket.id).emit('receiveMessage', { user: `${user.name} Privately to ${name}`, text: message, time: new Date() });
+      io.to(id).emit('receiveMessage', { user: user.name.concat(' (PRIVATE) '), text: message, time: new Date() });
+    }
+
+    callback(); // clears text input field `${user.name} Privately to ${name}`
+  });
+
   socket.on('deleteMessage', (message) => {
     const user = getUser(socket.id);
 
