@@ -36,7 +36,6 @@ class CreateParty extends React.Component {
     const {
       getNewPartyEntry, longitude, latitude, city, region, userId,
     } = this.props;
-    console.log(this.state.theme);
     axios.post('/api/homepage', this.state)
       .then(() => {
         getNewPartyEntry();

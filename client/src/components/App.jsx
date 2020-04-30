@@ -53,7 +53,6 @@ class App extends React.Component {
   }
 
   getUserInfo(userInfo) {
-    console.log(userInfo);
     this.setState({ userInfo });
   }
 
