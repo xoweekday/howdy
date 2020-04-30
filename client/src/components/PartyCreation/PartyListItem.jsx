@@ -17,6 +17,7 @@ const PartyListItem = ({
 }) => {
   const [redirect, setRedirect] = useState(false);
   const [showModal, setModal] = useState(false);
+  const [phone, setPhone] = useState('');
 
   const joinParty = () => {
     setRedirect(true);
@@ -28,6 +29,15 @@ const PartyListItem = ({
     }
   };
 
+  const addPhone = () => {
+    console.log('hitting');
+    axios.post('/api/rsvp/', { phoneNumber: phone, roomId: party.id })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => console.error(err, 'this is the catch'));
+  };
+
   const canJoinParty = (date, start) => {
     axios.get(`/api/ban/${userId}/${party.id}`)
       .then((banned) => {
@@ -35,9 +45,9 @@ const PartyListItem = ({
           const distanceFromParty = distance(party.host_lat, party.host_long, latitude, longitude);
           if (distanceFromParty <= party.radius) {
             if (thirtyMinBeforeTodaysParty(date, start)) {
-              if (!party.password ||
-                  party.host_id === userId ||
-                  prompt('The host has set a password. Please enter it now') === party.password) {
+              if (!party.password
+                  || party.host_id === userId
+                  || prompt('The host has set a password. Please enter it now') === party.password) {
                 getPartyInfo(party);
                 joinParty();
               } else {
@@ -100,11 +110,19 @@ const PartyListItem = ({
               <Modal.Header closeButton>RSVP CONFIRMATION</Modal.Header>
               <Modal.Body>
                 <p>Please input your phone number to receive a reminder</p>
-                <input type="number" name="phone" placeholder="ex.123-123-1234" />
+                <input type="number" name="phone" placeholder="ex.123-123-1234" onChange={(e) => setPhone(e.target.value)} />
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="secondary" onClick={() => showModal(false)}>No</Button>
-                <Button variant="primary" onClick={() => showModal(false)}>Yes</Button>
+                <Button variant="secondary" onClick={() => setModal(false)}>No</Button>
+                <Button
+                  variant="primary"
+                  onClick={() => {
+                    addPhone();
+                    setModal(false);
+                  }}
+                >
+                  Yes
+                </Button>
               </Modal.Footer>
             </Modal>
           </div>
