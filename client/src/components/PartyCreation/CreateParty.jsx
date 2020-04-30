@@ -174,6 +174,9 @@ class CreateParty extends React.Component {
                       value={password}
                       onChange={this.handleChange}
                     />
+                  </label>
+                </div>
+                <div className="form-group creation-group">
                   <label htmlFor="phone number">
                     Phone Number
                     <input
