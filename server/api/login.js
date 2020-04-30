@@ -7,12 +7,13 @@ const loginRouter = Router();
 // when a user signs in through google, add the details to the database
 loginRouter.post('/', (req, res) => {
   db.addUser(req)
-    .then(() => res.send(201))
+    .then((result) => res.status(201).send(result))
     .catch((error) => {
       if (error.errno === 1062) {
         // this is if the user is returning and has already been entered into the database
         return null;
       }
+      console.log(error);
       return res.sendStatus(500);
     });
 });

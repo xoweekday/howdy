@@ -32,8 +32,14 @@ const PartyListItem = ({
           const distanceFromParty = distance(party.host_lat, party.host_long, latitude, longitude);
           if (distanceFromParty <= party.radius) {
             if (thirtyMinBeforeTodaysParty(date, start)) {
-              getPartyInfo(party);
-              joinParty();
+              if (!party.password ||
+                  party.host_id === userId ||
+                  prompt('The host has set a password. Please enter it now') === party.password) {
+                getPartyInfo(party);
+                joinParty();
+              } else {
+                alert('Incorrect password.');
+              }
             } else {
                 alert(`The party hasn't started yet. You can join 30 minutes before ${formatTime(start)} on ${formatDate(date)}`);
             }

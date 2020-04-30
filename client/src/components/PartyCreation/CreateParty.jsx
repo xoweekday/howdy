@@ -11,6 +11,7 @@ class CreateParty extends React.Component {
     this.state = {
       name: '',
       theme: 'original',
+      password: '',
       start: '',
       end: '',
       date: '',
@@ -57,6 +58,7 @@ class CreateParty extends React.Component {
         this.setState({
           name: '',
           theme: 'original',
+          password: '',
           start: '',
           end: '',
           date: '',
@@ -75,7 +77,7 @@ class CreateParty extends React.Component {
 
   render() {
     const {
-      name, details, start, end, date, radius, recipient,
+      name, details, start, end, date, radius, password, recipient,
     } = this.state;
     return (
       <div className="party-creation">
@@ -163,6 +165,15 @@ class CreateParty extends React.Component {
                   </label>
                 </div>
                 <div className="form-group creation-group">
+                  <label htmlFor="password">
+                    Password (optional):
+                    <input
+                      className="form-control creation-items"
+                      type="text"
+                      name="password"
+                      value={password}
+                      onChange={this.handleChange}
+                    />
                   <label htmlFor="phone number">
                     Phone Number
                     <input
