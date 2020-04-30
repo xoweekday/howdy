@@ -17,7 +17,7 @@ cron.schedule('* * * * *', () => {
     .then((result) => {
       result.forEach((party) => {
         client.messages.create({
-          body: `Your party: ${party.name} is starting in 10 minutes`,
+          body: `The party you've RSVP for: ${party.name} is starting in 10 minutes --Howdy`,
           to: `+1${party.phone}`,
           from: process.env.PHONE_NUMBER,
         });
