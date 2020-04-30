@@ -31,6 +31,7 @@ CREATE TABLE rooms (
   id int PRIMARY KEY AUTO_INCREMENT,
   name varchar(60),
   theme varchar(60) DEFAULT 'original',
+  password varchar(60),
   host_id int,
   host_long decimal(11, 8),
   host_lat decimal(10, 8),
@@ -48,11 +49,17 @@ CREATE TABLE characters (
   name varchar(255)
  );
 
- CREATE TABLE bans (
+CREATE TABLE rsvp (
+   id int PRIMARY KEY AUTO_INCREMENT,
+   phone varchar(10),
+   room_id int
+);
+
+CREATE TABLE bans (
    id int PRIMARY KEY AUTO_INCREMENT,
    user_id int,
    room_id int
- );
+);
 
 -- ALTER TABLE rooms FOREIGN KEY (user_id) REFERENCES users (id);
 -- ALTER TABLE rooms FOREIGN KEY (id) REFERENCES messages (room_id);
