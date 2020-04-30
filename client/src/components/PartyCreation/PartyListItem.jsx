@@ -37,6 +37,8 @@ const PartyListItem = ({
                   prompt('The host has set a password. Please enter it now') === party.password) {
                 getPartyInfo(party);
                 joinParty();
+              } else {
+                alert('Incorrect password.');
               }
             } else {
                 alert(`The party hasn't started yet. You can join 30 minutes before ${formatTime(start)} on ${formatDate(date)}`);
