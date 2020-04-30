@@ -2,11 +2,9 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const socket = require('socket.io');
-const cron = require('node-cron');
 const cors = require('cors');
 const { addUser, removeUser, getUser, getUsersInRoom, getRandomCharacter } = require('./users.js');
 const { checkAnswer } = require('./game.js');
-
 
 require('dotenv').config();
 const { apiRouter } = require('./api');
@@ -15,9 +13,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socket(server);
 
-// cron.schedule("* * * * *", function() {
-//   console.log("running a task every minute");
-// });
+
 
 io.on('connection', (socket) => {
   socket.on('join', ({ room, username, userId }, callback) => {
