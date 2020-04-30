@@ -14,9 +14,9 @@ const app = express();
 const server = http.createServer(app);
 const io = socket(server);
 
-cron.schedule("* * * * *", function() {
-  console.log("running a task every minute");
-});
+// cron.schedule("* * * * *", function() {
+//   console.log("running a task every minute");
+// });
 
 io.on('connection', (socket) => {
   socket.on('join', ({ room, username, userId }, callback) => {
