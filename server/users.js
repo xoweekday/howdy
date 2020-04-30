@@ -59,8 +59,8 @@ const getRandomCharacter = () => {
   return characters[index];
 };
 
-const addUser = ({ id, name, room }) => {
-  const user = { id, name, room };
+const addUser = ({ id, name, room, userId }) => {
+  const user = { id, name, room, userId };
   // Add a random character alias for gaming purposes
   user.character = getRandomCharacter();
   users.push(user);

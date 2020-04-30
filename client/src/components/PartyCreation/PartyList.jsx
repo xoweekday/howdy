@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PartyListItem from './PartyListItem.jsx';
 
 const PartyList = ({
-  parties, getPartyInfo, longitude, latitude,
+  parties, getPartyInfo, longitude, latitude, userId,
 }) => (
   <div className="party-list">
     <h3>Find a Party in Your Neighborhood</h3>
@@ -27,6 +27,7 @@ const PartyList = ({
             getPartyInfo={getPartyInfo}
             longitude={longitude}
             latitude={latitude}
+            userId={userId}
           />
         );
       })}

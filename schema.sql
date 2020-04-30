@@ -30,6 +30,7 @@ CREATE TABLE messages (
 CREATE TABLE rooms (
   id int PRIMARY KEY AUTO_INCREMENT,
   name varchar(60),
+  theme varchar(60) DEFAULT 'original',
   host_id int,
   host_long decimal(11, 8),
   host_lat decimal(10, 8),
@@ -45,6 +46,12 @@ CREATE TABLE rooms (
 CREATE TABLE characters (
   id int PRIMARY KEY AUTO_INCREMENT,
   name varchar(255)
+ );
+
+ CREATE TABLE bans (
+   id int PRIMARY KEY AUTO_INCREMENT,
+   user_id int,
+   room_id int
  );
 
 -- ALTER TABLE rooms FOREIGN KEY (user_id) REFERENCES users (id);
