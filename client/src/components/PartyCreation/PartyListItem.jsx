@@ -4,12 +4,14 @@ import { Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
 import distance from '../../Utils/LocationEquation.js';
 import { thirtyMinBeforeTodaysParty, formatTime, formatDate } from '../../Utils/time.js';
+import axios from 'axios';
 
 const PartyListItem = ({
   party,
   getPartyInfo,
   longitude,
   latitude,
+  userId,
 }) => {
   const [redirect, setRedirect] = useState(false);
 
@@ -24,19 +26,34 @@ const PartyListItem = ({
   };
 
   const canJoinParty = (date, start) => {
-    const distanceFromParty = distance(party.host_lat, party.host_long, latitude, longitude);
-    if (distanceFromParty <= party.radius) {
-      if (thirtyMinBeforeTodaysParty(date, start)) {
-        joinParty();
-      } else {
-        alert(`The party hasn't started yet. You can join 30 minutes before ${formatTime(start)} on ${formatDate(date)}`);
-      }
-    } else {
-      alert(`
-        You are ${Math.round(10 * distanceFromParty) / 10} mile(s) away from this party.
-        The host has invited people within ${party.radius} mile(s).`);
-    }
-    getPartyInfo(party);
+    axios.get(`/api/ban/${userId}/${party.id}`)
+      .then((banned) => {
+        if(!banned.data) {
+          const distanceFromParty = distance(party.host_lat, party.host_long, latitude, longitude);
+          if (distanceFromParty <= party.radius) {
+            if (thirtyMinBeforeTodaysParty(date, start)) {
+              if (!party.password ||
+                  party.host_id === userId ||
+                  prompt('The host has set a password. Please enter it now') === party.password) {
+                getPartyInfo(party);
+                joinParty();
+              } else {
+                alert('Incorrect password.');
+              }
+            } else {
+                alert(`The party hasn't started yet. You can join 30 minutes before ${formatTime(start)} on ${formatDate(date)}`);
+            }
+          } else {
+              alert(`
+                You are ${Math.round(10 * distanceFromParty) / 10} mile(s) away from this party.
+                The host has invited people within ${party.radius} mile(s).`);
+          }
+        } else {
+          alert('You have been banned from this party.');
+        }
+      });
+    
+   
   };
 
   const {
