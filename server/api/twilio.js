@@ -4,7 +4,7 @@ require('dotenv').config();
 // twilio requirements -- texting api
 const accoutSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
-console.log(accoutSid, authToken);
+console.log(process.env, accoutSid, authToken);
 const client = require('twilio')(accoutSid, authToken);
 
 const twilioRoute = Router();
