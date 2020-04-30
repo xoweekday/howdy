@@ -46,15 +46,12 @@ class CreateParty extends React.Component {
     const {
       getNewPartyEntry, longitude, latitude, city, region, userId,
     } = this.props;
-<<<<<<< HEAD
 
     const { start, date, name } = this.state;
     this.setState({
       textmessage: `Your party: ${name}, has been created for ${start} on ${date}`,
     });
-=======
     console.log(this.state.theme);
->>>>>>> fa9681ce7f3c7d848fc0f3d7aa043d2f5c966bef
     axios.post('/api/homepage', this.state)
       .then(() => {
         this.sendText();
