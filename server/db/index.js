@@ -74,6 +74,13 @@ const getBan = (req) => {
   return query(mysqlQuery);
 }
 
+const addRsvp = (req) => {
+  const { phoneNumber, roomId} = req.body;
+  const mysqlQuery = `INSERT INTO rsvp (phone, room_id) VALUES (${phoneNumber}, ${roomId})`;
+  return query(mysqlQuery);
+};
+
+
 module.exports = {
   getRooms,
   getMessages,
@@ -82,4 +89,5 @@ module.exports = {
   addUser,
   addBan,
   getBan,
+  addRsvp,
 };

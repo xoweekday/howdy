@@ -45,11 +45,7 @@
     "semantic-ui-react": "^0.88.2",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
-<<<<<<< HEAD
     "twilio": "^3.42.2",
-=======
-    "twilio": "^3.42.2"
->>>>>>> 4f0c33e2c171f92de1dc0eb2283359c5c26f1853
     "styled-components": "^5.1.0"
   }
 }
