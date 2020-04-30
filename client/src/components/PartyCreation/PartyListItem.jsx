@@ -1,10 +1,12 @@
+/* eslint-disable no-alert */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
+import { Modal, Button } from 'react-bootstrap';
+import axios from 'axios';
 import distance from '../../Utils/LocationEquation.js';
 import { thirtyMinBeforeTodaysParty, formatTime, formatDate } from '../../Utils/time.js';
-import axios from 'axios';
 
 const PartyListItem = ({
   party,
@@ -14,6 +16,7 @@ const PartyListItem = ({
   userId,
 }) => {
   const [redirect, setRedirect] = useState(false);
+  const [showModal, setModal] = useState(false);
 
   const joinParty = () => {
     setRedirect(true);
@@ -28,17 +31,17 @@ const PartyListItem = ({
   const canJoinParty = (date, start) => {
     axios.get(`/api/ban/${userId}/${party.id}`)
       .then((banned) => {
-        if(!banned.data) {
+        if (!banned.data) {
           const distanceFromParty = distance(party.host_lat, party.host_long, latitude, longitude);
           if (distanceFromParty <= party.radius) {
             if (thirtyMinBeforeTodaysParty(date, start)) {
               getPartyInfo(party);
               joinParty();
             } else {
-                alert(`The party hasn't started yet. You can join 30 minutes before ${formatTime(start)} on ${formatDate(date)}`);
+              alert(`The party hasn't started yet. You can join 30 minutes before ${formatTime(start)} on ${formatDate(date)}`);
             }
           } else {
-              alert(`
+            alert(`
                 You are ${Math.round(10 * distanceFromParty) / 10} mile(s) away from this party.
                 The host has invited people within ${party.radius} mile(s).`);
           }
@@ -46,8 +49,6 @@ const PartyListItem = ({
           alert('You have been banned from this party.');
         }
       });
-    
-   
   };
 
   const {
@@ -82,6 +83,24 @@ const PartyListItem = ({
             >
               Join Party
             </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => setModal(true)}
+            >
+              RSVP
+            </button>
+            <Modal size="lg" show={showModal} onHide={() => setModal(false)}>
+              <Modal.Header closeButton>RSVP CONFIRMATION</Modal.Header>
+              <Modal.Body>
+                <p>Please input your phone number to receive a reminder</p>
+                <input type="number" name="phone" placeholder="ex.123-123-1234" />
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={() => showModal(false)}>No</Button>
+                <Button variant="primary" onClick={() => showModal(false)}>Yes</Button>
+              </Modal.Footer>
+            </Modal>
           </div>
         </div>
       </div>
