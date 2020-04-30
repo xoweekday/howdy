@@ -10,7 +10,7 @@ import Messages from './Messages.jsx';
 
 let socket;
 
-const ChatRoom = ({ partyInfo, username, userId }) => {
+const ChatRoom = ({ partyInfo, username, userId, setTheme }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [deleted, setDeleted] = useState([]);
@@ -24,6 +24,7 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
   // const endPoint = 'http://ec2-18-221-135-146.us-east-2.compute.amazonaws.com:8081/#/';
 
   useEffect(() => {
+    setTheme(partyInfo.theme);
     socket = io(endPoint);
     socket.emit('join', { room, username, userId }, () => { });
 
@@ -71,6 +72,7 @@ const ChatRoom = ({ partyInfo, username, userId }) => {
   }
 
   const leftParty = () => {
+    setTheme('original');
     socket.emit('leaveParty');
   };
 

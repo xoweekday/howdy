@@ -2,11 +2,14 @@ import React from 'react';
 import {
   HashRouter, Switch, Route, Redirect,
 } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 import GoogleLogin from 'react-google-login';
 import Axios from 'axios';
 import Parties from './PartyCreation/Parties.jsx';
 import Login from './Login/Login.jsx';
 import Chatroom from './PartyRoom/ChatRoom.jsx';
+import { originalTheme, darkTheme } from '../themes.jsx';
+import { GlobalStyles } from '../Global.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,6 +24,7 @@ class App extends React.Component {
       region: '',
       userId: null,
       redirect: false,
+      theme: 'original',
     };
     this.getPartyInfo = this.getPartyInfo.bind(this);
     this.getUserInfo = this.getUserInfo.bind(this);
@@ -29,6 +33,7 @@ class App extends React.Component {
     this.getLocationFromLogin = this.getLocationFromLogin.bind(this);
     this.setRedirect = this.setRedirect.bind(this);
     this.renderRedirect = this.renderRedirect.bind(this);
+    this.setTheme = this.setTheme.bind(this);
   }
 
   componentDidMount() {
@@ -93,9 +98,23 @@ class App extends React.Component {
     return <Redirect to="/" />;
   }
 
+  setTheme(theme) {
+    this.setState({ theme });
+  }
+
+  getTheme() {
+    const { theme } = this.state;
+    switch(theme) {
+      case 'original':
+        return originalTheme;
+      case 'dark':
+        return darkTheme;
+    }
+  }
+
   render() {
     const {
-      partyInfo, userInfo, view, longitude, latitude, city, region, userId,
+      partyInfo, userInfo, view, longitude, latitude, city, region, userId, theme,
     } = this.state;
     let renderContainer = (
       <div>
@@ -118,13 +137,18 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" render={() => (<Login getUserInfo={this.getUserInfo} getLocationFromLogin={this.getLocationFromLogin} />)} />
             <Route exact path="/parties" render={() => (<Parties longitude={longitude} latitude={latitude} city={city} region={region} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url} userId={userId} />)} />
-            <Route exact path="/chatroom" render={() => (<Chatroom partyInfo={partyInfo} username={userInfo.name} userId={userId} />)} />
+            <Route exact path="/chatroom" render={() => (<Chatroom partyInfo={partyInfo} username={userInfo.name} userId={userId} setTheme={this.setTheme} />)} />
           </Switch>
         </HashRouter>
       );
     }
     return (
-      renderContainer
+      <ThemeProvider theme={this.getTheme()}>
+        <>
+          <GlobalStyles />
+          {renderContainer}
+        </>
+      </ThemeProvider>
     );
   }
 }
