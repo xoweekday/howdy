@@ -11,6 +11,7 @@ class LogIn extends React.Component {
     super(props);
     this.state = {
       name: '',
+      userId: null,
       image_url: '',
       google_id: '',
       latitude: '',
@@ -41,7 +42,7 @@ class LogIn extends React.Component {
           view2: true,
         });
         Axios.post('api/login', this.state)
-          .then((res) => res)
+          .then((res) => this.setState({ userId: res.data.insertId }))
           .catch((err) => err);
       })
       .catch((error) => error);
@@ -55,13 +56,14 @@ class LogIn extends React.Component {
       google_id: response.googleId,
       view: true,
     });
-    getUserInfo(this.state);
+    // getUserInfo(this.state);
   }
 
   render() {
     const {
       name, image_url, view, view2,
     } = this.state;
+    const { getUserInfo } = this.props;
     return (
       <div className="loginGoogle">
         <div className="loginDescription loginPara">
@@ -97,7 +99,7 @@ class LogIn extends React.Component {
                 </div>
               ) : (
                 <Link to={{ pathname: '/parties' }}>
-                  <button type="button" className="btn btn-primary continue"> Continue to Parties Page! </button>
+                  <button onClick={() => getUserInfo(this.state)} type="button" className="btn btn-primary continue"> Continue to Parties Page! </button>
                 </Link>
               )}
               {/* <div> Or enter your zip code! </div>

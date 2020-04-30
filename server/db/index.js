@@ -40,9 +40,9 @@ const getUser = (req) => {
 // create a party
 const addParty = (req) => {
   const {
-    name, host_id, longitude, latitude, radius, details, date, start, end, city, region, calendar_link,
+    name, theme, password, host_id, longitude, latitude, radius, details, date, start, end, city, region, calendar_link,
   } = req.body;
-  const mysqlQuery = `INSERT INTO rooms (name, host_id, host_long, host_lat, radius, details, date, start, end, city, region, calendar_link) VALUES ('${name}', ${host_id}, '${longitude}', '${latitude}', ${radius}, '${details}', '${date}', '${start}', '${end}', '${city}', '${region}', '${calendar_link}')`;
+  const mysqlQuery = `INSERT INTO rooms (name, theme, password, host_id, host_long, host_lat, radius, details, date, start, end, city, region) VALUES ('${name}', '${theme}', '${password}', ${host_id}, '${longitude}', '${latitude}', ${radius}, '${details}', '${date}', '${start}', '${end}', '${city}', '${region}', '${calendar_link}')`;
   return query(mysqlQuery);
 };
 
@@ -51,8 +51,15 @@ const addUser = (req) => {
   const {
     google_id, image_url, name, latitude, longitude, city, region,
   } = req.body;
-  const mysqlQuery = `INSERT INTO users (google_id, image_url, name, latitude, longitude, city, region) VALUES ('${google_id}', '${image_url}', '${name}', ${latitude}, ${longitude}, '${city}', '${region}')`;
-  return query(mysqlQuery);
+  const mysqlSelectQuery = `SELECT id FROM users WHERE google_id = '${google_id}'`
+  const mysqlInsertQuery = `INSERT INTO users (google_id, image_url, name, latitude, longitude, city, region) VALUES ('${google_id}', '${image_url}', '${name}', ${latitude}, ${longitude}, '${city}', '${region}')`;
+  return query(mysqlSelectQuery)
+    .then((result) => {
+      if (result.length) {
+        return Promise.resolve({insertId: result[0].id});
+      }
+      return query(mysqlInsertQuery);
+    });
 };
 
 const addBan = (req) => {
