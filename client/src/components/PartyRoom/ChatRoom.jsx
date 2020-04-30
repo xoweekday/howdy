@@ -66,7 +66,7 @@ const ChatRoom = ({ partyInfo, username, userId, setTheme }) => {
   };
 
   const deleteMessage = (message) => {
-    if (username === partyInfo.hostname) {
+    if (userId === partyInfo.host_id) {
       socket.emit('deleteMessage', message);
     }
   }
@@ -105,7 +105,7 @@ const ChatRoom = ({ partyInfo, username, userId, setTheme }) => {
       socket.emit('kickUser', id);
     }
   }
-
+  
   return (
     <div className="container-fluid chat-room">
       {renderRedirect()}
@@ -130,6 +130,7 @@ const ChatRoom = ({ partyInfo, username, userId, setTheme }) => {
             kickUser={kickUser}
             partyInfo={partyInfo}
             username={username}
+            userId={userId}
           />
         </div>
         <div className="col sidebar">

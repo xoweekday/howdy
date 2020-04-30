@@ -8,7 +8,7 @@ import KickUser from './KickUser.jsx';
 import DeleteAll from './DeleteAll.jsx';
 
 const Messages = ({
-  messages, message, sendMessage, setMessage, leftParty, sendUrl, deleteMessage, deleted, users, kickUser, partyInfo, username,
+  messages, message, sendMessage, setMessage, leftParty, sendUrl, deleteMessage, deleted, users, kickUser, partyInfo, username, userId,
 }) => (
   <div className="container-fluid d-flex-col">
     <div className="row message-container overflow:auto">
@@ -16,7 +16,7 @@ const Messages = ({
         messages={messages}
         deleteMessage={deleteMessage}
         deleted={deleted}
-        isMod={username === partyInfo.hostname}
+        isMod={userId === partyInfo.host_id}
       />
     </div>
     <div className="row message-input">
@@ -30,20 +30,20 @@ const Messages = ({
     </div>
     <div className="row">
       <div className="col-5" >
-      {username === partyInfo.hostname && 
+      {userId === partyInfo.host_id && 
           (
             <DeleteAll
-              users={users.filter((user) => user.name !== partyInfo.hostname)}
+              users={users.filter((user) => user.userId !== partyInfo.host_id)}
               deleteMessage={deleteMessage}
               messages={messages}
             />
           )}
       </div>
       <div className="col-5">
-      {username === partyInfo.hostname && 
+      {userId === partyInfo.host_id && 
           (
             <KickUser
-              users={users.filter((user) => user.name !== partyInfo.hostname)}
+              users={users.filter((user) => user.userId !== partyInfo.host_id)}
               kickUser={kickUser}
             />
           )}
