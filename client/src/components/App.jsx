@@ -22,7 +22,6 @@ class App extends React.Component {
       latitude: '',
       city: '',
       region: '',
-      userId: null,
       redirect: false,
       theme: 'original',
     };
@@ -104,7 +103,7 @@ class App extends React.Component {
 
   getTheme() {
     const { theme } = this.state;
-    switch(theme) {
+    switch (theme) {
       case 'original':
         return originalTheme;
       case 'dark':
