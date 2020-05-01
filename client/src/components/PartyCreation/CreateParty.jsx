@@ -79,6 +79,7 @@ class CreateParty extends React.Component {
       .catch((error) => error);
   }
 
+
   render() {
     const {
       name, details, start, end, date, radius, password, recipient,

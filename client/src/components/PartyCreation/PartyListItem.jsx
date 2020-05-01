@@ -5,8 +5,9 @@ import { Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
 import { Modal, Button } from 'react-bootstrap';
 import axios from 'axios';
-import distance from '../../Utils/LocationEquation.js';
-import { thirtyMinBeforeTodaysParty, formatTime, formatDate } from '../../Utils/time.js';
+import distance from '../../Utils/LocationEquation';
+import { thirtyMinBeforeTodaysParty, formatTime, formatDate } from '../../Utils/time';
+import CalendarButton from './CalendarButton.jsx';
 
 const PartyListItem = ({
   party,
@@ -71,6 +72,7 @@ const PartyListItem = ({
     name,
     date,
     start,
+    end,
     city,
     radius,
     details,
@@ -111,6 +113,7 @@ const PartyListItem = ({
               <Modal.Body>
                 <p>Please input your phone number to receive a reminder</p>
                 <input type="number" name="phone" placeholder="ex.123-123-1234" onChange={(e) => setPhone(e.target.value)} />
+                <CalendarButton name={name} details={details} start={start} end={end} date={date} city={city} />
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={() => setModal(false)}>No</Button>

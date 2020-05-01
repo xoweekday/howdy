@@ -384,3 +384,10 @@ label {
   display: inline;
 }
 
+.react-add-to-calendar__button:hover {
+ cursor: pointer;
+}
+
+.modal-content {
+  color: black;
+}
