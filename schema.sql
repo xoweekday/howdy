@@ -41,8 +41,7 @@ CREATE TABLE rooms (
   start time,
   end time,
   city varchar(255),
-  region varchar(255),
-  calendar_link varchar(255)
+  region varchar(255)
 );
  
 CREATE TABLE characters (
