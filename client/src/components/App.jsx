@@ -139,8 +139,8 @@ class App extends React.Component {
           {this.renderRedirect()}
           <Switch>
             <Route exact path="/" render={() => (<Login getUserInfo={this.getUserInfo} getLocationFromLogin={this.getLocationFromLogin} />)} />
-            <Route exact path="/parties" render={() => (<Parties longitude={longitude} latitude={latitude} city={city} region={region} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url} userId={userId} />)} />
-            <Route exact path="/chatroom" render={() => (<Chatroom partyInfo={partyInfo} username={userInfo.name} userId={userId} setTheme={this.setTheme} />)} />
+            <Route exact path="/parties" render={() => (<Parties longitude={longitude} latitude={latitude} city={city} region={region} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url} userId={userId || userInfo.userId} />)} />
+            <Route exact path="/chatroom" render={() => (<Chatroom partyInfo={partyInfo} username={userInfo.name} userId={userId || userInfo.userId} setTheme={this.setTheme} />)} />
           </Switch>
         </HashRouter>
       );
