@@ -65,9 +65,12 @@ class App extends React.Component {
     const { userInfo } = this.state;
     Axios.get('/api/login', { params: { google_id: userInfo.googleId } })
       .then((res) => {
+        console.log(res.data[0].id);
         this.setState({ longitude: res.data[0].longitude, latitude: res.data[0].latitude, userId: res.data[0].id });
       })
-      .catch((err) => err);
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   setRedirect() {
@@ -77,6 +80,7 @@ class App extends React.Component {
   }
 
   responseGoogle(response) {
+    console.log('SECOND LOGIN');
     this.setState({
       userInfo: response.profileObj,
     });
@@ -103,7 +107,7 @@ class App extends React.Component {
 
   getTheme() {
     const { theme } = this.state;
-    switch(theme) {
+    switch (theme) {
       case 'original':
         return originalTheme;
       case 'dark':
@@ -137,8 +141,8 @@ class App extends React.Component {
           {this.renderRedirect()}
           <Switch>
             <Route exact path="/" render={() => (<Login getUserInfo={this.getUserInfo} getLocationFromLogin={this.getLocationFromLogin} />)} />
-            <Route exact path="/parties" render={() => (<Parties longitude={longitude} latitude={latitude} city={city} region={region} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url} userId={userId} />)} />
-            <Route exact path="/chatroom" render={() => (<Chatroom partyInfo={partyInfo} username={userInfo.name} userId={userId} setTheme={this.setTheme} />)} />
+            <Route exact path="/parties" render={() => (<Parties longitude={longitude} latitude={latitude} city={city} region={region} getPartyInfo={this.getPartyInfo} imageUrl={userInfo.image_url} userId={userId || userInfo.userId} />)} />
+            <Route exact path="/chatroom" render={() => (<Chatroom partyInfo={partyInfo} username={userInfo.name} userId={userId || userInfo.userId} setTheme={this.setTheme} />)} />
           </Switch>
         </HashRouter>
       );

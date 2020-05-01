@@ -2,11 +2,9 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const socket = require('socket.io');
-const cron = require('node-cron');
 const cors = require('cors');
 const { addUser, removeUser, getUser, getUsersInRoom, getRandomCharacter } = require('./users.js');
 const { checkAnswer } = require('./game.js');
-
 
 require('dotenv').config();
 const { apiRouter } = require('./api');
@@ -15,9 +13,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socket(server);
 
-// cron.schedule("* * * * *", function() {
-//   console.log("running a task every minute");
-// });
+
 
 io.on('connection', (socket) => {
   socket.on('join', ({ room, username, userId }, callback) => {
@@ -52,6 +48,19 @@ io.on('connection', (socket) => {
     }
 
     callback(); // clears text input field
+  });
+
+  socket.on('privateMessage', ({ message, id, name }, callback) => {
+    const user = getUser(socket.id);
+    if (message.includes('https://res.cloudinary.com/')) {
+      io.to(socket.id).emit('receiveImage', { user: `${user.name} Privately to ${name}`, img: message, time: new Date() });
+      io.to(id).emit('receiveImage', { user: user.name.concat(' (PRIVATE) '), img: message, time: new Date() });
+    } else {
+      io.to(socket.id).emit('receiveMessage', { user: `${user.name} Privately to ${name}`, text: message, time: new Date() });
+      io.to(id).emit('receiveMessage', { user: user.name.concat(' (PRIVATE) '), text: message, time: new Date() });
+    }
+
+    callback(); // clears text input field `${user.name} Privately to ${name}`
   });
 
   socket.on('deleteMessage', (message) => {
