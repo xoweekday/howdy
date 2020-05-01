@@ -40,9 +40,9 @@ const getUser = (req) => {
 // create a party
 const addParty = (req) => {
   const {
-    name, theme, password, host_id, longitude, latitude, radius, details, date, start, end, city, region, calendar_link,
+    name, theme, password, host_id, longitude, latitude, radius, details, date, start, end, city, region,
   } = req.body;
-  const mysqlQuery = `INSERT INTO rooms (name, theme, password, host_id, host_long, host_lat, radius, details, date, start, end, city, region) VALUES ('${name}', '${theme}', '${password}', ${host_id}, '${longitude}', '${latitude}', ${radius}, '${details}', '${date}', '${start}', '${end}', '${city}', '${region}', '${calendar_link}')`;
+  const mysqlQuery = `INSERT INTO rooms (name, theme, password, host_id, host_long, host_lat, radius, details, date, start, end, city, region) VALUES ('${name}', '${theme}', '${password}', ${host_id}, '${longitude}', '${latitude}', ${radius}, '${details}', '${date}', '${start}', '${end}', '${city}', '${region}')`;
   return query(mysqlQuery);
 };
 
