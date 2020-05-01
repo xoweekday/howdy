@@ -84,6 +84,7 @@ const ChatRoom = ({
   };
 
   const getKicked = () => {
+    setTheme('original');
     socket.emit('getKicked');
   };
 

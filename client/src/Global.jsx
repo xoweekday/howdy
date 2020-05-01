@@ -3,12 +3,10 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
   body {
-    background: ${({ theme }) =>
-      theme.url ? `url(${theme.url})` : theme.body};
+    background: ${({ theme }) => (theme.url ? `url(${theme.url})` : theme.body)};
     color: ${({ theme }) => theme.text};
     font-family: ${({ theme }) => theme.font};
   }
-``
   .chat-room {
     font-family: ${({ theme }) => theme.font};
 
