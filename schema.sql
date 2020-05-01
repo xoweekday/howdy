@@ -52,7 +52,7 @@ CREATE TABLE characters (
 
 CREATE TABLE rsvp (
    id int PRIMARY KEY AUTO_INCREMENT,
-   phone varchar(10),
+   phone varchar(20),
    room_id int
 );
 

@@ -7,8 +7,11 @@ const homeRouter = Router();
 // when a user creates a party, add the details to the database
 homeRouter.post('/', (req, res) => {
   db.addParty(req)
-    .then(() => res.send(201))
-    .catch(() => res.sendStatus(500));
+    .then(() => res.sendStatus(201))
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
 });
 
 // GET /api/homepage

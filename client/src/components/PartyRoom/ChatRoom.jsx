@@ -10,7 +10,9 @@ import Messages from './Messages.jsx';
 
 let socket;
 
-const ChatRoom = ({ partyInfo, username, userId, setTheme }) => {
+const ChatRoom = ({
+  partyInfo, username, userId, setTheme,
+}) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [deleted, setDeleted] = useState([]);
@@ -55,7 +57,6 @@ const ChatRoom = ({ partyInfo, username, userId, setTheme }) => {
     socket.on('receiveDelete', (message) => {
       setDeleted((deleted) => [...deleted, `${message.user}${message.text}${message.time}`]);
     });
-
   }, []);
 
   const sendMessage = (event) => {
@@ -65,11 +66,17 @@ const ChatRoom = ({ partyInfo, username, userId, setTheme }) => {
     }
   };
 
+  const sendPrivateMessage = (id, event, name) => {
+    event.preventDefault();
+    if (message) {
+      socket.emit('privateMessage', { message, id, name }, () => setMessage(''));
+    }
+  };
   const deleteMessage = (message) => {
     if (userId === partyInfo.host_id) {
       socket.emit('deleteMessage', message);
     }
-  }
+  };
 
   const leftParty = () => {
     setTheme('original');
@@ -78,7 +85,7 @@ const ChatRoom = ({ partyInfo, username, userId, setTheme }) => {
 
   const getKicked = () => {
     socket.emit('getKicked');
-  }
+  };
 
   const renderRedirect = () => {
     if (username || partyInfo.name) {
@@ -88,10 +95,10 @@ const ChatRoom = ({ partyInfo, username, userId, setTheme }) => {
   };
 
   const kickRedirect = () => {
-    if(kick) {
+    if (kick) {
       return <Redirect to="/parties" />;
     }
-  }
+  };
 
   const sendUrl = (imageUrl) => {
     socket.emit('sendMessage', { message: imageUrl }, () => setMessage(''));
@@ -104,8 +111,8 @@ const ChatRoom = ({ partyInfo, username, userId, setTheme }) => {
       }
       socket.emit('kickUser', id);
     }
-  }
-  
+  };
+
   return (
     <div className="container-fluid chat-room">
       {renderRedirect()}
@@ -131,6 +138,7 @@ const ChatRoom = ({ partyInfo, username, userId, setTheme }) => {
             partyInfo={partyInfo}
             username={username}
             userId={userId}
+            sendPrivateMessage={sendPrivateMessage}
           />
         </div>
         <div className="col sidebar">

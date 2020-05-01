@@ -51,12 +51,12 @@ const addUser = (req) => {
   const {
     google_id, image_url, name, latitude, longitude, city, region,
   } = req.body;
-  const mysqlSelectQuery = `SELECT id FROM users WHERE google_id = '${google_id}'`
+  const mysqlSelectQuery = `SELECT id FROM users WHERE google_id = '${google_id}'`;
   const mysqlInsertQuery = `INSERT INTO users (google_id, image_url, name, latitude, longitude, city, region) VALUES ('${google_id}', '${image_url}', '${name}', ${latitude}, ${longitude}, '${city}', '${region}')`;
   return query(mysqlSelectQuery)
     .then((result) => {
       if (result.length) {
-        return Promise.resolve({insertId: result[0].id});
+        return Promise.resolve({ insertId: result[0].id });
       }
       return query(mysqlInsertQuery);
     });
@@ -66,13 +66,24 @@ const addBan = (req) => {
   const { user_id, room_id } = req.body;
   const mysqlQuery = `INSERT INTO bans (user_id, room_id) VALUES (${user_id}, ${room_id})`;
   return query(mysqlQuery);
-}
+};
 
 const getBan = (req) => {
   const { userId, roomId } = req.params;
   const mysqlQuery = `SELECT * FROM bans WHERE user_id = ${userId} AND room_id = ${roomId}`;
   return query(mysqlQuery);
-}
+};
+
+const addRsvp = (req) => {
+  const { phoneNumber, roomId } = req.body;
+  const mysqlQuery = `INSERT INTO rsvp (phone, room_id) VALUES (${phoneNumber}, ${roomId})`;
+  return query(mysqlQuery);
+};
+
+const checkUpcomingParty = () => {
+  const mysqlQuery = 'SELECT rooms.name, rsvp.phone FROM rooms, rsvp WHERE rooms.date = curdate() AND (unix_timestamp(rooms.start) - unix_timestamp()) <= 600 AND (unix_timestamp(rooms.start) - unix_timestamp()) > 540 AND rooms.id = rsvp.room_id';
+  return query(mysqlQuery);
+};
 
 module.exports = {
   getRooms,
@@ -82,4 +93,6 @@ module.exports = {
   addUser,
   addBan,
   getBan,
+  addRsvp,
+  checkUpcomingParty,
 };

@@ -22,7 +22,6 @@ class App extends React.Component {
       latitude: '',
       city: '',
       region: '',
-      userId: null,
       redirect: false,
       theme: 'original',
     };
@@ -66,9 +65,12 @@ class App extends React.Component {
     const { userInfo } = this.state;
     Axios.get('/api/login', { params: { google_id: userInfo.googleId } })
       .then((res) => {
+        console.log(res.data[0].id);
         this.setState({ longitude: res.data[0].longitude, latitude: res.data[0].latitude, userId: res.data[0].id });
       })
-      .catch((err) => err);
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   setRedirect() {
@@ -78,6 +80,7 @@ class App extends React.Component {
   }
 
   responseGoogle(response) {
+    console.log('SECOND LOGIN');
     this.setState({
       userInfo: response.profileObj,
     });
@@ -104,7 +107,7 @@ class App extends React.Component {
 
   getTheme() {
     const { theme } = this.state;
-    switch(theme) {
+    switch (theme) {
       case 'original':
         return originalTheme;
       case 'dark':
