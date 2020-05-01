@@ -8,6 +8,7 @@ const GOOGLE_PRIVATE_KEY = '-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0
 const GOOGLE_CLIENT_EMAIL = 'howdy-7@teamnoodlehowdy.iam.gserviceaccount.com';
 const GOOGLE_PROJECT_NUMBER = '90577264534';
 const GOOGLE_CALENDAR_ID = 'teamnoodlehowdy@gmail.com';
+const TOKEN_PATH = 'token.json';
 
 calendarRouter.get('/', (req, res) => {
   const jwtClient = new google.auth.JWT(
@@ -39,6 +40,21 @@ calendarRouter.get('/', (req, res) => {
     }
   });
 });
+
+// calendarRouter.post('/', (req, res) => {
+//   const calendar = google.calendar({ version: 'v3', auth });
+//   calendar.events.insert({
+//     auth: auth,
+//     calendarId: 'primary',
+//     resource: event,
+//   }, function (err, event) {
+//     if (err) {
+//       console.log('There was an error contacting the Calendar service: ' + err);
+//       return;
+//     }
+//     console.log('Event created: %s', event.htmlLink);
+//   });
+// });
 
 module.exports = {
   calendarRouter,
