@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { google } from 'googleapis';
 
 class CreateParty extends React.Component {
   constructor(props) {
@@ -45,7 +44,7 @@ class CreateParty extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const {
-      getNewPartyEntry, longitude, latitude, city, region, userId, calendar_link,
+      getNewPartyEntry, longitude, latitude, city, region, userId,
     } = this.props;
     const {
       start, date, name, recipient,
@@ -75,7 +74,6 @@ class CreateParty extends React.Component {
           region,
           recipient: '',
           host_id: userId,
-          calendar_link,
         });
       })
       .catch((error) => error);
