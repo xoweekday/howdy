@@ -8,7 +8,7 @@ import Axios from 'axios';
 import Parties from './PartyCreation/Parties.jsx';
 import Login from './Login/Login.jsx';
 import Chatroom from './PartyRoom/ChatRoom.jsx';
-import { originalTheme, darkTheme } from '../themes.jsx';
+import { originalTheme, darkTheme, vaporWave } from '../themes.jsx';
 import { GlobalStyles } from '../Global.jsx';
 
 class App extends React.Component {
@@ -112,6 +112,8 @@ class App extends React.Component {
         return originalTheme;
       case 'dark':
         return darkTheme;
+        case 'chill':
+          return vaporWave;
     }
   }
 
@@ -123,7 +125,7 @@ class App extends React.Component {
       <div>
         <div className="hideMe">
           <GoogleLogin
-            clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
+            clientId="847322546124-r3jf05c1p89vlk3g6jbrbsv0632mh4go.apps.googleusercontent.com"
             buttonText="Login"
             onSuccess={this.responseGoogle}
             onFailure={this.setRedirect}

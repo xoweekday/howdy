@@ -4,6 +4,7 @@ const db = require('../db');
 const loginRouter = Router();
 
 // POST /api/login
+// small
 // when a user signs in through google, add the details to the database
 loginRouter.post('/', (req, res) => {
   db.addUser(req)

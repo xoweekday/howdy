@@ -13,7 +13,7 @@ connection.connect((err) => {
   if (!err) {
     console.log('Connected to database howdy!');
   }
-  return err;
+  console.error(err);
 });
 
 const query = util.promisify(connection.query).bind(connection);
