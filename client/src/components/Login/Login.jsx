@@ -42,7 +42,10 @@ class LogIn extends React.Component {
           view2: true,
         });
         Axios.post('api/login', this.state)
-          .then((res) => this.setState({ userId: res.data.insertId }))
+          .then((res) => {
+            console.log(res.data.insertId);
+            this.setState({ userId: res.data.insertId });
+          })
           .catch((err) => err);
       })
       .catch((error) => error);
@@ -75,7 +78,7 @@ class LogIn extends React.Component {
           {view === false ? (
             <div>
               <GoogleLogin
-                clientId="803513597131-flgnf4p6qarf2arn1003grv98m8vn21q.apps.googleusercontent.com"
+                clientId="847322546124-r3jf05c1p89vlk3g6jbrbsv0632mh4go.apps.googleusercontent.com"
                 buttonText="Login"
                 onSuccess={this.responseGoogle}
                 onFailure={this.responseGoogle}
@@ -83,7 +86,7 @@ class LogIn extends React.Component {
                 cookiePolicy="single_host_origin"
               />
             </div>
-          ) : null }
+          ) : null}
           {view === true ? (
             <div className="loginSigned" align="center">
               <h3>You have signed in as:</h3>
@@ -93,14 +96,39 @@ class LogIn extends React.Component {
               </div>
               {view2 === false ? (
                 <div>
-                  <div className="firstSpan colorSpan">{" When you're stuck inside, it can feel lonely."}</div>
-                  <div className="colorSpan"> Why not throw an online party? </div>
-                  <div className="lastSpan colorSpan"> Connect with your neighbors based on your location: </div>
-                  <button type="button" className="btn btn-primary" onClick={this.getUserLocation}> Share location </button>
+                  <div className="firstSpan colorSpan">
+                    {" When you're stuck inside, it can feel lonely."}
+                  </div>
+                  <div className="colorSpan">
+                    {" "}
+                    Why not throw an online party?{" "}
+                  </div>
+                  <div className="lastSpan colorSpan">
+                    {" "}
+                    Connect with your neighbors based on your location:{" "}
+                  </div>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={this.getUserLocation}
+                  >
+                    {" "}
+                    Share location{" "}
+                  </button>
                 </div>
               ) : (
-                <Link to={{ pathname: '/parties' }}>
-                  <button onClick={() => getUserInfo(this.state)} type="button" className="btn btn-primary continue"> Continue to Parties Page! </button>
+                <Link to={{ pathname: "/parties" }}>
+                  <button
+                    onClick={() => {
+                      console.log(this.state, "onclick");
+                      getUserInfo(this.state);
+                    }}
+                    type="button"
+                    className="btn btn-primary continue"
+                  >
+                    {" "}
+                    Continue to Parties Page!
+                  </button>
                 </Link>
               )}
               {/* <div> Or enter your zip code! </div>
@@ -109,7 +137,7 @@ class LogIn extends React.Component {
                 <button className="btn btn-primary"> Submit </button>
               </Link> */}
             </div>
-          ) : null }
+          ) : null}
         </div>
       </div>
     );

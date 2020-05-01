@@ -197,9 +197,14 @@ class CreateParty extends React.Component {
                 <div>
                   <label htmlFor="theme">
                     Theme:
-                    <select id="theme" name="theme" onChange={this.handleChange}>
+                    <select
+                      id="theme"
+                      name="theme"
+                      onChange={this.handleChange}
+                    >
                       <option value="original">Original</option>
                       <option value="dark">Dark</option>
+                      <option value="chill">Chill</option>
                     </select>
                   </label>
                 </div>

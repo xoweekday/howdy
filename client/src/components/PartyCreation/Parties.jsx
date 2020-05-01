@@ -21,6 +21,7 @@ class Parties extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.userId, 'party.jsx');
     const { imageUrl } = this.props;
     this.getParties();
     if (!imageUrl) {
