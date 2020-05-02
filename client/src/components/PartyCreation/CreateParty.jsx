@@ -54,9 +54,10 @@ class CreateParty extends React.Component {
     });
     console.log(this.state.theme);
     axios.post('/api/homepage', this.state)
-      .then(() => {
+      .then((packet) => {
         if (recipient) {
           this.sendText();
+          axios.post('/api/rsvp/', { phoneNumber: recipient, roomId: packet.data.insertId });
         }
         getNewPartyEntry();
         this.setState({
@@ -76,7 +77,7 @@ class CreateParty extends React.Component {
           host_id: userId,
         });
       })
-      .catch((error) => error);
+      .catch((error) => console.log(error));
   }
 
 

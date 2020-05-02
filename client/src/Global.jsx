@@ -16,4 +16,18 @@ export const GlobalStyles = createGlobalStyle`
     border-color: ${({ theme }) => theme.borderColor};
     font-family: ${({ theme }) => theme.chatFont};
     border-style: ${({ theme }) => theme.borderStyle};
+    background: ${({ theme }) => theme.messageBG};
+    color: ${({ theme }) => theme.messageText};
+  }
+
+  .form-control {
+    background: ${({ theme }) => theme.messageBG};
+    color: ${({ theme }) => theme.messageText};
+  }
+
+  .form-control:focus {
+    background: ${({ theme }) => theme.messageBG};
+    color: ${({ theme }) => theme.messageText};
+    outline: none;
+  }
   `;
