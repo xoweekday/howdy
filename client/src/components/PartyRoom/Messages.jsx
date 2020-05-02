@@ -20,7 +20,7 @@ const Messages = ({
       />
     </div>
     <div className="row message-input">
-      <ChatInput message={message} sendMessage={sendMessage} setMessage={setMessage} users={users} sendPrivateMessage={sendPrivateMessage} />
+      <ChatInput message={message} sendMessage={sendMessage} setMessage={setMessage} users={users.filter((user) => user.userId !== userId)} sendPrivateMessage={sendPrivateMessage} />
       <ImageUpload sendUrl={sendUrl} />
     </div>
     <div className="row leave-party">

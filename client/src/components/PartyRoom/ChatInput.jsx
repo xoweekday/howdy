@@ -13,7 +13,8 @@ const ChatInput = ({
       value: null,
       label: 'Everyone',
     }].concat(
-      users.map((user) => ({
+      users
+      .map((user) => ({
         value: user,
         label: user.name,
       })),
