@@ -20,6 +20,21 @@ export const vaporWave = {
   borderColor: '262322',
 };
 
+export const neutral = {
+  body: '#73715b',
+  text: '#000000',
+  font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif',
+  chatFont: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif',
+  borderStyle: 'ridge',
+  borderColor: '#beb2a7',
+  // textShadow: '-5px 2px 7px rgba(0,0,0,0.46)',
+  sidebarColor: '#797474',
+  buttonColor: '#797474',
+  detailsColor: '#DEC29D',
+  guestListColor: '#DEC29D',
+  fontWeight: 'bold',
+};
+
 export const pixelArt = {
   body: '#FEF4FC',
   text: '#FEA5DC',
