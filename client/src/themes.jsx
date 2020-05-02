@@ -19,3 +19,19 @@ export const vaporWave = {
   borderStyle: 'double',
   borderColor: '262322',
 };
+
+export const pixelArt = {
+  body: '#FEF4FC',
+  text: '#FEA5DC',
+  font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif',
+  url: 'https://i.gifer.com/19e7.gif',
+  chatFont: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif',
+  borderColor: '#B995E3',
+  borderStyle: 'double',
+  // sidebarColor: '#C6ECFF',
+  sidebarUrl: 'https://wallpaperaccess.com/full/1711564.jpg',
+  guestListColor: '#F9BCE3',
+  buttonColor: '#CEB2EE',
+  fontWeight: 'bold',
+  detailsColor: '#F9BCE3',
+};
