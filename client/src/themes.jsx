@@ -16,6 +16,16 @@ export const vaporWave = {
   font: 'Stencil Std',
   url: 'https://i.pinimg.com/originals/65/3a/c7/653ac7f4ecfe013c6efb2017a5807724.gif',
   chatFont: 'Marker Felt',
-  borderStyle: 'double',
+  borderStyle: 'double', 
   borderColor: '262322',
+};
+
+export const neutral = {
+  body: '#73715b',
+  text: '#ba97a6',
+  font: 'Stencil Std',
+  chatFont: 'Marker Felt',
+  borderStyle: 'ridge',
+  borderColor: '#beb2a7',
+  textShadow: '-5px 2px 7px rgba(0,0,0,0.46)',
 };

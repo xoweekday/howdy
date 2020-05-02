@@ -6,6 +6,7 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => (theme.url ? `url(${theme.url})` : theme.body)};
     color: ${({ theme }) => theme.text};
     font-family: ${({ theme }) => theme.font};
+    text-shadow: ${({ theme }) => theme.textShadow};
   }
   .chat-room {
     font-family: ${({ theme }) => theme.font};

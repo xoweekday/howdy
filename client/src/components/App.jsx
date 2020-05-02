@@ -8,7 +8,7 @@ import Axios from 'axios';
 import Parties from './PartyCreation/Parties.jsx';
 import Login from './Login/Login.jsx';
 import Chatroom from './PartyRoom/ChatRoom.jsx';
-import { originalTheme, darkTheme, vaporWave } from '../themes.jsx';
+import { originalTheme, darkTheme, vaporWave, neutral } from '../themes.jsx';
 import { GlobalStyles } from '../Global.jsx';
 
 class App extends React.Component {
@@ -114,6 +114,8 @@ class App extends React.Component {
         return darkTheme;
         case 'chill':
           return vaporWave;
+        case 'neutral':
+          return neutral;
     }
   }
 

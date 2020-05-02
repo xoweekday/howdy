@@ -205,6 +205,7 @@ class CreateParty extends React.Component {
                       <option value="original">Original</option>
                       <option value="dark">Dark</option>
                       <option value="chill">Chill</option>
+                      <option value="neutral">Neutral</option>
                     </select>
                   </label>
                 </div>
