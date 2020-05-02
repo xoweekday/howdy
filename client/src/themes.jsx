@@ -8,6 +8,9 @@ export const originalTheme = {
 export const darkTheme = {
   body: '#363537',
   text: '#FAFAFA',
+  messageBG: 'black',
+  messageText: 'green',
+  chatFont: 'Courier New',
 };
 
 export const vaporWave = {
