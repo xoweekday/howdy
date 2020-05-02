@@ -47,7 +47,7 @@ export const pixelArt = {
   borderColor: '#B995E3',
   borderStyle: 'double',
   // sidebarColor: '#C6ECFF',
-  sidebarUrl: 'https://wallpaperaccess.com/full/1711564.jpg',
+  sidebarUrl: 'https://i.pinimg.com/736x/e5/0d/db/e50ddb8951b8de1e2fe39d84b6827633.jpg',
   guestListColor: '#F9BCE3',
   buttonColor: '#CEB2EE',
   fontWeight: 'bold',
