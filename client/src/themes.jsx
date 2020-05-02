@@ -11,11 +11,12 @@ export const darkTheme = {
 };
 
 export const vaporWave = {
-  body: '#970dbd',
-  text: '#e6dfe8',
+  body: '#A6E6E8',
+  text: '#363537',
   font: 'Stencil Std',
-  url: 'https://i.pinimg.com/originals/65/3a/c7/653ac7f4ecfe013c6efb2017a5807724.gif',
   chatFont: 'Marker Felt',
   borderStyle: 'double',
   borderColor: '262322',
+  sideBarColor: '#F9F9F9',
+  sideBarDetail: '#D9C192',
 };

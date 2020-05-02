@@ -113,7 +113,7 @@ class App extends React.Component {
       case 'dark':
         return darkTheme;
         case 'chill':
-          return vaporWave;
+      return vaporWave;
     }
   }
 
